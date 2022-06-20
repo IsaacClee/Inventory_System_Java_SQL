@@ -1,5 +1,6 @@
 package Model;
 
+import JDBC.JDBC;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +19,9 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
+
+        JDBC.openConnection();
+        JDBC.closeConnection();
         launch(args);
     }
 }
