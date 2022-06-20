@@ -1,7 +1,8 @@
-package JDBC;
+package DAO;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public abstract class JDBC {
 
@@ -10,7 +11,7 @@ public abstract class JDBC {
     private static final String location = "//localhost/";
     private static final String databaseName = "client_Schedule";
     private static final String jdbcUrl = protocol + vendor + location + databaseName + "?connectionTimeZone = SERVER"; //LOCAL
-    private static final String driver = "com.mysql.cj.jdbc.Driver"; // Driver referene
+    private static final String driver = "com.mysql.cj.jdbc.Driver"; // Driver referance
     private static final String userName = "sqlUser"; // Username
     private static final String password = "Passw0rd!"; // Password
     public static Connection connection; // Connection Interface
@@ -22,10 +23,12 @@ public abstract class JDBC {
             Class.forName(driver); // Locate Driver
             connection = DriverManager.getConnection(jdbcUrl, userName, password); // Reference Connection object
             System.out.println("Connection successful!");
-        }
-        catch(Exception e)
+        } catch(SQLException e)
         {
-            System.out.println("Error" + e.getMessage());
+            e.printStackTrace();
+        } catch(ClassNotFoundException e)
+        {
+           e.printStackTrace();
         }
     }
 
