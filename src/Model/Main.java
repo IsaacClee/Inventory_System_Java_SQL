@@ -26,6 +26,7 @@ public class Main extends Application {
         // Open Connection
         JDBC.openConnection();
 
+        /**
         // Pull Countries to list
         ObservableList<Countries> countryList = DBCountries.getAllCountries();
         for(Countries C : countryList){
@@ -38,8 +39,12 @@ public class Main extends Application {
             System.out.println("Division ID : " + d.getId() + " Name : " + d.getName());
         }
 
+
         // Test Date Conversion
         DBCountries.checkDateConversion();
+
+         */
+
 
         // Launch Args
         launch(args);
