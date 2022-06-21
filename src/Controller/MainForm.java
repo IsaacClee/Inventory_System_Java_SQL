@@ -19,77 +19,98 @@ import java.util.ResourceBundle;
 
 public class MainForm {
     @javafx.fxml.FXML
-    private TableColumn partPriceCol;
-    @javafx.fxml.FXML
-    private TextField searchProduct;
-    @javafx.fxml.FXML
-    private Button addProduct;
-    @javafx.fxml.FXML
-    private TableView productTable;
-    @javafx.fxml.FXML
-    private Button modifyProduct;
-    @javafx.fxml.FXML
     private Button exitMenu;
-    @javafx.fxml.FXML
-    private TableColumn partIDCol;
-    @javafx.fxml.FXML
-    private TableColumn productNameCol;
-    @javafx.fxml.FXML
-    private TableColumn productInvCol;
-    @javafx.fxml.FXML
-    private TableView partTable;
-    @javafx.fxml.FXML
-    private Button AddPart;
-    @javafx.fxml.FXML
-    private Button deletePart;
-    @javafx.fxml.FXML
-    private TableColumn productIDCol;
-    @javafx.fxml.FXML
-    private TableColumn partNameCol;
-    @javafx.fxml.FXML
-    private TableColumn partInvCol;
-    @javafx.fxml.FXML
-    private Button deleteProduct;
-    @javafx.fxml.FXML
-    private TableColumn productPriceCol;
-    @javafx.fxml.FXML
-    private TextField searchPart;
-    @javafx.fxml.FXML
-    private Button modifyPart;
+    @FXML
+    private TableColumn appEndCol;
+    @FXML
+    private TableColumn appLocationCol;
+    @FXML
+    private TableColumn appCusIDCol;
+    @FXML
+    private TableView CustomerTable;
+    @FXML
+    private Button AddCustomer;
+    @FXML
+    private TableColumn cusCreateDateCol;
+    @FXML
+    private TableColumn appLastUpdatedByCol;
+    @FXML
+    private TableColumn cusLastUpdateCol;
+    @FXML
+    private TableColumn cusLastUpdatedByCol;
+    @FXML
+    private TableColumn appTitleCol;
+    @FXML
+    private TableColumn cusAddressCol;
+    @FXML
+    private TableColumn cusPostalCol;
+    @FXML
+    private TableColumn appDescripCol;
+    @FXML
+    private Button deleteAppointment;
+    @FXML
+    private TableColumn cusNameCol;
+    @FXML
+    private TableColumn cusPhoneCol;
+    @FXML
+    private TableView AppointmentTable;
+    @FXML
+    private TableColumn appTypeCol;
+    @FXML
+    private Button addAppointment;
+    @FXML
+    private TableColumn appLastUpdateCol;
+    @FXML
+    private Button deleteCustomer;
+    @FXML
+    private TableColumn appIDCol;
+    @FXML
+    private TableColumn cusIDCol;
+    @FXML
+    private TableColumn appCreateDateCol;
+    @FXML
+    private TableColumn appContactIDCol;
+    @FXML
+    private TableColumn appStartCol;
+    @FXML
+    private TableColumn cusCreatedByCol;
+    @FXML
+    private Button updateAppointment;
+    @FXML
+    private TableColumn cusDivisionCol;
+    @FXML
+    private TableColumn appUserIDCol;
+    @FXML
+    private Button updateCustomer;
+    @FXML
+    private TableColumn appCreatedByCol;
 
-    @javafx.fxml.FXML
-    public void onActionDeleteProduct(ActionEvent actionEvent) {
-    }
-
-    @javafx.fxml.FXML
-    public void onActionSearchPart(Event event) {
-    }
-
-    @javafx.fxml.FXML
-    public void onActionModifyProduct(ActionEvent actionEvent) {
-    }
-
-    @javafx.fxml.FXML
-    public void onActionAddProduct(ActionEvent actionEvent) {
-    }
-
-    @javafx.fxml.FXML
-    public void onActionDeletePart(ActionEvent actionEvent) {
-    }
-
-    @javafx.fxml.FXML
-    public void onActionSearchProduct(ActionEvent actionEvent) {
-    }
-
-    @javafx.fxml.FXML
-    public void onActionAddPart(ActionEvent actionEvent) {
-    }
-
-    @javafx.fxml.FXML
-    public void onActionModifyPart(ActionEvent actionEvent) {
-    }
 
     @javafx.fxml.FXML
     public void onActionExitMenu(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    public void onActionAddCustomer(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    public void onActionAddAppointment(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    public void onActionDeleteAppointment(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    public void onActionDeleteCustomer(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    public void onActionUpdateAppointment(ActionEvent actionEvent) {
+    }
+
+    @FXML
+    public void onActionUpdateCustomer(ActionEvent actionEvent) {
     }
 }
