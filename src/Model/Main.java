@@ -1,6 +1,7 @@
 package Model;
 
 import DAO.DBCountries;
+import DAO.DBCustomers;
 import DAO.DBFirstLevelDivisions;
 import DAO.JDBC;
 import Model.Countries;
@@ -44,6 +45,12 @@ public class Main extends Application {
         DBCountries.checkDateConversion();
 
          */
+
+        // Pull Divisions to list
+        ObservableList<Customers> customersList = DBCustomers.getAllCustomers();
+        for(Customers c : customersList){
+            System.out.println("Customer ID : " + c.getId() + " Name : " + c.getName());
+        }
 
 
         // Launch Args

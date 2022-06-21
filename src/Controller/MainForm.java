@@ -11,13 +11,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import Model.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class MainForm {
+public class MainForm implements Initializable{
+
+    Stage stage;
+    Parent scene;
+
+
     @javafx.fxml.FXML
     private Button exitMenu;
     @FXML
@@ -85,6 +91,13 @@ public class MainForm {
     @FXML
     private TableColumn appCreatedByCol;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        System.out.println("Main Form");
+
+
+    }
 
     @javafx.fxml.FXML
     public void onActionExitMenu(ActionEvent actionEvent) {
