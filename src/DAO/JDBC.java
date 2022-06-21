@@ -17,7 +17,7 @@ public abstract class JDBC {
     public static Connection connection; // Connection Interface
 
 
-    public static void openConnection()
+    public static Connection openConnection()
     {
         try {
             Class.forName(driver); // Locate Driver
@@ -30,6 +30,12 @@ public abstract class JDBC {
         {
            e.printStackTrace();
         }
+        return connection;
+    }
+
+    // Getter for the Database Connection
+    public static Connection getConnection(){
+        return connection;
     }
 
     public static void closeConnection() {

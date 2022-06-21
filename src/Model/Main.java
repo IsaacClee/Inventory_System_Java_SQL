@@ -1,7 +1,10 @@
 package Model;
 
+import DAO.DBCountries;
 import DAO.JDBC;
+import Model.Countries;
 import javafx.application.Application;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -11,6 +14,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/view/LoginForm.fxml"));
+        stage.setTitle("User Login");
         stage.setScene(new Scene(root));
         stage.show();
     }
@@ -18,8 +22,19 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
+        // Open Connection
         JDBC.openConnection();
-        JDBC.closeConnection();
+
+        // Pull Countries to list
+        ObservableList<Countries> countryList = DBCountries.getAllCountries();
+        for(Countries C : countryList){
+            System.out.println("Country ID : " + C.getId() + " Name : " + C.getName());
+        }
+
+
+
         launch(args);
+        JDBC.closeConnection();
+
     }
 }
