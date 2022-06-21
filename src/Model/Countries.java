@@ -40,9 +40,5 @@ public class Countries {
         this.name = name;
     }
 
-
-
-
-
 }
 
