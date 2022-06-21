@@ -1,6 +1,7 @@
 package Model;
 
 import DAO.DBCountries;
+import DAO.DBFirstLevelDivisions;
 import DAO.JDBC;
 import Model.Countries;
 import javafx.application.Application;
@@ -29,6 +30,12 @@ public class Main extends Application {
         ObservableList<Countries> countryList = DBCountries.getAllCountries();
         for(Countries C : countryList){
             System.out.println("Country ID : " + C.getId() + " Name : " + C.getName());
+        }
+
+        // Pull Divisions to list
+        ObservableList<FirstLevelDivisions> divisionsList = DBFirstLevelDivisions.getAllDivisions();
+        for(FirstLevelDivisions d : divisionsList){
+            System.out.println("Division ID : " + d.getId() + " Name : " + d.getName());
         }
 
         // Test Date Conversion
