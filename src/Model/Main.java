@@ -4,7 +4,7 @@ import DAO.DBCountries;
 import DAO.DBCustomers;
 import DAO.DBFirstLevelDivisions;
 import DAO.JDBC;
-import Model.Countries;
+import Model.*;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
