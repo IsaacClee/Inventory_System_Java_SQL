@@ -1,5 +1,6 @@
 package Controller;
 
+import DAO.DBCustomers;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -93,10 +94,19 @@ public class MainForm implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        // Populate Customer Table
+        CustomerTable.setItems(Customers.allCustomers.getListOfCustomers());
 
-        System.out.println("Main Form");
-
-
+        cusIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        cusNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        cusAddressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
+        cusPostalCol.setCellValueFactory(new PropertyValueFactory<>("postal"));
+        cusPhoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        cusCreateDateCol.setCellValueFactory(new PropertyValueFactory<>("createDate"));
+        cusCreatedByCol.setCellValueFactory(new PropertyValueFactory<>("createdBy"));
+        cusLastUpdateCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdate"));
+        cusLastUpdatedByCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdatedBy"));
+        cusDivisionCol.setCellValueFactory(new PropertyValueFactory<>("divisionID"));
     }
 
     @javafx.fxml.FXML

@@ -1,5 +1,8 @@
 package Model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.Date;
 import java.sql.Timestamp;
 
@@ -38,6 +41,15 @@ public class Countries {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    public static class allCountries {
+
+        private static ObservableList<Countries> listOfCountries = FXCollections.observableArrayList();
+
+        public static void addCountryToList(Countries countries){listOfCountries.add(countries);}
+
+
     }
 
 }

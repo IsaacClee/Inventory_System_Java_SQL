@@ -46,11 +46,14 @@ public class Main extends Application {
 
          */
 
-        // Pull Divisions to list
+        // Pull Customers to list
         ObservableList<Customers> customersList = DBCustomers.getAllCustomers();
         for(Customers c : customersList){
-            System.out.println("Customer ID : " + c.getId() + " Name : " + c.getName());
+            Customers.allCustomers.addCustomerToList(c);
         }
+        // Populates Customers List to GUI Tableview
+
+
 
 
         // Launch Args

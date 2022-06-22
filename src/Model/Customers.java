@@ -1,5 +1,8 @@
 package Model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.Date;
 import java.sql.Timestamp;
 
@@ -168,6 +171,15 @@ public class Customers {
         this.divisionID = divisionID;
     }
 
+    public static class allCustomers {
+
+        private static ObservableList<Customers> listOfCustomers = FXCollections.observableArrayList();
+
+        public static void addCustomerToList(Customers customers){listOfCustomers.add(customers);}
+
+        public static ObservableList<Customers> getListOfCustomers() {return listOfCustomers;}
+
+    }
 
 
 }
