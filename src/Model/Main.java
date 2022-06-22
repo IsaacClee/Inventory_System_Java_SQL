@@ -48,6 +48,13 @@ public class Main extends Application {
             Customers.allCustomers.addCustomerToList(c);
         }
 
+        /**
+        // Pull Appointment to list from Database
+        ObservableList<Appointments> appointmentsList = .getAllCustomers();
+        for(Customers c : customersList){
+            Customers.allCustomers.addCustomerToList(c);
+        }
+        */
 
         // Launch Args
         launch(args);

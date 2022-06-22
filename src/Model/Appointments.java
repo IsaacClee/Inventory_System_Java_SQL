@@ -1,5 +1,8 @@
 package Model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -107,14 +110,142 @@ public class Appointments {
         this.type = type;
     }
 
+    /**
+     * @return the start
+     */
+    public Date getStart() {
+        return start;
+    }
+
+    /**
+     * @param start the start to set
+     */
+    public void setStart(Date start) {
+        this.start = start;
+    }
+
+    /**
+     * @return the end
+     */
+    public Date getEnd() {
+        return end;
+    }
+
+    /**
+     * @param end the end to set
+     */
+    public void setEnd(Date end) {
+        this.end = end;
+    }
+
+    /**
+     * @return the createDate
+     */
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    /**
+     * @param createDate the createDate to set
+     */
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    /**
+     * @return the createdBy
+     */
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    /**
+     * @param createdBy the createdBy to set
+     */
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    /**
+     * @return the lastUpdate
+     */
+    public Timestamp getLastUpdate() {
+        return lastUpdate;
+    }
+
+    /**
+     * @param lastUpdate the lastUpdate to set
+     */
+    public void setLastUpdate(Timestamp lastUpdate) {
+        this.lastUpdate = lastUpdate;
+    }
+
+    /**
+     * @return the lastUpdatedBy
+     */
+    public String getLastUpdatedBy() {
+        return lastUpdatedBy;
+    }
+
+    /**
+     * @param lastUpdatedBy the lastUpdatedBy to set
+     */
+    public void setLastUpdatedBy(String lastUpdatedBy) {
+        this.lastUpdatedBy = lastUpdatedBy;
+    }
+
+    /**
+     * @return the customerID
+     */
+    public int getCustomerID() {
+        return customerID;
+    }
+
+    /**
+     * @param customerID the customerID to set
+     */
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
+    }
+
+    /**
+     * @return the userID
+     */
+    public int getUserID() {
+        return userID;
+    }
+
+    /**
+     * @param userID the userID to set
+     */
+    public void setUserID(int userID) {
+        this.userID = userID;
+    }
+
+    /**
+     * @return the contactID
+     */
+    public int getContactID() {
+        return contactID;
+    }
+
+    /**
+     * @param contactID the contactID to set
+     */
+    public void setContactID(int contactID) {
+        this.contactID = contactID;
+    }
 
 
+    public static class allAppointments {
 
+        private static ObservableList<Appointments> listOfAppointments = FXCollections.observableArrayList();
 
+        public static void addAppointmentToList(Appointments appointments){listOfAppointments.add(appointments);}
 
+        public static ObservableList<Appointments> getListOfAppointments() {return listOfAppointments;}
 
-
-
+    }
 
 
 }
