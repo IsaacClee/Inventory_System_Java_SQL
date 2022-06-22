@@ -1,9 +1,6 @@
 package Model;
 
-import DAO.DBCountries;
-import DAO.DBCustomers;
-import DAO.DBFirstLevelDivisions;
-import DAO.JDBC;
+import DAO.*;
 import Model.*;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
@@ -48,13 +45,12 @@ public class Main extends Application {
             Customers.allCustomers.addCustomerToList(c);
         }
 
-        /**
+
         // Pull Appointment to list from Database
-        ObservableList<Appointments> appointmentsList = .getAllCustomers();
-        for(Customers c : customersList){
-            Customers.allCustomers.addCustomerToList(c);
+        ObservableList<Appointments> appointmentsList = DBAppointments.getAllAppointments();
+        for(Appointments a : appointmentsList){
+            Appointments.allAppointments.addAppointmentToList(a);
         }
-        */
 
         // Launch Args
         launch(args);

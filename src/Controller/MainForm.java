@@ -94,6 +94,7 @@ public class MainForm implements Initializable{
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         // Populate Customer Table
         CustomerTable.setItems(Customers.allCustomers.getListOfCustomers());
 
@@ -107,6 +108,25 @@ public class MainForm implements Initializable{
         cusLastUpdateCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdate"));
         cusLastUpdatedByCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdatedBy"));
         cusDivisionCol.setCellValueFactory(new PropertyValueFactory<>("divisionID"));
+
+        // Populate Appointments Table
+        AppointmentTable.setItems(Appointments.allAppointments.getListOfAppointments());
+
+        appIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        appTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        appDescripCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        appLocationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        appTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        appStartCol.setCellValueFactory(new PropertyValueFactory<>("start"));
+        appEndCol.setCellValueFactory(new PropertyValueFactory<>("end"));
+        appCreateDateCol.setCellValueFactory(new PropertyValueFactory<>("createDate"));
+        appCreatedByCol.setCellValueFactory(new PropertyValueFactory<>("createdBy"));
+        appLastUpdateCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdate"));
+        appLastUpdatedByCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdatedBy"));
+        appCusIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        appUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
+        appContactIDCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
+
     }
 
     @javafx.fxml.FXML
