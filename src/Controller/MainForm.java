@@ -92,6 +92,18 @@ public class MainForm implements Initializable{
     private Button updateCustomer;
     @FXML
     private TableColumn appCreatedByCol;
+    @FXML
+    private TextField newCusAddress;
+    @FXML
+    private ComboBox newCusDivision;
+    @FXML
+    private TextField newCusPostal;
+    @FXML
+    private TextField newCusPhone;
+    @FXML
+    private TextField newCusName;
+    @FXML
+    private ComboBox newCusCountry;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
