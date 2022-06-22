@@ -1,5 +1,8 @@
 package Model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.sql.Date;
 import java.sql.Timestamp;
 
@@ -38,6 +41,16 @@ public class FirstLevelDivisions {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    public static class allFirstLevelDivisions {
+
+        private static ObservableList<FirstLevelDivisions> listOfDivisions = FXCollections.observableArrayList();
+
+        public static void addDivisionToList(FirstLevelDivisions divisions){listOfDivisions.add(divisions);}
+
+        public static ObservableList<FirstLevelDivisions> getListOfDivisions() {return listOfDivisions;}
+
     }
 
 }

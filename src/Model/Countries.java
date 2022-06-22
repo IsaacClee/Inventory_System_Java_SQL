@@ -49,7 +49,7 @@ public class Countries {
 
         public static void addCountryToList(Countries countries){listOfCountries.add(countries);}
 
-
+        public static ObservableList<Countries> getListOfCountries() {return listOfCountries;}
     }
 
 }

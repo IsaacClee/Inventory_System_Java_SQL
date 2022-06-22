@@ -27,33 +27,26 @@ public class Main extends Application {
         // Open Connection
         JDBC.openConnection();
 
-        /**
-        // Pull Countries to list
-        ObservableList<Countries> countryList = DBCountries.getAllCountries();
-        for(Countries C : countryList){
-            System.out.println("Country ID : " + C.getId() + " Name : " + C.getName());
-        }
 
-        // Pull Divisions to list
+        // Pull Countries to list from Database
+         ObservableList<Countries> countriesList = DBCountries.getAllCountries();
+         for(Countries c : countriesList){
+         Countries.allCountries.addCountryToList(c);
+         }
+
+
+        // Pull Divisions to list from Database
         ObservableList<FirstLevelDivisions> divisionsList = DBFirstLevelDivisions.getAllDivisions();
         for(FirstLevelDivisions d : divisionsList){
-            System.out.println("Division ID : " + d.getId() + " Name : " + d.getName());
+            FirstLevelDivisions.allFirstLevelDivisions.addDivisionToList(d);
         }
 
 
-        // Test Date Conversion
-        DBCountries.checkDateConversion();
-
-         */
-
-        // Pull Customers to list
+        // Pull Customers to list from Database
         ObservableList<Customers> customersList = DBCustomers.getAllCustomers();
         for(Customers c : customersList){
             Customers.allCustomers.addCustomerToList(c);
         }
-        // Populates Customers List to GUI Tableview
-
-
 
 
         // Launch Args
