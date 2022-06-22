@@ -16,6 +16,7 @@ import Model.*;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -131,6 +132,7 @@ public class MainForm implements Initializable{
 
     @javafx.fxml.FXML
     public void onActionExitMenu(ActionEvent actionEvent) {
+        System.exit(0);
     }
 
     @FXML
@@ -146,7 +148,10 @@ public class MainForm implements Initializable{
     }
 
     @FXML
-    public void onActionDeleteCustomer(ActionEvent actionEvent) {
+    public void onActionDeleteCustomer(ActionEvent actionEvent) throws SQLException {
+
+        // Delete Customer from database
+        // DBCustomers.deleteCustomer(1);
     }
 
     @FXML

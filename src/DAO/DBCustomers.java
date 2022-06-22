@@ -44,6 +44,24 @@ public class DBCustomers {
         return customersList;
     }
 
+
+    /**
+    public static void deleteCustomer(int id) throws SQLException {
+        try {
+            String sql = "DELETE FROM CUSTOMERS WHERE id= ?";
+
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+
+            ps.setInt(1, id);
+
+            ps.executeQuery();
+
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+    }
+     */
+
     public static void checkDateConversion(){
         System.out.println("CREATE DATE TEST");
         String sql = "Select Create_Date from Countries";
