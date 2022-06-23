@@ -171,13 +171,13 @@ public class Customers {
         this.divisionID = divisionID;
     }
 
-    public static class allCustomers {
+    public static class filteredCustomers {
 
-        private static ObservableList<Customers> listOfCustomers = FXCollections.observableArrayList();
+        private static ObservableList<Customers> filteredListOfCustomers = FXCollections.observableArrayList();
 
-        public static void addCustomerToList(Customers customers){listOfCustomers.add(customers);}
+        public static void addCustomerToFilterList(Customers customers){filteredListOfCustomers.add(customers);}
 
-        public static ObservableList<Customers> getListOfCustomers() {return listOfCustomers;}
+        public static ObservableList<Customers> getListOfFilteredCustomers() {return filteredListOfCustomers;}
 
     }
 

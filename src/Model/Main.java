@@ -1,11 +1,8 @@
 package Model;
 
-import java.sql.Date;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 
 import DAO.*;
-import Model.*;
 import javafx.application.Application;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
@@ -46,7 +43,7 @@ public class Main extends Application {
         // Pull Customers to list from Database
         ObservableList<Customers> customersList = DBCustomers.getAllCustomers();
         for(Customers c : customersList){
-            Customers.allCustomers.addCustomerToList(c);
+            Customers.filteredCustomers.addCustomerToFilterList(c);
         }
 
 

@@ -1,13 +1,11 @@
 package DAO;
 
-import DAO.JDBC;
 import Model.Customers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import java.sql.Date;
 import java.sql.Timestamp;
 
-import javax.swing.*;
 import java.sql.*;
 
 public class DBCustomers {
@@ -67,6 +65,23 @@ public class DBCustomers {
             ps.setInt(1, id);
             int rowAffected = ps.executeUpdate();
             return rowAffected;
+    }
+
+    public static ObservableList<Customers> searchForCustomer(String name){
+        for(Customers customers : DBCustomers.getAllCustomers()) {
+            if (Integer.toString(customers.getId()).contains(name))
+                Customers.filteredCustomers.addCustomerToFilterList(customers);
+        }
+        return Customers.filteredCustomers.getListOfFilteredCustomers();
+    }
+
+    public static boolean doesCustomerExist(int id) {
+        for(Customers customers : DBCustomers.getAllCustomers()) {
+            if(customers.getId() == id){
+                return true;
+            }
+        }
+        return false;
     }
 
     public static void checkDateConversion(){

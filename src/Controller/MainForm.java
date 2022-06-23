@@ -16,6 +16,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import Model.*;
+import java.sql.*;
+
 
 import java.io.IOException;
 import java.net.URL;
@@ -159,7 +161,34 @@ public class MainForm implements Initializable{
     }
 
     @FXML
-    public void onActionAddCustomer(ActionEvent actionEvent) {
+    public void onActionAddCustomer(ActionEvent actionEvent) throws SQLException {
+        System.out.println("connected");
+        /**
+        int numOfCustomers = DBCustomers.getAllCustomers().size();
+        while(DBCustomers.doesCustomerExist(numOfCustomers)) {
+            numOfCustomers++;
+        }
+        int id = numOfCustomers;
+        String name = newCusName.getText();
+        String address = newCusAddress.getText();
+        String postal = newCusPostal.getText();
+        String phone = newCusPhone.getText();
+        Date createDate = new Date(System.currentTimeMillis());
+        String createdBy = "user script";
+        Timestamp lastUpdate = new Timestamp(System.currentTimeMillis());
+        String lastUpdatedBy = "user script";
+        int divisionID = 60;
+
+        int rowsAffected = DBCustomers.insert(id,name,address,postal,phone,createDate,createdBy,lastUpdate,lastUpdatedBy,divisionID);
+
+        if(rowsAffected > 0){
+            System.out.println("Successful");
+        } else {
+            System.out.println("Failed");
+        }
+
+         */
+
     }
 
     @FXML
