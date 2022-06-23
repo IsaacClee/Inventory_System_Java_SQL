@@ -26,7 +26,7 @@
                   <Label text="Address:" GridPane.rowIndex="2" />
                   <Label text="Postal:" GridPane.rowIndex="3" />
                   <Label text="Phone:" GridPane.rowIndex="4" />
-                  <TextField fx:id="cusIDField" GridPane.columnIndex="1" />
+                  <TextField fx:id="cusIDField"  disable="true"  editable="false" promptText="idField" text="Auto Gen - Disabled" GridPane.columnIndex="1" />
                   <TextField fx:id="cusNameField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                   <TextField fx:id="cusAddressField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                   <TextField fx:id="cusPostalField" GridPane.columnIndex="1" GridPane.rowIndex="3" />

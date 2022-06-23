@@ -19,6 +19,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import Model.*;
 
+import javax.swing.*;
 import javax.swing.text.Style;
 import java.sql.*;
 
@@ -114,40 +115,23 @@ public class MainForm implements Initializable{
     @FXML
     private ComboBox newCusCountry;
 
+    public static Customers customerToBeUpdated = null;
+
+    public static Customers getCustomerToBeUpdated() {
+        return customerToBeUpdated;
+    }
+
+    public static Appointments appointmentToBeUpdated = null;
+
+    public static Appointments getAppointmentToBeUpdated(){
+        return appointmentToBeUpdated;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        // Populate Customer Table
-        CustomerTable.setItems(DBCustomers.getAllCustomers());
-
-        cusIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        cusNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
-        cusAddressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
-        cusPostalCol.setCellValueFactory(new PropertyValueFactory<>("postal"));
-        cusPhoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        cusCreateDateCol.setCellValueFactory(new PropertyValueFactory<>("createDate"));
-        cusCreatedByCol.setCellValueFactory(new PropertyValueFactory<>("createdBy"));
-        cusLastUpdateCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdate"));
-        cusLastUpdatedByCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdatedBy"));
-        cusDivisionCol.setCellValueFactory(new PropertyValueFactory<>("divisionID"));
-
-        // Populate Appointments Table
-        AppointmentTable.setItems(DBAppointments.getAllAppointments());
-
-        appIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
-        appTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
-        appDescripCol.setCellValueFactory(new PropertyValueFactory<>("description"));
-        appLocationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
-        appTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
-        appStartCol.setCellValueFactory(new PropertyValueFactory<>("start"));
-        appEndCol.setCellValueFactory(new PropertyValueFactory<>("end"));
-        appCreateDateCol.setCellValueFactory(new PropertyValueFactory<>("createDate"));
-        appCreatedByCol.setCellValueFactory(new PropertyValueFactory<>("createdBy"));
-        appLastUpdateCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdate"));
-        appLastUpdatedByCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdatedBy"));
-        appCusIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
-        appUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
-        appContactIDCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
+        // Populate Customer and Appointment Tables
+        refreshTables();
 
 
         // Pull divisions for Add Customer Combo box
@@ -166,8 +150,6 @@ public class MainForm implements Initializable{
             }
         });
     }
-
-
 
 
     @javafx.fxml.FXML
@@ -214,9 +196,15 @@ public class MainForm implements Initializable{
 
     @FXML
     public void onActionDeleteCustomer(ActionEvent actionEvent) throws SQLException {
+        Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION, "This will remove this customer from the Database. Do you want to proceed?");
+        Optional<ButtonType> result = deleteAlert.showAndWait();
 
-        // Delete Customer from database
-        // DBCustomers.deleteCustomer(1);
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            Customers selectedItem = (Customers) CustomerTable.getSelectionModel().getSelectedItem();
+            DBCustomers.deleteCustomer(selectedItem.getId());
+            JOptionPane.showMessageDialog(null, "Delete successful - ID: " + selectedItem.getId() + ", Name: " + selectedItem.getName());
+            refreshTables();
+        }
     }
 
     @FXML
@@ -224,7 +212,18 @@ public class MainForm implements Initializable{
     }
 
     @FXML
-    public void onActionUpdateCustomer(ActionEvent actionEvent) {
+    public void onActionUpdateCustomer(ActionEvent actionEvent) throws IOException  {
+        Customers selectedItem = (Customers) CustomerTable.getSelectionModel().getSelectedItem();
+        customerToBeUpdated = selectedItem;
+        if(selectedItem == null){
+            JOptionPane.showMessageDialog(null, "Please select a Customer from the Customer Table");
+        } else {
+            stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            scene = FXMLLoader.load(getClass().getResource("/View/UpdateCustomerForm.fxml"));
+            stage.setTitle("Update Customer");
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
     }
 
     public void refreshTables(){

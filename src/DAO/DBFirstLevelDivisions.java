@@ -53,8 +53,9 @@ public class DBFirstLevelDivisions {
         }
 
         return divisionsList;
-
     }
+
+
 
     public static void checkDateConversion(){
         System.out.println("CREATE DATE TEST");
