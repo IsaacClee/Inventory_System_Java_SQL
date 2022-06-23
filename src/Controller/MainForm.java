@@ -4,6 +4,8 @@ import DAO.DBAppointments;
 import DAO.DBCountries;
 import DAO.DBCustomers;
 import DAO.DBFirstLevelDivisions;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -16,6 +18,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import Model.*;
+
+import javax.swing.text.Style;
 import java.sql.*;
 
 
@@ -153,7 +157,18 @@ public class MainForm implements Initializable{
         // Pull countries for Add Customer Combo box
         newCusCountry.setItems(DBCountries.getAllCountries());
         newCusCountry.setPromptText("Please select Country");
+
+        // Event listener - listens for change to Country Combo box and filters divisions accordingly
+        newCusCountry.valueProperty().addListener(new ChangeListener<Countries>() {
+            @Override
+            public void changed(ObservableValue observableValue, Countries t, Countries t1) {
+                newCusDivision.setItems(DBFirstLevelDivisions.getDivisionsById(t1.getId()));
+            }
+        });
     }
+
+
+
 
     @javafx.fxml.FXML
     public void onActionExitMenu(ActionEvent actionEvent) {
