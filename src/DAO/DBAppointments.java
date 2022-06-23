@@ -11,6 +11,7 @@ import java.sql.*;
 
 public class DBAppointments {
 
+
     public static ObservableList<Appointments> getAllAppointments(){
         ObservableList<Appointments>appointmentsList = FXCollections.observableArrayList();
 

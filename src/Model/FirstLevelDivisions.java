@@ -53,6 +53,11 @@ public class FirstLevelDivisions {
 
     }
 
+    @Override
+    public String toString(){
+        return (name);
+    }
+
 }
 
 

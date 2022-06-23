@@ -52,5 +52,10 @@ public class Countries {
         public static ObservableList<Countries> getListOfCountries() {return listOfCountries;}
     }
 
+    @Override
+    public String toString(){
+        return (name);
+    }
+
 }
 

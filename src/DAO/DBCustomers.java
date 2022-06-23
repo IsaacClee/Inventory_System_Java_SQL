@@ -44,23 +44,30 @@ public class DBCustomers {
         return customersList;
     }
 
-
-    /**
-    public static void deleteCustomer(int id) throws SQLException {
-        try {
-            String sql = "DELETE FROM CUSTOMERS WHERE id= ?";
-
-            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
-
-            ps.setInt(1, id);
-
-            ps.executeQuery();
-
-        } catch(SQLException e) {
-            e.printStackTrace();
-        }
+    public static int insert(int id, String name, String address, String postal, String phone, Date createDate, String createdBy, Timestamp lastUpdate, String lastUpdatedBy, int division) throws SQLException {
+        String sql = "INSERT INTO CUSTOMERS (Customer_ID, Customer_Name, Address, Postal_Code, Phone, Create_Date, Created_By, Last_Update, Last_Updated_By, Division_ID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setInt(1,id);
+        ps.setString(2,name);
+        ps.setString(3,address);
+        ps.setString(4,postal);
+        ps.setString(5,phone);
+        ps.setDate(6, createDate);
+        ps.setString(7,createdBy);
+        ps.setTimestamp(8, lastUpdate);
+        ps.setString(9,lastUpdatedBy);
+        ps.setInt(10, division);
+        int rowsAffected = ps.executeUpdate();
+        return rowsAffected;
     }
-     */
+
+    public static int deleteCustomer(int id) throws SQLException {
+            String sql = "DELETE FROM CUSTOMERS WHERE Customer_ID = ?";
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ps.setInt(1, id);
+            int rowAffected = ps.executeUpdate();
+            return rowAffected;
+    }
 
     public static void checkDateConversion(){
         System.out.println("CREATE DATE TEST");

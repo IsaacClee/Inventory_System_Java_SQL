@@ -35,12 +35,12 @@
                               <TableColumn fx:id="appStartCol" prefWidth="75.0" text="Start" />
                               <TableColumn fx:id="appEndCol" prefWidth="75.0" text="End" />
                               <TableColumn fx:id="appCreateDateCol" prefWidth="75.0" text="Create_Date" />
-                              <TableColumn fx:id="appCreatedByCol" prefWidth="75.0" text="Created_By" />
-                              <TableColumn fx:id="appLastUpdateCol" prefWidth="75.0" text="Last_Update" />
-                              <TableColumn fx:id="appLastUpdatedByCol" prefWidth="75.0" text="Last_Updated_By" />
-                              <TableColumn fx:id="appCusIDCol" prefWidth="75.0" text="Customer_ID" />
-                              <TableColumn fx:id="appUserIDCol" prefWidth="75.0" text="User_ID" />
-                              <TableColumn fx:id="appContactIDCol" prefWidth="64.0" text="Contact_ID" />
+                              <TableColumn fx:id="appCreatedByCol" prefWidth="57.0" text="Created_By" />
+                              <TableColumn fx:id="appLastUpdateCol" prefWidth="103.0" text="Last_Update" />
+                              <TableColumn fx:id="appLastUpdatedByCol" prefWidth="88.0" text="Last_Updated_By" />
+                              <TableColumn fx:id="appCusIDCol" prefWidth="62.0" text="Customer_ID" />
+                              <TableColumn fx:id="appUserIDCol" prefWidth="72.0" text="User_ID" />
+                              <TableColumn fx:id="appContactIDCol" prefWidth="57.0" text="Contact_ID" />
                                     </columns>
                                 </TableView>
                             </children>
@@ -50,7 +50,10 @@
                 <Button fx:id="addAppointment" layoutX="1125.0" layoutY="-77.0" mnemonicParsing="false" onAction="#onActionAddAppointment" prefHeight="56.0" prefWidth="53.0" text="Add" />
                 <Button fx:id="updateAppointment" layoutX="16.0" layoutY="225.0" mnemonicParsing="false" onAction="#onActionUpdateAppointment" prefHeight="25.0" prefWidth="68.0" text="Update" />
                 <Button fx:id="deleteAppointment" layoutX="97.0" layoutY="225.0" mnemonicParsing="false" onAction="#onActionDeleteAppointment" prefHeight="25.0" prefWidth="68.0" text="Delete" />
-            <Pane layoutX="2.0" layoutY="-85.0" prefHeight="71.0" prefWidth="1184.0" style="-fx-border-color: black; -fx-border-radius: 15px; -fx-text-fill: #ffffff;" />
+            <Pane layoutX="2.0" layoutY="-85.0" prefHeight="71.0" prefWidth="1184.0" style="-fx-border-color: black; -fx-border-radius: 15px; -fx-text-fill: #ffffff;">
+               <children>
+                  <Label layoutX="908.0" layoutY="36.0" prefHeight="17.0" prefWidth="53.0" text="Contact:" />
+               </children></Pane>
             </children></Pane>
         <Pane layoutX="18.0" layoutY="139.0" prefHeight="247.0" prefWidth="1128.0" style="-fx-border-color: black; -fx-border-radius: 15px; -fx-text-fill: #ffffff;">
             <children>
@@ -77,10 +80,10 @@
                                         <TableColumn fx:id="cusAddressCol" prefWidth="103.0" text="Address" />
                                         <TableColumn fx:id="cusPostalCol" prefWidth="129.0" text="Postal_Code" />
                               <TableColumn fx:id="cusPhoneCol" prefWidth="107.0" text="Phone" />
-                              <TableColumn fx:id="cusCreateDateCol" prefWidth="98.0" text="Created_Date" />
-                              <TableColumn fx:id="cusCreatedByCol" prefWidth="75.0" text="Created_By" />
-                              <TableColumn fx:id="cusLastUpdateCol" prefWidth="112.0" text="Last_Update" />
-                              <TableColumn fx:id="cusLastUpdatedByCol" prefWidth="123.0" text="Last_Updated_By" />
+                              <TableColumn fx:id="cusCreateDateCol" prefWidth="103.0" text="Created_Date" />
+                              <TableColumn fx:id="cusCreatedByCol" prefWidth="70.0" text="Created_By" />
+                              <TableColumn fx:id="cusLastUpdateCol" prefWidth="157.0" text="Last_Update" />
+                              <TableColumn fx:id="cusLastUpdatedByCol" prefWidth="78.0" text="Last_Updated_By" />
                               <TableColumn fx:id="cusDivisionCol" prefWidth="109.0" text="Division_ID" />
                                     </columns>
                                 </TableView>
@@ -92,13 +95,27 @@
                 <Button fx:id="updateCustomer" layoutX="13.0" layoutY="215.0" mnemonicParsing="false" onAction="#onActionUpdateCustomer" prefHeight="15.0" prefWidth="68.0" text="Update" />
                 <Button fx:id="deleteCustomer" layoutX="92.0" layoutY="215.0" mnemonicParsing="false" onAction="#onActionDeleteCustomer" prefHeight="25.0" prefWidth="68.0" text="Delete" />
             </children></Pane>
-        <Label layoutX="41.0" layoutY="9.0" prefHeight="120.0" prefWidth="205.0" text="Customer Management System">
+        <Label layoutX="41.0" layoutY="9.0" prefHeight="120.0" prefWidth="205.0" text="Customer Management System" wrapText="true">
             <font>
-                <Font name="System Bold" size="12.0" />
+                <Font name="System Bold" size="24.0" />
             </font>
         </Label>
         <Button fx:id="exitMenu" layoutX="1132.0" layoutY="792.0" mnemonicParsing="false" onAction="#onActionExitMenu" prefHeight="25.0" prefWidth="53.0" text="Exit" />
-      <Pane layoutX="269.0" layoutY="51.0" prefHeight="71.0" prefWidth="875.0" style="-fx-border-color: black; -fx-border-radius: 15px; -fx-text-fill: #ffffff;" />
+      <Pane layoutX="269.0" layoutY="51.0" prefHeight="78.0" prefWidth="875.0" style="-fx-border-color: black; -fx-border-radius: 15px; -fx-text-fill: #ffffff;">
+         <children>
+            <Label layoutX="17.0" layoutY="8.0" prefHeight="25.0" prefWidth="43.0" text="Name:" />
+            <TextField fx:id="newCusName" layoutX="58.0" layoutY="10.0" prefHeight="25.0" prefWidth="246.0" />
+            <Label layoutX="324.0" layoutY="14.0" prefHeight="17.0" prefWidth="53.0" text="Phone:" />
+            <TextField fx:id="newCusPhone" layoutX="388.0" layoutY="10.0" prefHeight="25.0" prefWidth="155.0" />
+            <Label layoutX="17.0" layoutY="44.0" prefHeight="17.0" prefWidth="53.0" text="Address:" />
+            <TextField fx:id="newCusAddress" layoutX="70.0" layoutY="40.0" prefHeight="25.0" prefWidth="294.0" />
+            <Label layoutX="385.0" layoutY="44.0" prefHeight="17.0" prefWidth="53.0" text="Postal:" />
+            <TextField fx:id="newCusPostal" layoutX="426.0" layoutY="40.0" prefHeight="25.0" prefWidth="128.0" />
+            <ComboBox fx:id="newCusDivision" layoutX="667.0" layoutY="12.0" prefHeight="25.0" prefWidth="128.0" />
+            <Label layoutX="564.0" layoutY="6.0" prefHeight="35.0" prefWidth="106.0" text="First-level division:" />
+            <ComboBox fx:id="newCusCountry" layoutX="618.0" layoutY="47.0" prefHeight="25.0" prefWidth="178.0" />
+            <Label layoutX="563.0" layoutY="44.0" prefHeight="25.0" prefWidth="77.0" text="Country:" />
+         </children></Pane>
       <Label layoutX="693.0" layoutY="34.0" prefHeight="17.0" prefWidth="134.0" text="Create a new customer:">
          <font>
             <Font name="System Bold Italic" size="12.0" />

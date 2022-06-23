@@ -1,6 +1,9 @@
 package Controller;
 
+import DAO.DBAppointments;
+import DAO.DBCountries;
 import DAO.DBCustomers;
+import DAO.DBFirstLevelDivisions;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -109,7 +112,7 @@ public class MainForm implements Initializable{
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         // Populate Customer Table
-        CustomerTable.setItems(Customers.allCustomers.getListOfCustomers());
+        CustomerTable.setItems(DBCustomers.getAllCustomers());
 
         cusIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         cusNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -123,7 +126,7 @@ public class MainForm implements Initializable{
         cusDivisionCol.setCellValueFactory(new PropertyValueFactory<>("divisionID"));
 
         // Populate Appointments Table
-        AppointmentTable.setItems(Appointments.allAppointments.getListOfAppointments());
+        AppointmentTable.setItems(DBAppointments.getAllAppointments());
 
         appIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
         appTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -140,6 +143,14 @@ public class MainForm implements Initializable{
         appUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
         appContactIDCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
 
+
+        // Pull divisions for Add Customer Combo box
+        newCusDivision.setItems(DBFirstLevelDivisions.getAllDivisions());
+        newCusDivision.setPromptText("Please select state/province/division");
+
+        // Pull countries for Add Customer Combo box
+        newCusCountry.setItems(DBCountries.getAllCountries());
+        newCusCountry.setPromptText("Please select Country");
     }
 
     @javafx.fxml.FXML
