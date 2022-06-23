@@ -162,8 +162,6 @@ public class MainForm implements Initializable{
 
     @FXML
     public void onActionAddCustomer(ActionEvent actionEvent) throws SQLException {
-        System.out.println("connected");
-        /**
         int numOfCustomers = DBCustomers.getAllCustomers().size();
         while(DBCustomers.doesCustomerExist(numOfCustomers)) {
             numOfCustomers++;
@@ -182,12 +180,12 @@ public class MainForm implements Initializable{
         int rowsAffected = DBCustomers.insert(id,name,address,postal,phone,createDate,createdBy,lastUpdate,lastUpdatedBy,divisionID);
 
         if(rowsAffected > 0){
-            System.out.println("Successful");
+            System.out.println("Success: Added new customer");
         } else {
             System.out.println("Failed");
         }
 
-         */
+        refreshTables();
 
     }
 
@@ -212,5 +210,44 @@ public class MainForm implements Initializable{
 
     @FXML
     public void onActionUpdateCustomer(ActionEvent actionEvent) {
+    }
+
+    public void refreshTables(){
+        CustomerTable.getItems().clear();
+
+        // Populate Customer Table
+        CustomerTable.setItems(DBCustomers.getAllCustomers());
+
+        cusIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        cusNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        cusAddressCol.setCellValueFactory(new PropertyValueFactory<>("address"));
+        cusPostalCol.setCellValueFactory(new PropertyValueFactory<>("postal"));
+        cusPhoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        cusCreateDateCol.setCellValueFactory(new PropertyValueFactory<>("createDate"));
+        cusCreatedByCol.setCellValueFactory(new PropertyValueFactory<>("createdBy"));
+        cusLastUpdateCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdate"));
+        cusLastUpdatedByCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdatedBy"));
+        cusDivisionCol.setCellValueFactory(new PropertyValueFactory<>("divisionID"));
+
+        AppointmentTable.getItems().clear();
+
+        // Populate Appointments Table
+        AppointmentTable.setItems(DBAppointments.getAllAppointments());
+
+        appIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        appTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        appDescripCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        appLocationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        appTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        appStartCol.setCellValueFactory(new PropertyValueFactory<>("start"));
+        appEndCol.setCellValueFactory(new PropertyValueFactory<>("end"));
+        appCreateDateCol.setCellValueFactory(new PropertyValueFactory<>("createDate"));
+        appCreatedByCol.setCellValueFactory(new PropertyValueFactory<>("createdBy"));
+        appLastUpdateCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdate"));
+        appLastUpdatedByCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdatedBy"));
+        appCusIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        appUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
+        appContactIDCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
+
     }
 }
