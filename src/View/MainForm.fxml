@@ -50,7 +50,7 @@
                 <Button fx:id="addAppointment" layoutX="1125.0" layoutY="-77.0" mnemonicParsing="false" onAction="#onActionAddAppointment" prefHeight="56.0" prefWidth="53.0" text="Add" />
                 <Button fx:id="updateAppointment" layoutX="16.0" layoutY="225.0" mnemonicParsing="false" onAction="#onActionUpdateAppointment" prefHeight="25.0" prefWidth="68.0" text="Update" />
                 <Button fx:id="deleteAppointment" layoutX="97.0" layoutY="225.0" mnemonicParsing="false" onAction="#onActionDeleteAppointment" prefHeight="25.0" prefWidth="68.0" text="Delete" />
-            <Pane layoutX="2.0" layoutY="-85.0" prefHeight="71.0" prefWidth="1184.0" style="-fx-border-color: black; -fx-border-radius: 15px; -fx-text-fill: #ffffff;">
+            <Pane layoutX="2.0" layoutY="-85.0" prefHeight="71.0" prefWidth="1109.0" style="-fx-border-color: black; -fx-border-radius: 15px; -fx-text-fill: #ffffff;">
                <children>
                   <Label layoutX="908.0" layoutY="36.0" prefHeight="17.0" prefWidth="53.0" text="Contact:" />
                </children></Pane>
@@ -91,7 +91,7 @@
                         </AnchorPane>
                     </items>
                 </SplitPane>
-                <Button fx:id="AddCustomer" layoutX="1063.0" layoutY="-78.0" mnemonicParsing="false" onAction="#onActionAddCustomer" prefHeight="56.0" prefWidth="53.0" text="Add" />
+                <Button fx:id="AddCustomer" layoutX="1063.0" layoutY="-78.0" mnemonicParsing="false" onAction="#onActionAddCustomer" prefHeight="56.0" prefWidth="68.0" text="Add" />
                 <Button fx:id="updateCustomer" layoutX="13.0" layoutY="215.0" mnemonicParsing="false" onAction="#onActionUpdateCustomer" prefHeight="15.0" prefWidth="68.0" text="Update" />
                 <Button fx:id="deleteCustomer" layoutX="92.0" layoutY="215.0" mnemonicParsing="false" onAction="#onActionDeleteCustomer" prefHeight="25.0" prefWidth="68.0" text="Delete" />
             </children></Pane>
@@ -101,7 +101,7 @@
             </font>
         </Label>
         <Button fx:id="exitMenu" layoutX="1132.0" layoutY="792.0" mnemonicParsing="false" onAction="#onActionExitMenu" prefHeight="25.0" prefWidth="53.0" text="Exit" />
-      <Pane layoutX="269.0" layoutY="51.0" prefHeight="78.0" prefWidth="875.0" style="-fx-border-color: black; -fx-border-radius: 15px; -fx-text-fill: #ffffff;">
+      <Pane layoutX="269.0" layoutY="51.0" prefHeight="78.0" prefWidth="804.0" style="-fx-border-color: black; -fx-border-radius: 15px; -fx-text-fill: #ffffff;">
          <children>
             <Label layoutX="17.0" layoutY="8.0" prefHeight="25.0" prefWidth="43.0" text="Name:" />
             <TextField fx:id="newCusName" layoutX="58.0" layoutY="10.0" prefHeight="25.0" prefWidth="246.0" />
