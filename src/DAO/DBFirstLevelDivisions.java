@@ -68,6 +68,28 @@ public class DBFirstLevelDivisions {
         return divName;
     }
 
+    public static int getDivisionID(Object divisionName){
+        ObservableList<FirstLevelDivisions> divisionsList = DBFirstLevelDivisions.getAllDivisions();
+        int divId = 0;
+        for(FirstLevelDivisions d : divisionsList){
+            if(d.getName().contains((CharSequence) divisionName)){
+                divId = d.getId();
+            }
+        }
+        return divId;
+    }
+
+    public static int getDivisionID(String divisionName){
+        ObservableList<FirstLevelDivisions> divisionsList = DBFirstLevelDivisions.getAllDivisions();
+        int divId = 0;
+        CharSequence cs = divisionName;
+        for(FirstLevelDivisions d : divisionsList){
+            if(d.getName().contains(cs)){
+                divId = d.getId();
+            }
+        }
+        return divId;
+    }
 
     public static int getCountryID(int divisionID){
         ObservableList<FirstLevelDivisions> divisionsList = DBFirstLevelDivisions.getAllDivisions();

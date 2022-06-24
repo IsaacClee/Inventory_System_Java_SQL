@@ -58,6 +58,11 @@ public class DBCustomers {
         int rowsAffected = ps.executeUpdate();
         return rowsAffected;
     }
+    /**
+    public static int update(int ) throws SQLException {
+
+    }
+     */
 
     public static int deleteCustomer(int id) throws SQLException {
             String sql = "DELETE FROM CUSTOMERS WHERE Customer_ID = ?";

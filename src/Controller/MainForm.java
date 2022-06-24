@@ -149,6 +149,8 @@ public class MainForm implements Initializable{
                 newCusDivision.setItems(DBFirstLevelDivisions.getDivisionsById(t1.getId()));
             }
         });
+
+
     }
 
 
@@ -159,6 +161,7 @@ public class MainForm implements Initializable{
 
     @FXML
     public void onActionAddCustomer(ActionEvent actionEvent) throws SQLException {
+
         int numOfCustomers = DBCustomers.getAllCustomers().size();
         while(DBCustomers.doesCustomerExist(numOfCustomers)) {
             numOfCustomers++;
@@ -172,7 +175,7 @@ public class MainForm implements Initializable{
         String createdBy = "user script";
         Timestamp lastUpdate = new Timestamp(System.currentTimeMillis());
         String lastUpdatedBy = "user script";
-        int divisionID = 60;
+        int divisionID = DBFirstLevelDivisions.getDivisionID(String.valueOf((newCusDivision.getValue())));
 
         int rowsAffected = DBCustomers.insert(id,name,address,postal,phone,createDate,createdBy,lastUpdate,lastUpdatedBy,divisionID);
 
