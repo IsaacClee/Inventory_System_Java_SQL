@@ -2,6 +2,7 @@ package DAO;
 
 import DAO.JDBC;
 import Model.Countries;
+import Model.FirstLevelDivisions;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -33,6 +34,16 @@ public class DBCountries {
         return countriesList;
     }
 
+    public static String getCountryName(int countryID){
+        ObservableList<Countries> countiesList = DBCountries.getAllCountries();
+        String divName = null;
+        for(Countries c : countiesList){
+            if(c.getId() == countryID){
+                divName = c.getName();
+            }
+        }
+        return divName;
+    }
 
     public static void checkDateConversion(){
         System.out.println("CREATE DATE TEST");

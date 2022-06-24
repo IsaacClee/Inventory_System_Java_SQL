@@ -23,7 +23,8 @@ public class DBFirstLevelDivisions {
             while(rs.next()){
                 int id = rs.getInt("Division_ID");
                 String name = rs.getString("Division");
-                FirstLevelDivisions d = new FirstLevelDivisions(id, name);
+                int countryID = rs.getInt("Country_ID");
+                FirstLevelDivisions d = new FirstLevelDivisions(id, name, countryID);
                 divisionsList.add(d);
             }
         } catch(SQLException e) {
@@ -45,7 +46,8 @@ public class DBFirstLevelDivisions {
             while(rs.next()){
                 int id = rs.getInt("Division_ID");
                 String name = rs.getString("Division");
-                FirstLevelDivisions d = new FirstLevelDivisions(id, name);
+                int country = rs.getInt("Country_ID");
+                FirstLevelDivisions d = new FirstLevelDivisions(id, name, country);
                 divisionsList.add(d);
             }
         } catch(SQLException e) {
@@ -54,6 +56,30 @@ public class DBFirstLevelDivisions {
 
         return divisionsList;
     }
+
+    public static String getDivisionName(int divisionID){
+        ObservableList<FirstLevelDivisions> divisionsList = DBFirstLevelDivisions.getAllDivisions();
+        String divName = null;
+        for(FirstLevelDivisions d : divisionsList){
+            if(d.getId() == divisionID){
+                divName = d.getName();
+            }
+        }
+        return divName;
+    }
+
+
+    public static int getCountryID(int divisionID){
+        ObservableList<FirstLevelDivisions> divisionsList = DBFirstLevelDivisions.getAllDivisions();
+        int countryID = 0;
+        for(FirstLevelDivisions d : divisionsList){
+            if(d.getId() == divisionID){
+                countryID = d.getCountryID();
+            }
+        }
+        return countryID;
+    }
+
 
 
 

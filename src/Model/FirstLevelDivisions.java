@@ -9,10 +9,12 @@ import java.sql.Timestamp;
 public class FirstLevelDivisions {
     private int id;
     private String name;
+    private int countryID;
 
-    public FirstLevelDivisions(int id, String name) {
+    public FirstLevelDivisions(int id, String name, int countryID) {
         this.id = id;
         this.name = name;
+        this.countryID = countryID;
     }
 
     /**
@@ -41,6 +43,21 @@ public class FirstLevelDivisions {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+
+    /**
+     * @return the countryID
+     */
+    public int getCountryID() {
+        return countryID;
+    }
+
+    /**
+     * @param countryID the countryID to set
+     */
+    public void setCountryID(int countryID) {
+        this.countryID = countryID;
     }
 
     public static class allFirstLevelDivisions {
