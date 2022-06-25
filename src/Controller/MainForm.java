@@ -133,6 +133,10 @@ public class MainForm implements Initializable{
     private TextField appCustomerIDField;
     @FXML
     private ComboBox appContactField;
+    @FXML
+    private ComboBox appEndTimeField;
+    @FXML
+    private ComboBox appStartTimeField;
 
     public static Customers getCustomerToBeUpdated() {
         return customerToBeUpdated;
