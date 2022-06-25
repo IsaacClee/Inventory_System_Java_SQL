@@ -59,20 +59,21 @@ public class UpdateCustomerForm implements Initializable {
 
         // Pull Division and Country Names using Russian Doll Getters
         int countryID = DBFirstLevelDivisions.getCountryID(customerToBeUpdated.getDivisionID());
-        // cusCountryBox.setValue(DBCountries.getCountryName(countryID));
-        cusDivisionBox.setValue(DBFirstLevelDivisions.getDivisionName(customerToBeUpdated.getDivisionID()));
         cusDivisionBox.setItems(DBFirstLevelDivisions.getDivisionsById(countryID));
         cusCountryBox.getSelectionModel().select(DBCountries.getCountryByID(countryID));
+        cusDivisionBox.getSelectionModel().select(DBFirstLevelDivisions.getDivisionByID(customerToBeUpdated.getDivisionID()));
 
 
-        /**
+
         cusCountryBox.valueProperty().addListener(new ChangeListener<Countries>() {
             @Override
             public void changed(ObservableValue observableValue, Countries t, Countries t1) {
+                cusDivisionBox.getSelectionModel().selectFirst();
                 cusDivisionBox.setItems(DBFirstLevelDivisions.getDivisionsById(t1.getId()));
+
             }
         });
-         */
+
 
 
     }

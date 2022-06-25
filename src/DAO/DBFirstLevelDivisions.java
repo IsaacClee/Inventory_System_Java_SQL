@@ -1,6 +1,7 @@
 package DAO;
 
 import DAO.JDBC;
+import Model.Countries;
 import Model.FirstLevelDivisions;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -32,6 +33,28 @@ public class DBFirstLevelDivisions {
         }
 
         return divisionsList;
+    }
+
+    public static FirstLevelDivisions getDivisionByID(int divisionID){
+        FirstLevelDivisions d = new FirstLevelDivisions(0, null, 0);
+
+        try {
+            String sql = "SELECT * FROM first_level_divisions WHERE Division_ID=?";
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ps.setInt(1,divisionID);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                int id = rs.getInt("Division_ID");
+                String name = rs.getString("Division");
+                int countyID = rs.getInt("Country_ID");
+                d.setId(id);
+                d.setName(name);
+                d.setCountryID(countyID);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return d;
     }
 
     public static ObservableList<FirstLevelDivisions> getDivisionsById(int countryID){
