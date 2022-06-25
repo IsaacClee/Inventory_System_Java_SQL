@@ -53,19 +53,6 @@ public class Main extends Application {
             Appointments.allAppointments.addAppointmentToList(a);
         }
 
-        /**
-        Date a = new Date(System.currentTimeMillis());
-        Timestamp b = new Timestamp(System.currentTimeMillis());
-
-        // int rowsAffected = DBCustomers.insert(4, "Dudley Do-Wrong", "24 Horse Manor", "28199", "874-916-7777", a, "script", b, "script", 60);
-        int rowsAffected = DBCustomers.deleteCustomer(4);
-
-        if(rowsAffected > 0){
-            System.out.println("Successful");
-        } else {
-            System.out.println("Failed");
-        }
-         */
 
         // Launch Args
         launch(args);

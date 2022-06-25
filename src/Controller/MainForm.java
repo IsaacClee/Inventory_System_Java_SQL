@@ -1,9 +1,6 @@
 package Controller;
 
-import DAO.DBAppointments;
-import DAO.DBCountries;
-import DAO.DBCustomers;
-import DAO.DBFirstLevelDivisions;
+import DAO.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -171,6 +168,7 @@ public class MainForm implements Initializable{
             }
         });
 
+        appContactField.setItems(DBContacts.getAllContacts());
 
     }
 
@@ -210,9 +208,24 @@ public class MainForm implements Initializable{
 
     }
 
+
     @FXML
     public void onActionAddAppointment(ActionEvent actionEvent) {
+
+    int numOfAppointments = DBAppointments.getAllAppointments().size();
+    while(DBAppointments.doesAppointmentExist(numOfAppointments)) {
+        numOfAppointments++;
     }
+    int id = numOfAppointments;
+    String title = appTitleCol.getText();
+    String description = appDescriptionField.getText();
+    String location = appLocationField.getText();
+    String type = appTypeField.getText();
+    appStartField.getValue();
+    System.out.println(appStartField.getValue());
+
+    }
+
 
     @FXML
     public void onActionDeleteAppointment(ActionEvent actionEvent) {
