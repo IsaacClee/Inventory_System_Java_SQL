@@ -3,6 +3,7 @@ package Controller;
 import DAO.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -24,6 +25,13 @@ import java.sql.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -138,6 +146,8 @@ public class MainForm implements Initializable{
     @FXML
     private ComboBox appStartTimeField;
 
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
     public static Customers getCustomerToBeUpdated() {
         return customerToBeUpdated;
     }
@@ -173,6 +183,38 @@ public class MainForm implements Initializable{
         });
 
         appContactField.setItems(DBContacts.getAllContacts());
+
+        ObservableList<String> timeSlotsList =
+                FXCollections.observableArrayList(
+                        "00:00:00",
+                        "01:00:00",
+                        "02:00:00",
+                        "03:00:00",
+                        "04:00:00",
+                        "05:00:00",
+                        "06:00:00",
+                        "07:00:00",
+                        "08:00:00",
+                        "09:00:00",
+                        "10:00:00",
+                        "11:00:00",
+                        "12:00:00",
+                        "13:00:00",
+                        "14:00:00",
+                        "15:00:00",
+                        "16:00:00",
+                        "17:00:00",
+                        "18:00:00",
+                        "19:00:00",
+                        "20:00:00",
+                        "21:00:00",
+                        "22:00:00",
+                        "23:00:00"
+                );
+
+        appStartTimeField.setItems(timeSlotsList);
+        appEndTimeField.setItems(timeSlotsList);
+
 
     }
 
@@ -225,9 +267,12 @@ public class MainForm implements Initializable{
     String description = appDescriptionField.getText();
     String location = appLocationField.getText();
     String type = appTypeField.getText();
-    appStartField.getValue();
-    System.out.println(appStartField.getValue());
-
+    String s = appStartField.getValue() + " " + appStartTimeField.getValue();
+    System.out.println(s);
+        LocalDateTime start = LocalDateTime.parse(s, dtf);
+        ZonedDateTime startUTF = start.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("UTC"));
+        System.out.println(start);
+        System.out.println(startUTF);
     }
 
 
@@ -305,4 +350,6 @@ public class MainForm implements Initializable{
         appContactIDCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
 
     }
+
+
 }
