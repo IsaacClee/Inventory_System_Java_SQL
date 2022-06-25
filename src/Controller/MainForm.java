@@ -116,6 +116,26 @@ public class MainForm implements Initializable{
     private ComboBox newCusCountry;
 
     public static Customers customerToBeUpdated = null;
+    @FXML
+    private TextField appUserIDField;
+    @FXML
+    private TextField appAppIDField;
+    @FXML
+    private TextField appTitleField;
+    @FXML
+    private DatePicker appEndField;
+    @FXML
+    private DatePicker appStartField;
+    @FXML
+    private TextField appTypeField;
+    @FXML
+    private TextField appLocationField;
+    @FXML
+    private TextField appDescriptionField;
+    @FXML
+    private TextField appCustomerIDField;
+    @FXML
+    private ComboBox appContactField;
 
     public static Customers getCustomerToBeUpdated() {
         return customerToBeUpdated;
