@@ -1,6 +1,7 @@
 package Controller;
 
 import DAO.DBCountries;
+import DAO.DBCustomers;
 import DAO.DBFirstLevelDivisions;
 import Model.Countries;
 import Model.Customers;
@@ -18,6 +19,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ResourceBundle;
 
 public class UpdateCustomerForm implements Initializable {
@@ -74,8 +77,6 @@ public class UpdateCustomerForm implements Initializable {
             }
         });
 
-
-
     }
 
     @javafx.fxml.FXML
@@ -88,6 +89,26 @@ public class UpdateCustomerForm implements Initializable {
     }
 
     @javafx.fxml.FXML
-    public void onActionUpdateCustomer(ActionEvent actionEvent) {
+    public void onActionUpdateCustomer(ActionEvent actionEvent) throws SQLException, IOException {
+        int id = Integer.parseInt(cusIDField.getText());
+        String name = cusNameField.getText();
+        String address = cusAddressField.getText();
+        String phone = cusPhoneField.getText();
+        String postal = cusPostalField.getText();
+        Timestamp lastUpdate =  new Timestamp(System.currentTimeMillis());
+        String lastUpdatedBy = "user script";
+        int divisionID = DBFirstLevelDivisions.getDivisionID(String.valueOf((cusDivisionBox.getValue())));
+        int rowsAffected = DBCustomers.update(id,name,address,phone,postal,lastUpdate,lastUpdatedBy,divisionID);
+
+        if(rowsAffected > 0){
+            System.out.println("Success:"+ "ID: " + id +" was updated");
+            stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            scene = FXMLLoader.load(getClass().getResource("/View/MainForm.fxml"));
+            stage.setTitle("Customer Management System");
+            stage.setScene(new Scene(scene));
+            stage.show();
+        } else {
+            System.out.println("Update Failed");
+        }
     }
 }

@@ -59,6 +59,22 @@ public class DBCustomers {
         return rowsAffected;
     }
 
+    public static int update(int id, String name, String address, String phone, String postal, Timestamp lastUpdate, String lastUpdatedBy, int divisionID) throws SQLException {
+        String sql = "UPDATE customers SET Customer_ID = ?, Customer_Name = ?, Address = ?, Phone = ?, Postal_Code = ?, Last_Update = ?, Last_Updated_By = ?, Division_ID = ? WHERE Customer_ID = ?";
+        PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+        ps.setInt(1, id);
+        ps.setString(2, name);
+        ps.setString(3, address);
+        ps.setString(4, phone);
+        ps.setString(5, postal);
+        ps.setTimestamp(6, lastUpdate);
+        ps.setString(7, lastUpdatedBy);
+        ps.setInt(8,divisionID);
+        ps.setInt(9, id);
+        int rowsAffected = ps.executeUpdate();
+        return rowsAffected;
+    }
+
 
     public static int deleteCustomer(int id) throws SQLException {
             String sql = "DELETE FROM CUSTOMERS WHERE Customer_ID = ?";
