@@ -34,6 +34,26 @@ public class DBCountries {
         return countriesList;
     }
 
+    public static Countries getCountryByID(int countryID){
+        Countries c = new Countries(0, "");
+
+        try {
+            String sql = "SELECT * FROM countries WHERE Country_ID=?";
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ps.setInt(1,countryID);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                int id = rs.getInt("Country_ID");
+                String name = rs.getString("Country");
+                c.setId(id);
+                c.setName(name);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return c;
+    }
+
     public static String getCountryName(int countryID){
         ObservableList<Countries> countiesList = DBCountries.getAllCountries();
         String divName = null;

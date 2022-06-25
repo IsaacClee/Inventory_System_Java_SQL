@@ -59,9 +59,12 @@ public class UpdateCustomerForm implements Initializable {
 
         // Pull Division and Country Names using Russian Doll Getters
         int countryID = DBFirstLevelDivisions.getCountryID(customerToBeUpdated.getDivisionID());
-        cusCountryBox.setValue(DBCountries.getCountryName(countryID));
+        // cusCountryBox.setValue(DBCountries.getCountryName(countryID));
         cusDivisionBox.setValue(DBFirstLevelDivisions.getDivisionName(customerToBeUpdated.getDivisionID()));
         cusDivisionBox.setItems(DBFirstLevelDivisions.getDivisionsById(countryID));
+        cusCountryBox.getSelectionModel().select(DBCountries.getCountryByID(countryID));
+
+
         /**
         cusCountryBox.valueProperty().addListener(new ChangeListener<Countries>() {
             @Override
@@ -70,7 +73,7 @@ public class UpdateCustomerForm implements Initializable {
             }
         });
          */
-        System.out.println(DBFirstLevelDivisions.getDivisionID(cusDivisionBox.getValue()));
+
 
     }
 

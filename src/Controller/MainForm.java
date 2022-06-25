@@ -142,6 +142,7 @@ public class MainForm implements Initializable{
         newCusCountry.setItems(DBCountries.getAllCountries());
         newCusCountry.setPromptText("Please select Country");
 
+
         // Event listener - listens for change to Country Combo box and filters divisions accordingly
         newCusCountry.valueProperty().addListener(new ChangeListener<Countries>() {
             @Override
