@@ -54,8 +54,11 @@ public class Main extends Application {
         }
 
 
+
         // Launch Args
         launch(args);
+
+
 
         JDBC.closeConnection();
 

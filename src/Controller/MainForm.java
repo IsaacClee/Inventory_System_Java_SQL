@@ -337,7 +337,18 @@ public class MainForm implements Initializable{
     }
 
     @FXML
-    public void onActionUpdateAppointment(ActionEvent actionEvent) {
+    public void onActionUpdateAppointment(ActionEvent actionEvent) throws IOException {
+        Appointments selectedItem = (Appointments) AppointmentTable.getSelectionModel().getSelectedItem();
+        appointmentToBeUpdated = selectedItem;
+        if(selectedItem == null){
+            JOptionPane.showMessageDialog(null, "Please select a Customer from the Customer Table");
+        } else {
+            stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            scene = FXMLLoader.load(getClass().getResource("/View/UpdateAppointmentForm.fxml"));
+            stage.setTitle("Update Appointment");
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
     }
 
     @FXML

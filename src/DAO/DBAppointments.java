@@ -24,7 +24,7 @@ public class DBAppointments {
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
-                int id = rs.getInt("Customer_ID");
+                int id = rs.getInt("Appointment_ID");
                 String title = rs.getString("Title");
                 String description = rs.getString("Description");
                 String location = rs.getString("Location");
