@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+
 <AnchorPane prefHeight="829.0" prefWidth="1341.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainForm">
     <children>
         <Pane layoutX="8.0" layoutY="510.0" prefHeight="267.0" prefWidth="1325.0" style="-fx-border-color: black; -fx-border-radius: 15px; -fx-text-fill: #ffffff;">
