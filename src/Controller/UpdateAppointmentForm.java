@@ -26,6 +26,7 @@ public class UpdateAppointmentForm {
     private DatePicker appStartField;
     @javafx.fxml.FXML
     private TextField appTypeField;
+
     @javafx.fxml.FXML
     private ComboBox appStartTimeField;
     @javafx.fxml.FXML
