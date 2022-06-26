@@ -26,6 +26,10 @@ public class UpdateAppointmentForm {
     private DatePicker appStartField;
     @javafx.fxml.FXML
     private TextField appTypeField;
+    @javafx.fxml.FXML
+    private ComboBox appStartTimeField;
+    @javafx.fxml.FXML
+    private ComboBox appEndTimeField;
 
     @javafx.fxml.FXML
     public void onActionCancel(ActionEvent actionEvent) {
