@@ -70,6 +70,14 @@ public class DBAppointments {
         return rowsAffected;
     }
 
+    public  static int deleteAppointment(int id) throws SQLException {
+        String sql = "DELETE FROM APPOINTMENTS WHERE Appointment_ID = ?";
+        PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+        ps.setInt(1, id);
+        int rowsAffected = ps.executeUpdate();
+        return rowsAffected;
+    }
+
     public static boolean doesAppointmentExist(int id) {
         for(Appointments appointments : DBAppointments.getAllAppointments()) {
             if(appointments.getId() == id){

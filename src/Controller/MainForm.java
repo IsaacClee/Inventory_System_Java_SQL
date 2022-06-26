@@ -310,7 +310,17 @@ public class MainForm implements Initializable{
 
 
     @FXML
-    public void onActionDeleteAppointment(ActionEvent actionEvent) {
+    public void onActionDeleteAppointment(ActionEvent actionEvent) throws SQLException {
+        Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION, "This will remove this appointment from the Database. Do you want to proceed?");
+        Optional<ButtonType> result = deleteAlert.showAndWait();
+
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            Appointments selectedItem = (Appointments) AppointmentTable.getSelectionModel().getSelectedItem();
+            DBAppointments.deleteAppointment(selectedItem.getId());
+            JOptionPane.showMessageDialog(null, "Delete successful - ID: " + selectedItem.getId() + ", Name: " + selectedItem.getTitle());
+            refreshTables();
+        }
+
     }
 
     @FXML
