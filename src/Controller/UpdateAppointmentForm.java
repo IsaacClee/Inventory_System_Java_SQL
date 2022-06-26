@@ -106,8 +106,13 @@ public class UpdateAppointmentForm implements Initializable {
         System.out.println(appointmentToBeUpdated.getStart());
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        Instant instant = appointmentToBeUpdated.getStart().toInstant();
-        appStartField.setValue(LocalDate.ofInstant(instant, ZoneId.systemDefault()));
+        Instant instantStart = appointmentToBeUpdated.getStart().toInstant();
+        appStartField.setValue(LocalDate.ofInstant(instantStart,ZoneId.systemDefault()));
+        appStartTimeField.getSelectionModel().select(instantStart.atZone(ZoneId.systemDefault()).getHour());
+        Instant instantEnd = appointmentToBeUpdated.getEnd().toInstant();
+        appEndField.setValue(LocalDate.ofInstant(instantEnd,ZoneId.systemDefault()));
+        appEndTimeField.getSelectionModel().select(instantEnd.atZone(ZoneId.systemDefault()).getHour());
+
 
         appCusIDField.setText(String.valueOf(appointmentToBeUpdated.getCustomerID()));
         appUserIDField.setText(String.valueOf(appointmentToBeUpdated.getUserID()));
