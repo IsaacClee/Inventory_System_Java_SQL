@@ -3,6 +3,7 @@ package Controller;
 import DAO.*;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
@@ -24,6 +25,10 @@ import java.sql.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -138,6 +143,8 @@ public class MainForm implements Initializable{
     @FXML
     private ComboBox appStartTimeField;
 
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
     public static Customers getCustomerToBeUpdated() {
         return customerToBeUpdated;
     }
@@ -174,6 +181,39 @@ public class MainForm implements Initializable{
 
         appContactField.setItems(DBContacts.getAllContacts());
 
+        ObservableList<String> timeSlotsList =
+                FXCollections.observableArrayList(
+                        "0",
+                        "1",
+                        "2",
+                        "3",
+                        "4",
+                        "5",
+                        "6",
+                        "7",
+                        "8",
+                        "9",
+                        "10",
+                        "11",
+                        "12",
+                        "13",
+                        "14",
+                        "15",
+                        "16",
+                        "17",
+                        "18",
+                        "19",
+                        "20",
+                        "21",
+                        "22",
+                        "23"
+
+                );
+
+        appStartTimeField.setItems(timeSlotsList);
+        appEndTimeField.setItems(timeSlotsList);
+
+
     }
 
 
@@ -194,7 +234,7 @@ public class MainForm implements Initializable{
         String address = newCusAddress.getText();
         String postal = newCusPostal.getText();
         String phone = newCusPhone.getText();
-        Date createDate = new Date(System.currentTimeMillis());
+        Timestamp createDate = new Timestamp(System.currentTimeMillis());
         String createdBy = "user script";
         Timestamp lastUpdate = new Timestamp(System.currentTimeMillis());
         String lastUpdatedBy = "user script";
@@ -214,7 +254,7 @@ public class MainForm implements Initializable{
 
 
     @FXML
-    public void onActionAddAppointment(ActionEvent actionEvent) {
+    public void onActionAddAppointment(ActionEvent actionEvent) throws SQLException {
 
     int numOfAppointments = DBAppointments.getAllAppointments().size();
     while(DBAppointments.doesAppointmentExist(numOfAppointments)) {
@@ -225,14 +265,62 @@ public class MainForm implements Initializable{
     String description = appDescriptionField.getText();
     String location = appLocationField.getText();
     String type = appTypeField.getText();
-    appStartField.getValue();
-    System.out.println(appStartField.getValue());
+    Timestamp createDate = new Timestamp(System.currentTimeMillis());
+    String createdBy = "user script";
+    Timestamp lastUpdate = new Timestamp(System.currentTimeMillis());
+    String lastUpdateBy = "user script";
+    int userID = Integer.valueOf(appUserIDField.getText());
+    int customerID = Integer.valueOf(appCustomerIDField.getText());
+    int contactID = DBContacts.getContactByName(String.valueOf(appContactField.getValue())).getId();
+    int startTime = Integer.parseInt((String) appStartTimeField.getSelectionModel().getSelectedItem());
+    LocalDateTime localDateTimeStart = appStartField.getValue().atTime(startTime,0);
+    Timestamp start = Timestamp.valueOf(localDateTimeStart);
+    int endTime = Integer.parseInt((String) appEndTimeField.getSelectionModel().getSelectedItem());
+    LocalDateTime localDateTimeEnd = appEndField.getValue().atTime(endTime,0);
+    Timestamp end = Timestamp.valueOf(localDateTimeEnd);
+
+    int rowsAffected = DBAppointments.insert(id,title,description,location, type, start, end, createDate, createdBy, lastUpdate, lastUpdateBy,customerID,userID,contactID );
+
+    if(rowsAffected > 0){
+        System.out.println("Success: Added new customer");
+    } else {
+        System.out.println("Failed");
+    }
+
+    refreshTables();
+
+    /**
+    String s = appStartField.getValue() + " " + appStartTimeField.getValue();
+    System.out.println(s);
+    LocalDateTime start1 = LocalDateTime.parse(s, dtf);
+    System.out.println(start1);
+    ZonedDateTime startUPT = start1.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("UTC"));
+    System.out.println(Date.from(startUPT.toInstant()));
+    */
+
+    /**
+    int startTime = Integer.parseInt((String) appStartTimeField.getSelectionModel().getSelectedItem());
+    LocalDateTime localDateTime = appStartField.getValue().atTime(startTime,10);
+    System.out.println(localDateTime);
+    Timestamp sqlDate = Timestamp.valueOf(localDateTime);
+    System.out.println(sqlDate);
+     */
 
     }
 
 
     @FXML
-    public void onActionDeleteAppointment(ActionEvent actionEvent) {
+    public void onActionDeleteAppointment(ActionEvent actionEvent) throws SQLException {
+        Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION, "This will remove this appointment from the Database. Do you want to proceed?");
+        Optional<ButtonType> result = deleteAlert.showAndWait();
+
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            Appointments selectedItem = (Appointments) AppointmentTable.getSelectionModel().getSelectedItem();
+            DBAppointments.deleteAppointment(selectedItem.getId());
+            JOptionPane.showMessageDialog(null, "Delete successful - ID: " + selectedItem.getId() + ", Name: " + selectedItem.getTitle());
+            refreshTables();
+        }
+
     }
 
     @FXML
@@ -249,7 +337,18 @@ public class MainForm implements Initializable{
     }
 
     @FXML
-    public void onActionUpdateAppointment(ActionEvent actionEvent) {
+    public void onActionUpdateAppointment(ActionEvent actionEvent) throws IOException {
+        Appointments selectedItem = (Appointments) AppointmentTable.getSelectionModel().getSelectedItem();
+        appointmentToBeUpdated = selectedItem;
+        if(selectedItem == null){
+            JOptionPane.showMessageDialog(null, "Please select a Customer from the Customer Table");
+        } else {
+            stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            scene = FXMLLoader.load(getClass().getResource("/View/UpdateAppointmentForm.fxml"));
+            stage.setTitle("Update Appointment");
+            stage.setScene(new Scene(scene));
+            stage.show();
+        }
     }
 
     @FXML
@@ -305,4 +404,6 @@ public class MainForm implements Initializable{
         appContactIDCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
 
     }
+
+
 }

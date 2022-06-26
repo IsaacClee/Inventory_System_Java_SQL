@@ -12,13 +12,13 @@ public class Customers {
     private String address;
     private String postal;
     private String phone;
-    private Date createDate;
+    private Timestamp createDate;
     private String createdBy;
     private Timestamp lastUpdate;
     private String lastUpdatedBy;
     private int divisionID;
 
-    public Customers (int id, String name, String address, String postal, String phone, Date createDate, String createdBy, Timestamp lastUpdate, String lastUpdatedBy, int divisionID){
+    public Customers (int id, String name, String address, String postal, String phone, Timestamp createDate, String createdBy, Timestamp lastUpdate, String lastUpdatedBy, int divisionID){
         this.id = id;
         this.name = name;
         this.address = address;
@@ -104,14 +104,14 @@ public class Customers {
     /**
      * @return the createDate
      */
-    public Date getCreateDate() {
+    public Timestamp getCreateDate() {
         return createDate;
     }
 
     /**
      * @param createDate the createDate to set
      */
-    public void setPostal(Date createDate) {
+    public void setPostal(Timestamp createDate) {
         this.createDate = createDate;
     }
 

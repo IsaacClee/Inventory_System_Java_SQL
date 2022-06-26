@@ -56,8 +56,8 @@
                   <ComboBox fx:id="appContactField" layoutX="946.0" layoutY="40.0" prefWidth="150.0" />
                   <Label layoutX="893.0" layoutY="13.0" prefHeight="17.0" prefWidth="43.0" text="Type:" />
                   <TextField fx:id="appTypeField" layoutX="943.0" layoutY="11.0" prefHeight="23.0" prefWidth="155.0" />
-                  <DatePicker fx:id="appStartField" layoutX="689.0" layoutY="9.0" />
-                  <DatePicker fx:id="appEndField" layoutX="688.0" layoutY="40.0" prefHeight="25.0" prefWidth="174.0" />
+                  <DatePicker fx:id="appStartField" layoutX="689.0" layoutY="9.0" prefHeight="25.0" prefWidth="77.0" />
+                  <DatePicker fx:id="appEndField" layoutX="688.0" layoutY="40.0" prefHeight="25.0" prefWidth="77.0" />
                   <Label layoutX="635.0" layoutY="13.0" prefHeight="23.0" prefWidth="53.0" text="Start:" />
                   <Label layoutX="636.0" layoutY="44.0" prefHeight="17.0" prefWidth="43.0" text="End:" />
                   <Label layoutX="500.0" layoutY="16.0" text="User ID:" />
@@ -70,8 +70,10 @@
                   <Label layoutX="277.0" layoutY="44.0" prefHeight="17.0" prefWidth="69.0" text="Description:" />
                   <Label layoutX="14.0" layoutY="44.0" prefHeight="17.0" prefWidth="41.0" text="Title:" />
                   <Label layoutX="14.0" layoutY="16.0" text="Appointment ID:" />
-                  <TextField fx:id="appAppIDField" layoutX="145.0" layoutY="12.0" prefHeight="25.0" prefWidth="113.0" />
+                  <TextField fx:id="appAppIDField" disable="true" layoutX="145.0" layoutY="12.0" prefHeight="25.0" prefWidth="113.0" text="Auto-generated " />
                   <TextField fx:id="appTitleField" layoutX="53.0" layoutY="40.0" prefHeight="25.0" prefWidth="205.0" />
+                  <ComboBox fx:id="appEndTimeField" layoutX="780.0" layoutY="40.0" prefHeight="25.0" prefWidth="106.0" />
+                  <ComboBox fx:id="appStartTimeField" layoutX="780.0" layoutY="12.0" prefHeight="25.0" prefWidth="106.0" />
                </children></Pane>
             </children></Pane>
         <Pane layoutX="18.0" layoutY="139.0" prefHeight="247.0" prefWidth="1128.0" style="-fx-border-color: black; -fx-border-radius: 15px; -fx-text-fill: #ffffff;">
