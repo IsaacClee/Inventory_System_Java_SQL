@@ -3,7 +3,6 @@ package DAO;
 import Model.Customers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import java.sql.Date;
 import java.sql.Timestamp;
 
 import java.sql.*;
@@ -26,7 +25,7 @@ public class DBCustomers {
                 String address = rs.getString("Address");
                 String postal = rs.getString("Postal_Code");
                 String phone = rs.getString("Phone");
-                Date createDate = rs.getDate("Create_Date");
+                Timestamp createDate = rs.getTimestamp("Create_Date");
                 String createdBy = rs.getString("Created_By");
                 Timestamp lastUpdate = rs.getTimestamp("Last_Update");
                 String lastUpdatedBy = rs.getString("Last_Updated_By");
@@ -42,7 +41,7 @@ public class DBCustomers {
         return customersList;
     }
 
-    public static int insert(int id, String name, String address, String postal, String phone, Date createDate, String createdBy, Timestamp lastUpdate, String lastUpdatedBy, int division) throws SQLException {
+    public static int insert(int id, String name, String address, String postal, String phone, Timestamp createDate, String createdBy, Timestamp lastUpdate, String lastUpdatedBy, int division) throws SQLException {
         String sql = "INSERT INTO CUSTOMERS (Customer_ID, Customer_Name, Address, Postal_Code, Phone, Create_Date, Created_By, Last_Update, Last_Updated_By, Division_ID) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setInt(1,id);
@@ -50,7 +49,7 @@ public class DBCustomers {
         ps.setString(3,address);
         ps.setString(4,postal);
         ps.setString(5,phone);
-        ps.setDate(6, createDate);
+        ps.setTimestamp(6, createDate);
         ps.setString(7,createdBy);
         ps.setTimestamp(8, lastUpdate);
         ps.setString(9,lastUpdatedBy);

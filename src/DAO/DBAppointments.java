@@ -29,9 +29,9 @@ public class DBAppointments {
                 String description = rs.getString("Description");
                 String location = rs.getString("Location");
                 String type = rs.getString("Type");
-                Date start = rs.getDate("Start");
-                Date end = rs.getDate("End");
-                Date createDate = rs.getDate("Create_Date");
+                Timestamp start = rs.getTimestamp("Start");
+                Timestamp end = rs.getTimestamp("End");
+                Timestamp createDate = rs.getTimestamp("Create_Date");
                 String createdBy = rs.getString("Created_By");
                 Timestamp lastUpdate = rs.getTimestamp("Last_Update");
                 String lastUpdatedBy = rs.getString("Last_Updated_By");
@@ -49,17 +49,17 @@ public class DBAppointments {
         return appointmentsList;
     }
 
-    public static int insert(int id, String title, String description, String location, String type, Date start, Date end, Date createDate, String createdBy, Timestamp lastUpdate, String lastUpdateBy, int customerID, int userID, int contactID) throws SQLException {
-        String sql = "INSERT INTO contacts (Appointment_ID, Title, Description, Location, Type, Start, End, Create_Date, Created_By, Last_Update, Last_Updated_By, Customer_ID, User_ID, Contact_ID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    public static int insert(int id, String title, String description, String location, String type, Timestamp start, Timestamp end, Timestamp createDate, String createdBy, Timestamp lastUpdate, String lastUpdateBy, int customerID, int userID, int contactID) throws SQLException {
+        String sql = "INSERT INTO appointments (Appointment_ID, Title, Description, Location, Type, Start, End, Create_Date, Created_By, Last_Update, Last_Updated_By, Customer_ID, User_ID, Contact_ID) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
         PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
         ps.setInt(1, id);
         ps.setString(2, title);
         ps.setString(3, description);
         ps.setString(4, location);
         ps.setString(5, type);
-        ps.setDate(6,start);
-        ps.setDate(7,end);
-        ps.setDate(8,createDate);
+        ps.setTimestamp(6,start);
+        ps.setTimestamp(7,end);
+        ps.setTimestamp(8,createDate);
         ps.setString(9, createdBy);
         ps.setTimestamp(10, lastUpdate);
         ps.setString(11, lastUpdateBy);

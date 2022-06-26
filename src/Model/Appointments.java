@@ -13,9 +13,9 @@ public class Appointments {
     private String description;
     private String location;
     private String type;
-    private Date start;
-    private Date end;
-    private Date createDate;
+    private Timestamp start;
+    private Timestamp end;
+    private Timestamp createDate;
     private String createdBy;
     private Timestamp lastUpdate;
     private String lastUpdatedBy;
@@ -23,7 +23,7 @@ public class Appointments {
     private int userID;
     private int contactID;
 
-    public Appointments (int id, String title, String description, String location, String type, Date start, Date end, Date createDate, String createdBy, Timestamp lastUpdate, String lastUpdatedBy, int customerID, int userID, int contactID){
+    public Appointments (int id, String title, String description, String location, String type, Timestamp start, Timestamp end, Timestamp createDate, String createdBy, Timestamp lastUpdate, String lastUpdatedBy, int customerID, int userID, int contactID){
         this.id = id;
         this.title = title;
         this.description = description;
@@ -113,42 +113,42 @@ public class Appointments {
     /**
      * @return the start
      */
-    public Date getStart() {
+    public Timestamp getStart() {
         return start;
     }
 
     /**
      * @param start the start to set
      */
-    public void setStart(Date start) {
+    public void setStart(Timestamp start) {
         this.start = start;
     }
 
     /**
      * @return the end
      */
-    public Date getEnd() {
+    public Timestamp getEnd() {
         return end;
     }
 
     /**
      * @param end the end to set
      */
-    public void setEnd(Date end) {
+    public void setEnd(Timestamp end) {
         this.end = end;
     }
 
     /**
      * @return the createDate
      */
-    public Date getCreateDate() {
+    public Timestamp getCreateDate() {
         return createDate;
     }
 
     /**
      * @param createDate the createDate to set
      */
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(Timestamp createDate) {
         this.createDate = createDate;
     }
 

@@ -46,7 +46,7 @@ public class DBContacts {
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 int id = rs.getInt("Contact_ID");
-                String name = rs.getString("Country");
+                String name = rs.getString("Contact_Name");
                 c.setId(id);
                 c.setName(name);
             }
