@@ -289,22 +289,6 @@ public class MainForm implements Initializable{
 
     refreshTables();
 
-    /**
-    String s = appStartField.getValue() + " " + appStartTimeField.getValue();
-    System.out.println(s);
-    LocalDateTime start1 = LocalDateTime.parse(s, dtf);
-    System.out.println(start1);
-    ZonedDateTime startUPT = start1.atZone(ZoneId.systemDefault()).withZoneSameInstant(ZoneId.of("UTC"));
-    System.out.println(Date.from(startUPT.toInstant()));
-    */
-
-    /**
-    int startTime = Integer.parseInt((String) appStartTimeField.getSelectionModel().getSelectedItem());
-    LocalDateTime localDateTime = appStartField.getValue().atTime(startTime,10);
-    System.out.println(localDateTime);
-    Timestamp sqlDate = Timestamp.valueOf(localDateTime);
-    System.out.println(sqlDate);
-     */
 
     }
 

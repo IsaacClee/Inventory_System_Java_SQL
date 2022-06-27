@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -112,11 +113,8 @@ public class UpdateAppointmentForm implements Initializable {
         Instant instantEnd = appointmentToBeUpdated.getEnd().toInstant();
         appEndField.setValue(LocalDate.ofInstant(instantEnd,ZoneId.systemDefault()));
         appEndTimeField.getSelectionModel().select(instantEnd.atZone(ZoneId.systemDefault()).getHour());
-
-
         appCusIDField.setText(String.valueOf(appointmentToBeUpdated.getCustomerID()));
         appUserIDField.setText(String.valueOf(appointmentToBeUpdated.getUserID()));
-
     }
 
 
@@ -130,6 +128,13 @@ public class UpdateAppointmentForm implements Initializable {
     }
 
     @javafx.fxml.FXML
-    public void onActionUpdateAppointment(ActionEvent actionEvent) {
+    public void onActionUpdateAppointment(ActionEvent actionEvent) throws SQLException, IOException {
+        int id = Integer.parseInt(appIDField.getText());
+        String name = appTitleField.getText();
+        String description = appDescriptionField.getText();
+        String location = appLocationField.getText();
+        String type = appTypeField.getText();
+
+
     }
 }
