@@ -6,7 +6,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -18,15 +17,12 @@ import javafx.stage.Stage;
 import Model.*;
 
 import javax.swing.*;
-import javax.swing.text.Style;
 import java.sql.*;
 
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
@@ -147,7 +143,7 @@ public class MainForm implements Initializable{
     @FXML
     private RadioButton currentMonth;
     @FXML
-    private RadioButton allApointments;
+    private RadioButton allAppointments;
     @FXML
     private ToggleGroup appointmentViews;
     @FXML
@@ -400,4 +396,69 @@ public class MainForm implements Initializable{
     }
 
 
+    public void onActionCurrentWeek(ActionEvent actionEvent) throws IOException  {
+        AppointmentTable.getItems().clear();
+        AppointmentTable.setItems(DBAppointments.getAppointmentsByCurrentWeek());
+
+        appIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        appTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        appDescripCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        appLocationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        appTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        appStartCol.setCellValueFactory(new PropertyValueFactory<>("start"));
+        appEndCol.setCellValueFactory(new PropertyValueFactory<>("end"));
+        appCreateDateCol.setCellValueFactory(new PropertyValueFactory<>("createDate"));
+        appCreatedByCol.setCellValueFactory(new PropertyValueFactory<>("createdBy"));
+        appLastUpdateCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdate"));
+        appLastUpdatedByCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdatedBy"));
+        appCusIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        appUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
+        appContactIDCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
+
+    }
+
+    public void onActionNextWeek(ActionEvent actionEvent) throws IOException  {
+        AppointmentTable.getItems().clear();
+        AppointmentTable.setItems(DBAppointments.getAppointmentsByNext7Days());
+
+        appIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        appTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        appDescripCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        appLocationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        appTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        appStartCol.setCellValueFactory(new PropertyValueFactory<>("start"));
+        appEndCol.setCellValueFactory(new PropertyValueFactory<>("end"));
+        appCreateDateCol.setCellValueFactory(new PropertyValueFactory<>("createDate"));
+        appCreatedByCol.setCellValueFactory(new PropertyValueFactory<>("createdBy"));
+        appLastUpdateCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdate"));
+        appLastUpdatedByCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdatedBy"));
+        appCusIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        appUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
+        appContactIDCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
+
+    }
+
+    public void onActionAllAppointment(ActionEvent actionEvent) throws IOException  {
+        refreshTables();
+    }
+
+    public void onActionCurrentMonth(ActionEvent actionEvent)  throws IOException {
+        AppointmentTable.getItems().clear();
+        AppointmentTable.setItems(DBAppointments.getAppointmentsByCurrentMonth());
+
+        appIDCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        appTitleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
+        appDescripCol.setCellValueFactory(new PropertyValueFactory<>("description"));
+        appLocationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
+        appTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        appStartCol.setCellValueFactory(new PropertyValueFactory<>("start"));
+        appEndCol.setCellValueFactory(new PropertyValueFactory<>("end"));
+        appCreateDateCol.setCellValueFactory(new PropertyValueFactory<>("createDate"));
+        appCreatedByCol.setCellValueFactory(new PropertyValueFactory<>("createdBy"));
+        appLastUpdateCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdate"));
+        appLastUpdatedByCol.setCellValueFactory(new PropertyValueFactory<>("lastUpdatedBy"));
+        appCusIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        appUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
+        appContactIDCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
+    }
 }
