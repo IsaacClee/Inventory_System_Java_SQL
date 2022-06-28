@@ -144,6 +144,16 @@ public class MainForm implements Initializable{
     private ComboBox appStartTimeField;
 
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    @FXML
+    private RadioButton currentMonth;
+    @FXML
+    private RadioButton allApointments;
+    @FXML
+    private ToggleGroup appointmentViews;
+    @FXML
+    private RadioButton currentWeek;
+    @FXML
+    private RadioButton nextWeek;
 
     public static Customers getCustomerToBeUpdated() {
         return customerToBeUpdated;
