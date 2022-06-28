@@ -282,7 +282,7 @@ public class MainForm implements Initializable{
     int rowsAffected = DBAppointments.insert(id,title,description,location, type, start, end, createDate, createdBy, lastUpdate, lastUpdateBy,customerID,userID,contactID );
 
     if(rowsAffected > 0){
-        System.out.println("Success: Added new customer");
+        System.out.println("Success: Added new appointment");
     } else {
         System.out.println("Failed");
     }

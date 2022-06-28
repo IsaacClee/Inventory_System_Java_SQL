@@ -1,5 +1,6 @@
 package Controller;
 
+import DAO.DBAppointments;
 import DAO.DBContacts;
 import DAO.DBCountries;
 import DAO.DBFirstLevelDivisions;
@@ -22,8 +23,10 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -130,11 +133,34 @@ public class UpdateAppointmentForm implements Initializable {
     @javafx.fxml.FXML
     public void onActionUpdateAppointment(ActionEvent actionEvent) throws SQLException, IOException {
         int id = Integer.parseInt(appIDField.getText());
-        String name = appTitleField.getText();
+        String title = appTitleField.getText();
         String description = appDescriptionField.getText();
         String location = appLocationField.getText();
         String type = appTypeField.getText();
+        Timestamp lastUpdate = new Timestamp(System.currentTimeMillis());
+        String lastUpdateBy = "user script";
+        int contactId = DBContacts.getContactIDByName(String.valueOf(appContactField.getValue()));
+        int startTime = Integer.parseInt((String) appStartTimeField.getSelectionModel().getSelectedItem());
+        LocalDateTime localDateTimeStart = appStartField.getValue().atTime(startTime,0);
+        Timestamp start = Timestamp.valueOf(localDateTimeStart);
+        int endTime = Integer.parseInt((String) appEndTimeField.getSelectionModel().getSelectedItem());
+        LocalDateTime localDateTimeEnd = appEndField.getValue().atTime(endTime,0);
+        Timestamp end = Timestamp.valueOf(localDateTimeEnd);
+        int customerID = Integer.parseInt(appCusIDField.getText());
+        int userID = Integer.parseInt(appUserIDField.getText());
 
+        int rowsAffected = DBAppointments.update(id,title,description,location,type,start,end,lastUpdate,lastUpdateBy,customerID,contactId,userID);
+
+        if(rowsAffected > 0){
+            System.out.println("Success:"+ "ID: " + id +" was updated");
+            stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            scene = FXMLLoader.load(getClass().getResource("/View/MainForm.fxml"));
+            stage.setTitle("Customer Management System");
+            stage.setScene(new Scene(scene));
+            stage.show();
+        } else {
+            System.out.println("Failed");
+        }
 
     }
 }

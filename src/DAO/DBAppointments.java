@@ -71,7 +71,7 @@ public class DBAppointments {
     }
 
     public static int update(int id, String title, String description, String location, String type, Timestamp start, Timestamp end, Timestamp lastUpdate, String lastUpdateBy, int customerID, int contactID, int userID) throws SQLException {
-        String sql = "UPDATE appointments Set Appointment_ID = ?, Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Last_Update =?, Last_Update_By = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = ?";
+        String sql = "UPDATE appointments Set Appointment_ID = ?, Title = ?, Description = ?, Location = ?, Type = ?, Start = ?, End = ?, Last_Update =?, Last_Updated_By = ?, Customer_ID = ?, User_ID = ?, Contact_ID = ? WHERE Appointment_ID = ?";
         PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
         ps.setInt(1, id);
         ps.setString(2, title);

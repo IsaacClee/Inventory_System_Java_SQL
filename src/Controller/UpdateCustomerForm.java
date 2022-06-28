@@ -66,8 +66,6 @@ public class UpdateCustomerForm implements Initializable {
         cusCountryBox.getSelectionModel().select(DBCountries.getCountryByID(countryID));
         cusDivisionBox.getSelectionModel().select(DBFirstLevelDivisions.getDivisionByID(customerToBeUpdated.getDivisionID()));
 
-
-
         cusCountryBox.valueProperty().addListener(new ChangeListener<Countries>() {
             @Override
             public void changed(ObservableValue observableValue, Countries t, Countries t1) {

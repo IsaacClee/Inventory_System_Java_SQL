@@ -56,6 +56,23 @@ public class DBContacts {
         return c;
     }
 
+    public static int getContactIDByName (String contactName){
+        int contactID = 0;
+
+        try {
+            String sql = "SELECT * FROM contacts WHERE Contact_Name=?";
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ps.setString(1, contactName);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                contactID = rs.getInt("Contact_ID");
+            }
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+        return contactID;
+    }
+
     public static Contacts getContactByID(int contactID){
         Contacts c = new Contacts(0, "");
 
