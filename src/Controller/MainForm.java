@@ -315,14 +315,20 @@ public class MainForm implements Initializable{
 
     @FXML
     public void onActionDeleteCustomer(ActionEvent actionEvent) throws SQLException {
-        Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION, "This will remove this customer from the Database. Do you want to proceed?");
-        Optional<ButtonType> result = deleteAlert.showAndWait();
+        Customers selectedItem = (Customers) CustomerTable.getSelectionModel().getSelectedItem();
+        if(DBAppointments.doesAppointmentExist(selectedItem.getId())) {
+            JOptionPane.showMessageDialog(null, "System cannot delete Customer - ID: "
+                    + selectedItem.getId() + ", Name: " + selectedItem.getName() + ". Delete all appointments related to this customer before proceeding");
+        } else {
+            Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION, "This will remove this customer from the Database. Do you want to proceed?");
+            Optional<ButtonType> result = deleteAlert.showAndWait();
 
-        if(result.isPresent() && result.get() == ButtonType.OK){
-            Customers selectedItem = (Customers) CustomerTable.getSelectionModel().getSelectedItem();
-            DBCustomers.deleteCustomer(selectedItem.getId());
-            JOptionPane.showMessageDialog(null, "Delete successful - ID: " + selectedItem.getId() + ", Name: " + selectedItem.getName());
-            refreshTables();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                selectedItem = (Customers) CustomerTable.getSelectionModel().getSelectedItem();
+                DBCustomers.deleteCustomer(selectedItem.getId());
+                JOptionPane.showMessageDialog(null, "Delete successful - ID: " + selectedItem.getId() + ", Name: " + selectedItem.getName());
+                refreshTables();
+            }
         }
     }
 
