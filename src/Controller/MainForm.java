@@ -316,7 +316,7 @@ public class MainForm implements Initializable{
     @FXML
     public void onActionDeleteCustomer(ActionEvent actionEvent) throws SQLException {
         Customers selectedItem = (Customers) CustomerTable.getSelectionModel().getSelectedItem();
-        if(DBAppointments.doesAppointmentExist(selectedItem.getId())) {
+        if(DBAppointments.doesAppointmentCustomerIDExist(selectedItem.getId())) {
             JOptionPane.showMessageDialog(null, "System cannot delete Customer - ID: "
                     + selectedItem.getId() + ", Name: " + selectedItem.getName() + ". Delete all appointments related to this customer before proceeding");
         } else {

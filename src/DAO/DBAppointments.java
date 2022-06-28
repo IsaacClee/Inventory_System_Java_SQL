@@ -221,6 +221,15 @@ public class DBAppointments {
         return false;
     }
 
+    public static boolean doesAppointmentCustomerIDExist(int id) {
+        for(Appointments appointments : DBAppointments.getAllAppointments()) {
+            if(appointments.getCustomerID() == id){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static void checkDateConversion(){
         System.out.println("CREATE DATE TEST");
         String sql = "Select Create_Date from Countries";
