@@ -13,8 +13,8 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/MainForm.fxml"));
-        stage.setTitle("Customer Management System");
+        Parent root = FXMLLoader.load(getClass().getResource("/view/LoginForm.fxml"));
+        stage.setTitle("User Login");
         stage.setScene(new Scene(root));
         stage.show();
     }
@@ -26,6 +26,7 @@ public class Main extends Application {
         JDBC.openConnection();
 
 
+        /**
         // Pull Countries to list from Database
          ObservableList<Countries> countriesList = DBCountries.getAllCountries();
          for(Countries c : countriesList){
@@ -52,7 +53,7 @@ public class Main extends Application {
         for(Appointments a : appointmentsList){
             Appointments.allAppointments.addAppointmentToList(a);
         }
-
+         */
 
 
         // Launch Args
