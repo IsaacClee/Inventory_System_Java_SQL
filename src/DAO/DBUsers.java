@@ -12,7 +12,7 @@ import javax.swing.*;
 import java.sql.*;
 
 public class DBUsers {
-    public static ObservableList<Users> getAllUser(){
+    public static ObservableList<Users> getAllUsers(){
         ObservableList<Users>contactsList = FXCollections.observableArrayList();
 
         try{

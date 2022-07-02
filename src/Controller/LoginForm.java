@@ -1,5 +1,8 @@
 package Controller;
 
+import DAO.DBUsers;
+import Model.Users;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.time.ZoneId;
@@ -46,14 +50,28 @@ public class LoginForm implements Initializable {
 
     @FXML
     public void onActionLogin(ActionEvent actionEvent) throws IOException {
-        int userID = Integer.parseInt(userIdField.getText());
+        boolean checkUser = false;
+        String userID = userIdField.getText();
         String password = passwordField.getText();
+        System.out.println(userID);
+        System.out.println(password);
+        ObservableList<Users> usersList = DBUsers.getAllUsers();
+        for(Users u : usersList){
+            if(password.contains(u.getPassword()) && userID.contains(Integer.toString(u.getId()))){
+                checkUser = true;
+            }
+        }
+        System.out.println(checkUser);
+        if(checkUser == true){
+            stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+            scene = FXMLLoader.load(getClass().getResource("/View/MainForm.fxml"));
+            stage.setTitle("Customer Management System");
+            stage.setScene(new Scene(scene));
+            stage.show();
+        } else {
+            JOptionPane.showMessageDialog(null, "Please use a valid User ID and Password to proceed.");
+        }
 
-        stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-        scene = FXMLLoader.load(getClass().getResource("/View/MainForm.fxml"));
-        stage.setTitle("Customer Management System");
-        stage.setScene(new Scene(scene));
-        stage.show();
     }
 
 
