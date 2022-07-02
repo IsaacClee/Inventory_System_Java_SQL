@@ -49,7 +49,15 @@ public class LoginForm implements Initializable {
         loginTimeZone.setText(String.valueOf(ZoneId.systemDefault()));
         ResourceBundle rb = ResourceBundle.getBundle("Model/Nat_fr", Locale.getDefault());
         if(Locale.getDefault().getLanguage().equals("fr")){
-            System.out.println(rb.getString("Welcome"));
+            loginGreeting.setText(rb.getString("Welcome"));
+            loginButton.setText(rb.getString("Login"));
+            timeZoneLabel.setText(rb.getString("TimeZone"));
+            userIdLabel.setText(rb.getString("UserID"));
+            passwordLabel.setText(rb.getString("Password"));
+            userIdField.setPromptText(rb.getString("EnterUserID"));
+            passwordField.setPromptText(rb.getString("EnterPassword"));
+
+
         }
     }
 
@@ -74,7 +82,16 @@ public class LoginForm implements Initializable {
             stage.setScene(new Scene(scene));
             stage.show();
         } else {
-            JOptionPane.showMessageDialog(null, "Please use a valid User ID and Password to proceed.");
+            if(Locale.getDefault().getLanguage().equals("fr")){
+                ResourceBundle rb = ResourceBundle.getBundle("Model/Nat_fr", Locale.getDefault());
+                JOptionPane.showMessageDialog(null, rb.getString("Error"));
+                loginGreeting.setText(rb.getString("Welcome"));
+
+
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Please use a valid User ID and Password to proceed.");
+            }
         }
 
     }
