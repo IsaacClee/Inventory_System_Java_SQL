@@ -1,6 +1,9 @@
 package Model;
 
 import java.sql.SQLException;
+import java.util.Locale;
+import java.util.ResourceBundle;
+import java.util.Scanner;
 
 import DAO.*;
 import javafx.application.Application;
@@ -21,6 +24,8 @@ public class Main extends Application {
 
 
     public static void main(String[] args) throws SQLException {
+
+        ResourceBundle rb = ResourceBundle.getBundle("Model/Nat_fr", Locale.getDefault());
 
         // Open Connection
         JDBC.openConnection();

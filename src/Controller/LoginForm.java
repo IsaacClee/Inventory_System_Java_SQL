@@ -18,6 +18,7 @@ import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.time.ZoneId;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.TimeZone;
 
@@ -46,6 +47,10 @@ public class LoginForm implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loginTimeZone.setText(String.valueOf(ZoneId.systemDefault()));
+        ResourceBundle rb = ResourceBundle.getBundle("Model/Nat_fr", Locale.getDefault());
+        if(Locale.getDefault().getLanguage().equals("fr")){
+            System.out.println(rb.getString("Welcome"));
+        }
     }
 
     @FXML
