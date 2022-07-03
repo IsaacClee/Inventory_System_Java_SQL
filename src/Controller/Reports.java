@@ -1,12 +1,25 @@
 package Controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
+import javafx.stage.Stage;
 
-public class Reports {
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class Reports implements Initializable {
+
+    Stage stage;
+    Parent scene;
+
     @javafx.fxml.FXML
     private Label totalCustomers;
     @javafx.fxml.FXML
@@ -38,6 +51,11 @@ public class Reports {
     @javafx.fxml.FXML
     private Button returnButton;
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
+    }
+
     @javafx.fxml.FXML
     public void onActionSelectType(ActionEvent actionEvent) {
     }
@@ -55,6 +73,12 @@ public class Reports {
     }
 
     @javafx.fxml.FXML
-    public void onActionReturn(ActionEvent actionEvent) {
+    public void onActionReturn(ActionEvent actionEvent) throws IOException {
+        Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        Parent root = FXMLLoader.load(getClass().getResource("/view/MainForm.fxml"));
+        stage.setTitle("User Login");
+        stage.setScene(new Scene(root));
+        stage.show();
     }
+
 }

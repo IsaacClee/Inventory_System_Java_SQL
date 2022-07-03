@@ -467,4 +467,12 @@ public class MainForm implements Initializable{
         appUserIDCol.setCellValueFactory(new PropertyValueFactory<>("userID"));
         appContactIDCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
     }
+
+    public void onActionReports(ActionEvent actionEvent) throws IOException {
+        stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+        scene = FXMLLoader.load(getClass().getResource("/View/Reports.fxml"));
+        stage.setTitle("Reports");
+        stage.setScene(new Scene(scene));
+        stage.show();
+    }
 }
