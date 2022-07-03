@@ -23,34 +23,7 @@ public class Main extends Application {
         stage.show();
     }
 
-    public static void appendFile() throws IOException {
-        System.out.println("here");
-        String filename = "../login_activity.txt", item;
 
-        File file = new File(filename);
-
-        Scanner inputFile = new Scanner(file);
-
-        while(inputFile.hasNext())
-        {
-            item = inputFile.nextLine();
-            System.out.println(item);
-        }
-
-        inputFile.close();
-        System.out.println("Data Loaded");
-
-
-        /**
-        String filename = "../login_activity.txt", item;
-        FileWriter fw = new FileWriter(filename, true);
-        BufferedWriter bw = new BufferedWriter(fw);
-        bw.write("Spain");
-        bw.newLine();
-        bw.close();
-         */
-        System.out.println("there");
-    }
 
 
     public static void main(String[] args) throws SQLException, IOException {
@@ -91,7 +64,6 @@ public class Main extends Application {
          */
 
 
-        appendFile();
 
         // Launch Args
         launch(args);

@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import java.io.*;
 import java.net.URL;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -70,7 +72,6 @@ public class LoginForm implements Initializable {
         String password = passwordField.getText();
 
 
-
         ObservableList<Users> usersList = DBUsers.getAllUsers();
         for(Users u : usersList){
             if(password.contains(u.getPassword()) && userID.contains(Integer.toString(u.getId()))){
@@ -78,6 +79,10 @@ public class LoginForm implements Initializable {
             }
         }
         if(checkUser == true){
+            FileWriter fw = new FileWriter("login_activity.txt", true);
+            PrintWriter pw = new PrintWriter(fw);
+            pw.println("User: " + userID + " logged in successfully. Timestamp:" + Timestamp.from(Instant.now()) + " "  + ZoneId.systemDefault());
+            pw.close();
             stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(getClass().getResource("/View/MainForm.fxml"));
             stage.setTitle("Customer Management System");
@@ -88,10 +93,12 @@ public class LoginForm implements Initializable {
                 ResourceBundle rb = ResourceBundle.getBundle("Model/Nat_fr", Locale.getDefault());
                 JOptionPane.showMessageDialog(null, rb.getString("Error"));
                 loginGreeting.setText(rb.getString("Welcome"));
-
-
-
             } else {
+                FileWriter fw = new FileWriter("login_activity.txt", true);
+                PrintWriter pw = new PrintWriter(fw);
+                pw.println("User: " + userID + " attempted to login but was unsuccessful. Timestamp:"
+                        + Timestamp.from(Instant.now()) + " "  + ZoneId.systemDefault());
+                pw.close();
                 JOptionPane.showMessageDialog(null, "Please use a valid User ID and Password to proceed.");
             }
         }
