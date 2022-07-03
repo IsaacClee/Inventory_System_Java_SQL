@@ -15,11 +15,12 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import javax.swing.*;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 import java.util.TimeZone;
 
 
@@ -44,6 +45,7 @@ public class LoginForm implements Initializable {
     Stage stage;
     Parent scene;
 
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loginTimeZone.setText(String.valueOf(ZoneId.systemDefault()));
@@ -66,15 +68,15 @@ public class LoginForm implements Initializable {
         boolean checkUser = false;
         String userID = userIdField.getText();
         String password = passwordField.getText();
-        System.out.println(userID);
-        System.out.println(password);
+
+
+
         ObservableList<Users> usersList = DBUsers.getAllUsers();
         for(Users u : usersList){
             if(password.contains(u.getPassword()) && userID.contains(Integer.toString(u.getId()))){
                 checkUser = true;
             }
         }
-        System.out.println(checkUser);
         if(checkUser == true){
             stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
             scene = FXMLLoader.load(getClass().getResource("/View/MainForm.fxml"));
