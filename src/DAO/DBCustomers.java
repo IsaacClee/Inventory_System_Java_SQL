@@ -91,6 +91,16 @@ public class DBCustomers {
         return Customers.filteredCustomers.getListOfFilteredCustomers();
     }
 
+    public static int searchForCustomersByID (int divisionID){
+        int countOfCustomers = 0;
+        for(Customers customers : DBCustomers.getAllCustomers()) {
+            if (Integer.toString(customers.getDivisionID()).equals(String.valueOf(divisionID)))
+                countOfCustomers++;
+        }
+        return countOfCustomers;
+    }
+
+
     public static boolean doesCustomerExist(int id) {
         for(Customers customers : DBCustomers.getAllCustomers()) {
             if(customers.getId() == id){

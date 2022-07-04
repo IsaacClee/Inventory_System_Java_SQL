@@ -237,13 +237,13 @@ public class Appointments {
     }
 
 
-    public static class allAppointments {
+    public static class filteredAppointments {
 
-        private static ObservableList<Appointments> listOfAppointments = FXCollections.observableArrayList();
+        private static ObservableList<Appointments> listOfFilteredAppointments = FXCollections.observableArrayList();
 
-        public static void addAppointmentToList(Appointments appointments){listOfAppointments.add(appointments);}
+        public static void addAppointmentToFilteredList(Appointments appointments){listOfFilteredAppointments.add(appointments);}
 
-        public static ObservableList<Appointments> getListOfAppointments() {return listOfAppointments;}
+        public static ObservableList<Appointments> getListOfFilteredAppointments() {return listOfFilteredAppointments;}
 
     }
 

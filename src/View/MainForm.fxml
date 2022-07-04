@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="829.0" prefWidth="1341.0" style="-fx-background-color: #bdd4e7; -fx-background-image: linear-gradient(315deg, #bdd4e7 0%, #8693ab 74%);" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainForm">
+<AnchorPane prefHeight="829.0" prefWidth="1341.0"  style="-fx-background-color: #288BA8;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainForm">
     <children>
         <Pane layoutX="8.0" layoutY="510.0" prefHeight="267.0" prefWidth="1325.0" style="-fx-border-color: black; -fx-border-radius: 15px; -fx-text-fill: #ffffff;">
             <children>

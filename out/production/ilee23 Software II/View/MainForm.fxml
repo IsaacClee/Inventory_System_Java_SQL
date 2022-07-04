@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="829.0" prefWidth="1341.0" style="-fx-background-color: #bdd4e7; -fx-background-image: linear-gradient(315deg, #bdd4e7 0%, #8693ab 74%);" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainForm">
+<AnchorPane prefHeight="829.0" prefWidth="1341.0"  style="-fx-background-color: #288BA8;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainForm">
     <children>
         <Pane layoutX="8.0" layoutY="510.0" prefHeight="267.0" prefWidth="1325.0" style="-fx-border-color: black; -fx-border-radius: 15px; -fx-text-fill: #ffffff;">
             <children>
@@ -163,17 +163,17 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <RadioButton fx:id="currentMonth" onAction="#onActionCurrentMonth"  layoutX="353.0" layoutY="793.0" mnemonicParsing="false" text="Current Month">
+      <RadioButton fx:id="currentMonth" layoutX="353.0" layoutY="793.0" mnemonicParsing="false" onAction="#onActionCurrentMonth" text="Current Month">
          <toggleGroup>
             <ToggleGroup fx:id="appointmentViews" />
          </toggleGroup>
       </RadioButton>
-      <RadioButton fx:id="currentWeek"  onAction="#onActionCurrentWeek" layoutX="478.0" layoutY="793.0" mnemonicParsing="false" text="Current Week" toggleGroup="$appointmentViews" />
-      <RadioButton fx:id="nextWeek" onAction="#onActionNextWeek" layoutX="597.0" layoutY="793.0" mnemonicParsing="false" text="Next 7 Days" toggleGroup="$appointmentViews" />
-      <RadioButton fx:id="allAppointments"  onAction="#onActionAllAppointment" layoutX="693.0" layoutY="793.0" mnemonicParsing="false" selected="true" text="All Appointments" toggleGroup="$appointmentViews" />
+      <RadioButton fx:id="currentWeek" layoutX="478.0" layoutY="793.0" mnemonicParsing="false" onAction="#onActionCurrentWeek" text="Current Week" toggleGroup="$appointmentViews" />
+      <RadioButton fx:id="nextWeek" layoutX="597.0" layoutY="793.0" mnemonicParsing="false" onAction="#onActionNextWeek" text="Next 7 Days" toggleGroup="$appointmentViews" />
+      <RadioButton fx:id="allAppointments" layoutX="693.0" layoutY="793.0" mnemonicParsing="false" onAction="#onActionAllAppointment" selected="true" text="All Appointments" toggleGroup="$appointmentViews" />
       <Pane layoutX="1186.0" layoutY="215.0" prefHeight="99.0" prefWidth="141.0" style="-fx-border-color: black;">
          <children>
-            <Button layoutX="7.0" layoutY="7.0" mnemonicParsing="false" prefHeight="86.0" prefWidth="128.0" text="Access Reports" textAlignment="CENTER" wrapText="true">
+            <Button layoutX="7.0" layoutY="7.0" mnemonicParsing="false" onAction="#onActionReports" prefHeight="86.0" prefWidth="128.0" text="Access Reports" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font size="18.0" />
                </font>

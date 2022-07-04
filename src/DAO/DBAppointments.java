@@ -1,13 +1,9 @@
 package DAO;
 
-import DAO.JDBC;
 import Model.Appointments;
-import Model.Customers;
-import Model.FirstLevelDivisions;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import javax.swing.*;
 import java.sql.*;
 
 public class DBAppointments {
@@ -229,6 +225,15 @@ public class DBAppointments {
         }
         return false;
     }
+
+    public static ObservableList<Appointments> filteredAppointmentsByID (int contactId){
+        for(Appointments appointments : DBAppointments.getAllAppointments()) {
+            if (Integer.toString(appointments.getContactID()).equals(String.valueOf(contactId)))
+                Appointments.filteredAppointments.addAppointmentToFilteredList(appointments);
+        }
+        return Appointments.filteredAppointments.getListOfFilteredAppointments();
+    }
+
 
     public static void checkDateConversion(){
         System.out.println("CREATE DATE TEST");
