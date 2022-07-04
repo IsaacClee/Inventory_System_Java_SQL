@@ -4,9 +4,12 @@ import DAO.DBAppointments;
 import DAO.DBContacts;
 import DAO.DBCustomers;
 import DAO.DBFirstLevelDivisions;
+import Model.Appointments;
 import Model.Contacts;
 import Model.FirstLevelDivisions;
 import Model.MonthsInterface;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +22,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.time.Month;
 import java.util.ResourceBundle;
 
 public class Reports implements Initializable {
@@ -43,6 +48,10 @@ public class Reports implements Initializable {
     @javafx.fxml.FXML
     private Label totalAppointments;
     @javafx.fxml.FXML
+    private Label totalByMonth;
+    @javafx.fxml.FXML
+    private Label totalByType;
+    @javafx.fxml.FXML
     private TableColumn scheduleTypeCol;
     @javafx.fxml.FXML
     private ComboBox typeSelectBox;
@@ -59,10 +68,28 @@ public class Reports implements Initializable {
     @FXML
     private TableView ScheduleTable;
 
+    int appointmentsCountByMonth = 0;
+    int appointmentsCountByType = 0;
+    int countOfAppointments = 0;
+
+    private int getMonthNumber(String monthName) {
+        return Month.valueOf(monthName.toUpperCase()).getValue();
+    }
+
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         monthSelectBox.setItems(MonthsInterface.monthsInterface());
+
+
+        try {
+            typeSelectBox.setItems(DBAppointments.getAppointmentTypes());
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
 
         firstLevelDivisionSelectBox.setItems(DBFirstLevelDivisions.getAllDivisions());
 
@@ -72,8 +99,13 @@ public class Reports implements Initializable {
 
     @javafx.fxml.FXML
     public void onActionSelectType(ActionEvent actionEvent) {
-        System.out.println("test");
+        String selectedType = (String) typeSelectBox.getSelectionModel().getSelectedItem();
+        appointmentsCountByType = DBAppointments.filteredAppointmentsByType(selectedType);
+        totalByType.setText(String.valueOf(appointmentsCountByType));
+        countOfAppointments = appointmentsCountByMonth + appointmentsCountByType;
+        totalAppointments.setText(String.valueOf(countOfAppointments));
     }
+
 
     @javafx.fxml.FXML
     public void onActionSelectContact(ActionEvent actionEvent) {
@@ -107,6 +139,8 @@ public class Reports implements Initializable {
 
     @javafx.fxml.FXML
     public void onActionSelectMonth(ActionEvent actionEvent) {
+        int selectedMonth = getMonthNumber((String) monthSelectBox.getSelectionModel().getSelectedItem());
+
     }
 
     @javafx.fxml.FXML

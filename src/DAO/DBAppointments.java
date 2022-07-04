@@ -227,11 +227,41 @@ public class DBAppointments {
     }
 
     public static ObservableList<Appointments> filteredAppointmentsByID (int contactId){
+        Appointments.filteredAppointments.getListOfFilteredAppointments().clear();
         for(Appointments appointments : DBAppointments.getAllAppointments()) {
             if (Integer.toString(appointments.getContactID()).equals(String.valueOf(contactId)))
                 Appointments.filteredAppointments.addAppointmentToFilteredList(appointments);
         }
         return Appointments.filteredAppointments.getListOfFilteredAppointments();
+    }
+
+    public static int filteredAppointmentsByType (String type){
+        int countOfType = 0;
+        Appointments.filteredAppointments.getListOfFilteredAppointments().clear();
+        for(Appointments appointments : DBAppointments.getAllAppointments()) {
+            if (appointments.getType().equals(type))
+                countOfType++;
+        }
+        return countOfType;
+    }
+
+    public static ObservableList<String> getAppointmentTypes() throws SQLException {
+        ObservableList<String> appointmentTypes = FXCollections.observableArrayList();
+        try{
+            String sql = "SELECT DISTINCT Type FROM appointments";
+
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                String type = rs.getString("Type");
+                appointmentTypes.add(type);
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return appointmentTypes;
     }
 
 

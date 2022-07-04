@@ -55,8 +55,8 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <ComboBox fx:id="monthSelectBox" layoutX="478.0" layoutY="54.0" onAction="#onActionSelectMonth" prefHeight="25.0" prefWidth="183.0" promptText="Select Month" />
-            <ComboBox fx:id="typeSelectBox" layoutX="477.0" layoutY="93.0" onAction="#onActionSelectType" prefHeight="25.0" prefWidth="183.0" promptText="Select Type" />
+            <ComboBox fx:id="monthSelectBox" layoutX="478.0" layoutY="54.0" onAction="#onActionSelectMonth" prefHeight="25.0" prefWidth="164.0" promptText="Select Month" />
+            <ComboBox fx:id="typeSelectBox" layoutX="477.0" layoutY="93.0" onAction="#onActionSelectType" prefHeight="25.0" prefWidth="164.0" promptText="Select Type" />
             <Label fx:id="totalAppointments" layoutX="496.0" layoutY="136.0" prefHeight="17.0" prefWidth="164.0" />
             <Label layoutX="771.0" layoutY="7.0" prefHeight="36.0" prefWidth="205.0" text="Customers by Division">
                <font>
@@ -82,6 +82,8 @@
             </Label>
             <Label fx:id="totalCustomers" layoutX="867.0" layoutY="136.0" prefHeight="17.0" prefWidth="150.0" />
             <Button fx:id="returnButton" layoutX="976.0" layoutY="390.0" mnemonicParsing="false" onAction="#onActionReturn" text="Return" />
+            <Label fx:id="totalByMonth" layoutX="660.0" layoutY="58.0" prefHeight="17.0" prefWidth="53.0" />
+            <Label fx:id="totalByType" layoutX="660.0" layoutY="97.0" prefHeight="17.0" prefWidth="53.0" />
          </children>
       </Pane>
    </children>
