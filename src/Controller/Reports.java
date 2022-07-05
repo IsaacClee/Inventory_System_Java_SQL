@@ -138,9 +138,12 @@ public class Reports implements Initializable {
     }
 
     @javafx.fxml.FXML
-    public void onActionSelectMonth(ActionEvent actionEvent) {
+    public void onActionSelectMonth(ActionEvent actionEvent) throws SQLException {
         int selectedMonth = getMonthNumber((String) monthSelectBox.getSelectionModel().getSelectedItem());
-
+        appointmentsCountByMonth = DBAppointments.getAppointmentsByMonth(selectedMonth);
+        totalByMonth.setText(String.valueOf(appointmentsCountByMonth));
+        countOfAppointments = appointmentsCountByMonth + appointmentsCountByType;
+        totalAppointments.setText(String.valueOf(countOfAppointments));
     }
 
     @javafx.fxml.FXML

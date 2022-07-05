@@ -264,6 +264,24 @@ public class DBAppointments {
         return appointmentTypes;
     }
 
+    public static int getAppointmentsByMonth(int month) throws SQLException {
+        ObservableList<String> countOfMonth = FXCollections.observableArrayList();
+        try{
+            String sql = "SELECT * FROM appointments WHERE MONTH(start) = ?";
+            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
+            ps.setInt(1, month);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                int id = rs.getInt("Appointment_ID");
+                countOfMonth.add(String.valueOf(id));
+            }
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return countOfMonth.size();
+    }
+
 
     public static void checkDateConversion(){
         System.out.println("CREATE DATE TEST");
