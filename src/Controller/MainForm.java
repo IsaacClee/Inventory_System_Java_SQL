@@ -266,7 +266,7 @@ public class MainForm implements Initializable{
         numOfAppointments++;
     }
     int id = numOfAppointments;
-    String title = appTitleCol.getText();
+    String title = appTitleField.getText();
     String description = appDescriptionField.getText();
     String location = appLocationField.getText();
     String type = appTypeField.getText();
@@ -277,14 +277,21 @@ public class MainForm implements Initializable{
     int userID = Integer.valueOf(appUserIDField.getText());
     int customerID = Integer.valueOf(appCustomerIDField.getText());
     int contactID = DBContacts.getContactByName(String.valueOf(appContactField.getValue())).getId();
+
+    // Get Start Time // Start Time Conversions
     int startTime = Integer.parseInt((String) appStartTimeField.getSelectionModel().getSelectedItem());
     int startTimeMin = Integer.parseInt((String) appStartTimeMinField.getSelectionModel().getSelectedItem());
     LocalDateTime localDateTimeStart = appStartField.getValue().atTime(startTime, startTimeMin);
-    Timestamp start = Timestamp.valueOf(localDateTimeStart);
+    ZonedDateTime zonedLocalDateTimeStart = localDateTimeStart.atZone(ZoneId.systemDefault());
+    Timestamp start = Timestamp.from(zonedLocalDateTimeStart.toInstant());
+
+
+    // Get End Time // End Time Conversions
     int endTime = Integer.parseInt((String) appEndTimeField.getSelectionModel().getSelectedItem());
     int endTimeMin = Integer.parseInt((String) appEndTimeMinField.getSelectionModel().getSelectedItem());
     LocalDateTime localDateTimeEnd = appEndField.getValue().atTime(endTime, endTimeMin);
-    Timestamp end = Timestamp.valueOf(localDateTimeEnd);
+    ZonedDateTime zonedLocalDateTimeEnd = localDateTimeEnd.atZone(ZoneId.systemDefault());
+    Timestamp end = Timestamp.from(zonedLocalDateTimeEnd.toInstant());
 
         boolean overlappingAppointmentFound = false;
         Instant suggestedAppointmentStartTime = start.toInstant();

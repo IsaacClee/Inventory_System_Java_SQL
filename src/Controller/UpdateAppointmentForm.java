@@ -26,10 +26,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
@@ -131,10 +128,20 @@ public class UpdateAppointmentForm implements Initializable {
         Timestamp lastUpdate = new Timestamp(System.currentTimeMillis());
         String lastUpdateBy = "user script";
         int contactId = DBContacts.getContactIDByName(String.valueOf(appContactField.getValue()));
+
+        // Get Start Time
         int startTime = Integer.parseInt((String) appStartTimeField.getSelectionModel().getSelectedItem());
         int startTimeMin = Integer.parseInt((String) appStartTimeMinField.getSelectionModel().getSelectedItem());
         LocalDateTime localDateTimeStart = appStartField.getValue().atTime(startTime,startTimeMin);
         Timestamp start = Timestamp.valueOf(localDateTimeStart);
+
+        ZonedDateTime zonedLocalDateTimeStart = localDateTimeStart.atZone(ZoneId.systemDefault());
+        ZoneId userZoneID = ZoneId.systemDefault();
+        ZoneId scheduleZoneID = ZoneId.of("America/New_York");
+        LocalDateTime scheduleStartTime = localDateTimeStart.atZone(userZoneID).withZoneSameInstant(scheduleZoneID).toLocalDateTime();
+        System.out.println(scheduleStartTime);
+
+        // Get End Time
         int endTime = Integer.parseInt((String) appEndTimeField.getSelectionModel().getSelectedItem());
         int endTimeMin = Integer.parseInt((String) appEndTimeMinField.getSelectionModel().getSelectedItem());
         LocalDateTime localDateTimeEnd = appEndField.getValue().atTime(endTime,endTimeMin);
@@ -144,7 +151,13 @@ public class UpdateAppointmentForm implements Initializable {
         boolean overlappingAppointmentFound = false;
         Instant suggestedAppointmentStartTime = start.toInstant();
         Instant suggestedAppointmentEndTime = end.toInstant();
-        ObservableList<Appointments> otherExistingAppointments = DBAppointments.getAllAppointments();
+        ObservableList<Appointments> allAppointments = DBAppointments.getAllAppointments();
+        ObservableList<Appointments> otherExistingAppointments = FXCollections.observableArrayList();
+        for (Appointments a : allAppointments){
+            if(a.getId() != id){
+                otherExistingAppointments.add(a);
+            }
+        }
         for(Appointments a : otherExistingAppointments){
             Instant existingAppointmentStartInstant = a.getStart().toInstant();
             Instant existingAppointmentEndInstant = a.getEnd().toInstant();
