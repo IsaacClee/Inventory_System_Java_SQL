@@ -60,8 +60,6 @@ public class LoginForm implements Initializable {
             passwordLabel.setText(rb.getString("Password"));
             userIdField.setPromptText(rb.getString("EnterUserID"));
             passwordField.setPromptText(rb.getString("EnterPassword"));
-
-
         }
     }
 

@@ -203,11 +203,18 @@ public class MainForm implements Initializable{
         appEndTimeMinField.setItems(minutesSlotList);
 
         boolean incomingAppointment15Minutes = false;
-        System.out.println();
+        Instant now = Instant.now();
+        Instant nowPlus15minutes = now.plusSeconds(900);
+        Appointments nextAppointment = null;
         for(Appointments a : DBAppointments.getAllAppointments()){
+            Instant appointmentInstantStart = a.getStart().toInstant();
+            if(appointmentInstantStart.isAfter(now) && appointmentInstantStart.isBefore(nowPlus15minutes)){
+                incomingAppointment15Minutes = true;
+                nextAppointment = a;
+            }
         }
-        if(4 == 5){
-
+        if(incomingAppointment15Minutes == true){
+            JOptionPane.showMessageDialog(null, "Reminder: You have an incoming appointment. ID: " + nextAppointment.getId() + " Starting at: " + nextAppointment.getStart());
         } else {
             JOptionPane.showMessageDialog(null, "Good news! You do not have any appointments scheduled in the next 15 minutes.");
         }
