@@ -139,6 +139,11 @@ public class MainForm implements Initializable{
     @FXML
     private ComboBox appStartTimeField;
 
+    @FXML
+    private ComboBox appEndTimeMinField;
+    @FXML
+    private ComboBox appStartTimeMinField;
+
     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     @FXML
     private RadioButton currentMonth;
@@ -188,6 +193,14 @@ public class MainForm implements Initializable{
         appContactField.setItems(DBContacts.getAllContacts());
         appStartTimeField.setItems(HoursInterface.hoursInterface());
         appEndTimeField.setItems(HoursInterface.hoursInterface());
+        ObservableList<String> minutesSlotList = FXCollections.observableArrayList(
+                "0",
+                "15",
+                "30",
+                "45"
+        );
+        appStartTimeMinField.setItems(minutesSlotList);
+        appEndTimeMinField.setItems(minutesSlotList);
 
     }
 
@@ -248,10 +261,12 @@ public class MainForm implements Initializable{
     int customerID = Integer.valueOf(appCustomerIDField.getText());
     int contactID = DBContacts.getContactByName(String.valueOf(appContactField.getValue())).getId();
     int startTime = Integer.parseInt((String) appStartTimeField.getSelectionModel().getSelectedItem());
-    LocalDateTime localDateTimeStart = appStartField.getValue().atTime(startTime,0);
+    int startTimeMin = Integer.parseInt((String) appStartTimeMinField.getSelectionModel().getSelectedItem());
+    LocalDateTime localDateTimeStart = appStartField.getValue().atTime(startTime, startTimeMin);
     Timestamp start = Timestamp.valueOf(localDateTimeStart);
     int endTime = Integer.parseInt((String) appEndTimeField.getSelectionModel().getSelectedItem());
-    LocalDateTime localDateTimeEnd = appEndField.getValue().atTime(endTime,0);
+    int endTimeMin = Integer.parseInt((String) appEndTimeMinField.getSelectionModel().getSelectedItem());
+    LocalDateTime localDateTimeEnd = appEndField.getValue().atTime(endTime, endTimeMin);
     Timestamp end = Timestamp.valueOf(localDateTimeEnd);
 
     int rowsAffected = DBAppointments.insert(id,title,description,location, type, start, end, createDate, createdBy, lastUpdate, lastUpdateBy,customerID,userID,contactID );

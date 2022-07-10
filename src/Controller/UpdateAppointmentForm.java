@@ -7,6 +7,7 @@ import DAO.DBFirstLevelDivisions;
 import Model.Appointments;
 import Model.Countries;
 import Model.Customers;
+import Model.HoursInterface;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -58,6 +59,11 @@ public class UpdateAppointmentForm implements Initializable {
     @javafx.fxml.FXML
     private ComboBox appEndTimeField;
 
+    @javafx.fxml.FXML
+    private ComboBox appStartTimeMinField;
+    @javafx.fxml.FXML
+    private ComboBox appEndTimeMinField;
+
     private Appointments appointmentToBeUpdated = null;
 
     Stage stage;
@@ -73,36 +79,18 @@ public class UpdateAppointmentForm implements Initializable {
         appDescriptionField.setText(String.valueOf(appointmentToBeUpdated.getDescription()));
         appLocationField.setText(String.valueOf(appointmentToBeUpdated.getLocation()));
         appTypeField.setText(String.valueOf(appointmentToBeUpdated.getType()));
-        ObservableList<String> timeSlotsList =
-                FXCollections.observableArrayList(
-                        "0",
-                        "1",
-                        "2",
-                        "3",
-                        "4",
-                        "5",
-                        "6",
-                        "7",
-                        "8",
-                        "9",
-                        "10",
-                        "11",
-                        "12",
-                        "13",
-                        "14",
-                        "15",
-                        "16",
-                        "17",
-                        "18",
-                        "19",
-                        "20",
-                        "21",
-                        "22",
-                        "23"
 
-                );
-        appStartTimeField.setItems(timeSlotsList);
-        appEndTimeField.setItems(timeSlotsList);
+        appStartTimeField.setItems(HoursInterface.hoursInterface());
+        appEndTimeField.setItems(HoursInterface.hoursInterface());
+        ObservableList<String> minutesSlotList = FXCollections.observableArrayList(
+                "0",
+                    "15",
+                    "30",
+                    "45"
+        );
+        appStartTimeMinField.setItems(minutesSlotList);
+        appEndTimeMinField.setItems(minutesSlotList);
+
         appContactField.setItems(DBContacts.getAllContacts());
         appContactField.getSelectionModel().select(DBContacts.getContactByID(appointmentToBeUpdated.getContactID()));
 
@@ -113,9 +101,11 @@ public class UpdateAppointmentForm implements Initializable {
         Instant instantStart = appointmentToBeUpdated.getStart().toInstant();
         appStartField.setValue(LocalDate.ofInstant(instantStart,ZoneId.systemDefault()));
         appStartTimeField.getSelectionModel().select(instantStart.atZone(ZoneId.systemDefault()).getHour());
+        appStartTimeMinField.getSelectionModel().select((instantStart.atZone(ZoneId.systemDefault()).getMinute()/15));
         Instant instantEnd = appointmentToBeUpdated.getEnd().toInstant();
         appEndField.setValue(LocalDate.ofInstant(instantEnd,ZoneId.systemDefault()));
         appEndTimeField.getSelectionModel().select(instantEnd.atZone(ZoneId.systemDefault()).getHour());
+        appEndTimeMinField.getSelectionModel().select((instantEnd.atZone(ZoneId.systemDefault()).getMinute()/15));
         appCusIDField.setText(String.valueOf(appointmentToBeUpdated.getCustomerID()));
         appUserIDField.setText(String.valueOf(appointmentToBeUpdated.getUserID()));
     }
@@ -141,10 +131,12 @@ public class UpdateAppointmentForm implements Initializable {
         String lastUpdateBy = "user script";
         int contactId = DBContacts.getContactIDByName(String.valueOf(appContactField.getValue()));
         int startTime = Integer.parseInt((String) appStartTimeField.getSelectionModel().getSelectedItem());
-        LocalDateTime localDateTimeStart = appStartField.getValue().atTime(startTime,0);
+        int startTimeMin = Integer.parseInt((String) appStartTimeMinField.getSelectionModel().getSelectedItem());
+        LocalDateTime localDateTimeStart = appStartField.getValue().atTime(startTime,startTimeMin);
         Timestamp start = Timestamp.valueOf(localDateTimeStart);
         int endTime = Integer.parseInt((String) appEndTimeField.getSelectionModel().getSelectedItem());
-        LocalDateTime localDateTimeEnd = appEndField.getValue().atTime(endTime,0);
+        int endTimeMin = Integer.parseInt((String) appEndTimeMinField.getSelectionModel().getSelectedItem());
+        LocalDateTime localDateTimeEnd = appEndField.getValue().atTime(endTime,endTimeMin);
         Timestamp end = Timestamp.valueOf(localDateTimeEnd);
         int customerID = Integer.parseInt(appCusIDField.getText());
         int userID = Integer.parseInt(appUserIDField.getText());

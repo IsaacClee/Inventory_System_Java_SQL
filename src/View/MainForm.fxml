@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="829.0" prefWidth="1341.0"  style="-fx-background-color: #288BA8;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainForm">
+<AnchorPane prefHeight="829.0" prefWidth="1341.0" style="-fx-background-color: #288BA8;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MainForm">
     <children>
         <Pane layoutX="8.0" layoutY="510.0" prefHeight="267.0" prefWidth="1325.0" style="-fx-border-color: black; -fx-border-radius: 15px; -fx-text-fill: #ffffff;">
             <children>
@@ -66,8 +66,8 @@
                   <ComboBox fx:id="appContactField" layoutX="1097.0" layoutY="40.0" prefHeight="25.0" prefWidth="128.0" />
                   <Label layoutX="1030.0" layoutY="13.0" prefHeight="17.0" prefWidth="60.0" text="Type:" />
                   <TextField fx:id="appTypeField" layoutX="1070.0" layoutY="11.0" prefHeight="25.0" prefWidth="155.0" />
-                  <DatePicker fx:id="appStartField" layoutX="699.0" layoutY="9.0" prefHeight="25.0" prefWidth="147.0" />
-                  <DatePicker fx:id="appEndField" layoutX="701.0" layoutY="40.0" prefHeight="25.0" prefWidth="147.0" />
+                  <DatePicker fx:id="appStartField" layoutX="699.0" layoutY="9.0" prefHeight="25.0" prefWidth="114.0" />
+                  <DatePicker fx:id="appEndField" layoutX="700.0" layoutY="40.0" prefHeight="25.0" prefWidth="114.0" />
                   <Label layoutX="635.0" layoutY="13.0" prefHeight="23.0" prefWidth="60.0" text="Start Date:" />
                   <Label layoutX="636.0" layoutY="44.0" prefHeight="17.0" prefWidth="60.0" text="End Date:" />
                   <Label layoutX="500.0" layoutY="16.0" text="User ID:" />
@@ -82,10 +82,12 @@
                   <Label layoutX="14.0" layoutY="16.0" text="Appointment ID:" />
                   <TextField fx:id="appAppIDField" disable="true" layoutX="145.0" layoutY="12.0" prefHeight="25.0" prefWidth="113.0" text="Auto-generated " />
                   <TextField fx:id="appTitleField" layoutX="53.0" layoutY="40.0" prefHeight="25.0" prefWidth="205.0" />
-                  <ComboBox fx:id="appEndTimeField" layoutX="951.0" layoutY="40.0" prefHeight="25.0" prefWidth="60.0" />
-                  <ComboBox fx:id="appStartTimeField" layoutX="951.0" layoutY="12.0" prefHeight="25.0" prefWidth="60.0" />
-                  <Label layoutX="875.0" layoutY="16.0" prefHeight="17.0" prefWidth="68.0" text="Start Time:" />
-                  <Label layoutX="875.0" layoutY="44.0" prefHeight="17.0" prefWidth="60.0" text="End Time:" />
+                  <ComboBox fx:id="appEndTimeField" layoutX="889.0" layoutY="40.0" prefHeight="25.0" prefWidth="60.0" />
+                  <ComboBox fx:id="appStartTimeField" layoutX="889.0" layoutY="12.0" prefHeight="25.0" prefWidth="60.0" />
+                  <Label layoutX="829.0" layoutY="16.0" prefHeight="17.0" prefWidth="60.0" text="Start Time:" />
+                  <Label layoutX="829.0" layoutY="44.0" prefHeight="17.0" prefWidth="60.0" text="End Time:" />
+                  <ComboBox fx:id="appStartTimeMinField" layoutX="955.0" layoutY="12.0" prefHeight="25.0" prefWidth="60.0" />
+                  <ComboBox fx:id="appEndTimeMinField" layoutX="955.0" layoutY="40.0" prefHeight="25.0" prefWidth="60.0" />
                </children></Pane>
             </children></Pane>
         <Pane layoutX="18.0" layoutY="139.0" prefHeight="247.0" prefWidth="1128.0" style="-fx-border-color: black; -fx-border-radius: 15px; -fx-text-fill: #ffffff;">
