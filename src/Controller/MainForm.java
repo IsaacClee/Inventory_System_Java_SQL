@@ -286,14 +286,42 @@ public class MainForm implements Initializable{
     LocalDateTime localDateTimeEnd = appEndField.getValue().atTime(endTime, endTimeMin);
     Timestamp end = Timestamp.valueOf(localDateTimeEnd);
 
-    int rowsAffected = DBAppointments.insert(id,title,description,location, type, start, end, createDate, createdBy, lastUpdate, lastUpdateBy,customerID,userID,contactID );
+        boolean overlappingAppointmentFound = false;
+        Instant suggestedAppointmentStartTime = start.toInstant();
+        Instant suggestedAppointmentEndTime = end.toInstant();
+        for(Appointments a : DBAppointments.getAllAppointments()){
+            Instant existingAppointmentStartInstant = a.getStart().toInstant();
+            Instant existingAppointmentEndInstant = a.getEnd().toInstant();
+            if(suggestedAppointmentEndTime.isAfter(existingAppointmentStartInstant) && suggestedAppointmentEndTime.isBefore(existingAppointmentEndInstant)){
+                JOptionPane.showMessageDialog(null,
+                        "We cannot schedule this appointment. " +
+                                "The appointment timeslot you selected would not finish before an existing appointment.");
+                overlappingAppointmentFound = true;
+            } else if(suggestedAppointmentStartTime.isAfter(existingAppointmentStartInstant) && suggestedAppointmentStartTime.isBefore(existingAppointmentEndInstant)){
+                JOptionPane.showMessageDialog(null,
+                        "We cannot schedule this appointment. " +
+                                "The appointment timeslot you selected would start during an existing appointment");
+                overlappingAppointmentFound = true;
+            } else if(suggestedAppointmentStartTime.equals(existingAppointmentStartInstant) || suggestedAppointmentEndTime.equals(existingAppointmentEndInstant)){
+                JOptionPane.showMessageDialog(null,
+                        "We cannot schedule this appointment. " +
+                                "The appointment timeslot you selected would start or end during an existing appointment ");
+                overlappingAppointmentFound = true;
+            }
+        }
 
-    if(rowsAffected > 0){
-        System.out.println("Success: Added new appointment");
-    } else {
-        System.out.println("Failed");
-    }
+        if(overlappingAppointmentFound == true){
+            System.out.println("Appointment overlaps with an existing Appointment ");
+        } else {
 
+            int rowsAffected = DBAppointments.insert(id, title, description, location, type, start, end, createDate, createdBy, lastUpdate, lastUpdateBy, customerID, userID, contactID);
+
+            if (rowsAffected > 0) {
+                System.out.println("Success: Added new appointment");
+            } else {
+                System.out.println("Failed");
+            }
+        }
     refreshTables();
 
 

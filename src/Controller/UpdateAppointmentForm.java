@@ -145,21 +145,28 @@ public class UpdateAppointmentForm implements Initializable {
         boolean overlappingAppointmentFound = false;
         Instant suggestedAppointmentStartTime = start.toInstant();
         Instant suggestedAppointmentEndTime = end.toInstant();
-        System.out.println(suggestedAppointmentStartTime);
-        System.out.println(suggestedAppointmentEndTime);
         for(Appointments a : DBAppointments.getAllAppointments()){
             Instant existingAppointmentStartInstant = a.getStart().toInstant();
             Instant existingAppointmentEndInstant = a.getEnd().toInstant();
             if(suggestedAppointmentEndTime.isAfter(existingAppointmentStartInstant) && suggestedAppointmentEndTime.isBefore(existingAppointmentEndInstant)){
+                JOptionPane.showMessageDialog(null,
+                        "We cannot schedule this appointment. " +
+                                "The appointment timeslot you selected would not finish before an existing appointment.");
                 overlappingAppointmentFound = true;
             } else if(suggestedAppointmentStartTime.isAfter(existingAppointmentStartInstant) && suggestedAppointmentStartTime.isBefore(existingAppointmentEndInstant)){
+                JOptionPane.showMessageDialog(null,
+                        "We cannot schedule this appointment. " +
+                                "The appointment timeslot you selected would start during an existing appointment");
                 overlappingAppointmentFound = true;
             } else if(suggestedAppointmentStartTime.equals(existingAppointmentStartInstant) || suggestedAppointmentEndTime.equals(existingAppointmentEndInstant)){
+                JOptionPane.showMessageDialog(null,
+                        "We cannot schedule this appointment. " +
+                                "The appointment timeslot you selected would start or end during an existing appointment ");
                 overlappingAppointmentFound = true;
             }
         }
         if(overlappingAppointmentFound == true){
-            System.out.println("Issue");
+            System.out.println("Appointment overlaps with an existing Appointment ");
         } else {
 
             int rowsAffected = DBAppointments.update(id, title, description, location, type, start, end, lastUpdate, lastUpdateBy, customerID, contactId, userID);
