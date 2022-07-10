@@ -141,11 +141,11 @@ public class UpdateAppointmentForm implements Initializable {
         Timestamp end = Timestamp.valueOf(localDateTimeEnd);
         int customerID = Integer.parseInt(appCusIDField.getText());
         int userID = Integer.parseInt(appUserIDField.getText());
-
         boolean overlappingAppointmentFound = false;
         Instant suggestedAppointmentStartTime = start.toInstant();
         Instant suggestedAppointmentEndTime = end.toInstant();
-        for(Appointments a : DBAppointments.getAllAppointments()){
+        ObservableList<Appointments> otherExistingAppointments = DBAppointments.getAllAppointments();
+        for(Appointments a : otherExistingAppointments){
             Instant existingAppointmentStartInstant = a.getStart().toInstant();
             Instant existingAppointmentEndInstant = a.getEnd().toInstant();
             if(suggestedAppointmentEndTime.isAfter(existingAppointmentStartInstant) && suggestedAppointmentEndTime.isBefore(existingAppointmentEndInstant)){
