@@ -18,7 +18,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("/view/MainForm.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/view/LoginForm.fxml"));
         // stage.setTitle("User Login");
         stage.setScene(new Scene(root));
         stage.show();
@@ -33,10 +33,6 @@ public class Main extends Application {
 
         // Open Connection
         JDBC.openConnection();
-
-
-        ZoneId userZoneId = ZoneId.systemDefault();
-        System.out.println(userZoneId);
 
         // Launch Args
         launch(args);
