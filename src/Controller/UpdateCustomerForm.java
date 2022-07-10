@@ -98,6 +98,7 @@ public class UpdateCustomerForm implements Initializable {
         int divisionID = DBFirstLevelDivisions.getDivisionID(String.valueOf((cusDivisionBox.getValue())));
         int rowsAffected = DBCustomers.update(id,name,address,phone,postal,lastUpdate,lastUpdatedBy,divisionID);
 
+
         if(rowsAffected > 0){
             System.out.println("Success:"+ "ID: " + id +" was updated");
             stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();

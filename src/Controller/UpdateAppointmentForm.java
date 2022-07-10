@@ -141,17 +141,35 @@ public class UpdateAppointmentForm implements Initializable {
         int customerID = Integer.parseInt(appCusIDField.getText());
         int userID = Integer.parseInt(appUserIDField.getText());
 
-        int rowsAffected = DBAppointments.update(id,title,description,location,type,start,end,lastUpdate,lastUpdateBy,customerID,contactId,userID);
-
-        if(rowsAffected > 0){
-            System.out.println("Success:"+ "ID: " + id +" was updated");
-            stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
-            scene = FXMLLoader.load(getClass().getResource("/View/MainForm.fxml"));
-            stage.setTitle("Customer Management System");
-            stage.setScene(new Scene(scene));
-            stage.show();
+        boolean overlappingAppointmentFound = false;
+        Instant suggestedAppointmentStartTime = start.toInstant();
+        Instant suggestedAppointmentEndTime = end.toInstant();
+        for(Appointments a : DBAppointments.getAllAppointments()){
+            Instant existingAppointmentStartInstant = a.getStart().toInstant();
+            Instant existingAppointmentEndInstant = a.getStart().toInstant();
+            if(suggestedAppointmentStartTime.isAfter(existingAppointmentStartInstant) && suggestedAppointmentStartTime.isBefore(existingAppointmentEndInstant)){
+                overlappingAppointmentFound = true;
+            } else if(suggestedAppointmentEndTime.isAfter(existingAppointmentStartInstant) && suggestedAppointmentEndTime.isBefore(existingAppointmentEndInstant)){
+                overlappingAppointmentFound = true;
+            }
+        }
+        if(overlappingAppointmentFound == true){
+            System.out.println("Issue");
         } else {
-            System.out.println("Failed");
+
+            int rowsAffected = DBAppointments.update(id, title, description, location, type, start, end, lastUpdate, lastUpdateBy, customerID, contactId, userID);
+
+            if (rowsAffected > 0) {
+                System.out.println("Success:" + "ID: " + id + " was updated");
+                stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
+                scene = FXMLLoader.load(getClass().getResource("/View/MainForm.fxml"));
+                stage.setTitle("Customer Management System");
+                stage.setScene(new Scene(scene));
+                stage.show();
+            } else {
+                System.out.println("Failed");
+            }
+
         }
 
     }
