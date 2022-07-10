@@ -202,6 +202,16 @@ public class MainForm implements Initializable{
         appStartTimeMinField.setItems(minutesSlotList);
         appEndTimeMinField.setItems(minutesSlotList);
 
+        boolean incomingAppointment15Minutes = false;
+        System.out.println();
+        for(Appointments a : DBAppointments.getAllAppointments()){
+        }
+        if(4 == 5){
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Good news! You do not have any appointments scheduled in the next 15 minutes.");
+        }
+
     }
 
 
