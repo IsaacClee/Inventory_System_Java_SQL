@@ -285,6 +285,11 @@ public class MainForm implements Initializable{
     ZonedDateTime zonedLocalDateTimeStart = localDateTimeStart.atZone(ZoneId.systemDefault());
     Timestamp start = Timestamp.from(zonedLocalDateTimeStart.toInstant());
 
+    if(TimeZoneConversion.checkESTSchedule(localDateTimeStart) == false){
+        JOptionPane.showMessageDialog(null,
+                "Please select another Start Date & Time");
+        return;
+    };
 
     // Get End Time // End Time Conversions
     int endTime = Integer.parseInt((String) appEndTimeField.getSelectionModel().getSelectedItem());
@@ -292,6 +297,12 @@ public class MainForm implements Initializable{
     LocalDateTime localDateTimeEnd = appEndField.getValue().atTime(endTime, endTimeMin);
     ZonedDateTime zonedLocalDateTimeEnd = localDateTimeEnd.atZone(ZoneId.systemDefault());
     Timestamp end = Timestamp.from(zonedLocalDateTimeEnd.toInstant());
+
+    if(TimeZoneConversion.checkESTSchedule(localDateTimeEnd) == false){
+        JOptionPane.showMessageDialog(null,
+                "Please select another End Date & Time");
+        return;
+    };
 
         boolean overlappingAppointmentFound = false;
         Instant suggestedAppointmentStartTime = start.toInstant();

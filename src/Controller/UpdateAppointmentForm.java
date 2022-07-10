@@ -4,10 +4,7 @@ import DAO.DBAppointments;
 import DAO.DBContacts;
 import DAO.DBCountries;
 import DAO.DBFirstLevelDivisions;
-import Model.Appointments;
-import Model.Countries;
-import Model.Customers;
-import Model.HoursInterface;
+import Model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -135,17 +132,24 @@ public class UpdateAppointmentForm implements Initializable {
         LocalDateTime localDateTimeStart = appStartField.getValue().atTime(startTime,startTimeMin);
         Timestamp start = Timestamp.valueOf(localDateTimeStart);
 
-        ZonedDateTime zonedLocalDateTimeStart = localDateTimeStart.atZone(ZoneId.systemDefault());
-        ZoneId userZoneID = ZoneId.systemDefault();
-        ZoneId scheduleZoneID = ZoneId.of("America/New_York");
-        LocalDateTime scheduleStartTime = localDateTimeStart.atZone(userZoneID).withZoneSameInstant(scheduleZoneID).toLocalDateTime();
-        System.out.println(scheduleStartTime);
+        if(TimeZoneConversion.checkESTSchedule(localDateTimeStart) == false){
+            JOptionPane.showMessageDialog(null,
+                    "Please select another Start Date & Time");
+            return;
+        };
 
         // Get End Time
         int endTime = Integer.parseInt((String) appEndTimeField.getSelectionModel().getSelectedItem());
         int endTimeMin = Integer.parseInt((String) appEndTimeMinField.getSelectionModel().getSelectedItem());
         LocalDateTime localDateTimeEnd = appEndField.getValue().atTime(endTime,endTimeMin);
         Timestamp end = Timestamp.valueOf(localDateTimeEnd);
+
+        if(TimeZoneConversion.checkESTSchedule(localDateTimeEnd) == false){
+            JOptionPane.showMessageDialog(null,
+                    "Please select another End Date & Time");
+            return;
+        };
+
         int customerID = Integer.parseInt(appCusIDField.getText());
         int userID = Integer.parseInt(appUserIDField.getText());
         boolean overlappingAppointmentFound = false;
