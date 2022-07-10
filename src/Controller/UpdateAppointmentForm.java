@@ -21,6 +21,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -144,12 +145,16 @@ public class UpdateAppointmentForm implements Initializable {
         boolean overlappingAppointmentFound = false;
         Instant suggestedAppointmentStartTime = start.toInstant();
         Instant suggestedAppointmentEndTime = end.toInstant();
+        System.out.println(suggestedAppointmentStartTime);
+        System.out.println(suggestedAppointmentEndTime);
         for(Appointments a : DBAppointments.getAllAppointments()){
             Instant existingAppointmentStartInstant = a.getStart().toInstant();
-            Instant existingAppointmentEndInstant = a.getStart().toInstant();
-            if(suggestedAppointmentStartTime.isAfter(existingAppointmentStartInstant) && suggestedAppointmentStartTime.isBefore(existingAppointmentEndInstant)){
+            Instant existingAppointmentEndInstant = a.getEnd().toInstant();
+            if(suggestedAppointmentEndTime.isAfter(existingAppointmentStartInstant) && suggestedAppointmentEndTime.isBefore(existingAppointmentEndInstant)){
                 overlappingAppointmentFound = true;
-            } else if(suggestedAppointmentEndTime.isAfter(existingAppointmentStartInstant) && suggestedAppointmentEndTime.isBefore(existingAppointmentEndInstant)){
+            } else if(suggestedAppointmentStartTime.isAfter(existingAppointmentStartInstant) && suggestedAppointmentStartTime.isBefore(existingAppointmentEndInstant)){
+                overlappingAppointmentFound = true;
+            } else if(suggestedAppointmentStartTime.equals(existingAppointmentStartInstant) || suggestedAppointmentEndTime.equals(existingAppointmentEndInstant)){
                 overlappingAppointmentFound = true;
             }
         }
@@ -160,7 +165,7 @@ public class UpdateAppointmentForm implements Initializable {
             int rowsAffected = DBAppointments.update(id, title, description, location, type, start, end, lastUpdate, lastUpdateBy, customerID, contactId, userID);
 
             if (rowsAffected > 0) {
-                System.out.println("Success:" + "ID: " + id + " was updated");
+                JOptionPane.showMessageDialog(null, "Success:" + "ID: " + id + " was updated");
                 stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
                 scene = FXMLLoader.load(getClass().getResource("/View/MainForm.fxml"));
                 stage.setTitle("Customer Management System");
