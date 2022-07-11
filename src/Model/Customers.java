@@ -3,7 +3,6 @@ package Model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 public class Customers {
@@ -18,6 +17,19 @@ public class Customers {
     private String lastUpdatedBy;
     private int divisionID;
 
+    /**
+     * Customer Constructor
+     * @param id
+     * @param name
+     * @param address
+     * @param postal
+     * @param phone
+     * @param createDate
+     * @param createdBy
+     * @param lastUpdate
+     * @param lastUpdatedBy
+     * @param divisionID
+     */
     public Customers (int id, String name, String address, String postal, String phone, Timestamp createDate, String createdBy, Timestamp lastUpdate, String lastUpdatedBy, int divisionID){
         this.id = id;
         this.name = name;
@@ -171,12 +183,27 @@ public class Customers {
         this.divisionID = divisionID;
     }
 
+    /**
+     * Observable List of Customers
+     * Used by methods to filter customers
+     */
     public static class filteredCustomers {
 
+        /**
+         * Declares Observable LIst
+         */
         private static ObservableList<Customers> filteredListOfCustomers = FXCollections.observableArrayList();
 
+        /**
+         * Adds a Customer to filteredListOfCustomers
+         * @param customers
+         */
         public static void addCustomerToFilterList(Customers customers){filteredListOfCustomers.add(customers);}
 
+        /**
+         * Getter for filteredListOfCustomers
+         * @return filteredListOfCustomers
+         */
         public static ObservableList<Customers> getListOfFilteredCustomers() {return filteredListOfCustomers;}
 
     }

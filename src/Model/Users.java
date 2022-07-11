@@ -3,14 +3,20 @@ package Model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Date;
-import java.sql.Timestamp;
-
+/**
+ * Users CLass
+ */
 public class Users {
     private int id;
     private String name;
     private String password;
 
+    /**
+     * Public Users Constructor
+     * @param id
+     * @param name
+     * @param password
+     */
     public Users(int id, String name, String password) {
         this.id = id;
         this.name = name;
@@ -59,6 +65,10 @@ public class Users {
     }
 
 
+    /**
+     * Overrides default functions of toString()
+     * @return name
+     */
     @Override
     public String toString(){
         return (name);

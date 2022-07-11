@@ -75,16 +75,59 @@ public class UpdateAppointmentForm implements Initializable {
         appLocationField.setText(String.valueOf(appointmentToBeUpdated.getLocation()));
         appTypeField.setText(String.valueOf(appointmentToBeUpdated.getType()));
 
-        appStartTimeField.setItems(HoursInterface.hoursInterface());
-        appEndTimeField.setItems(HoursInterface.hoursInterface());
-        ObservableList<String> minutesSlotList = FXCollections.observableArrayList(
-                "0",
+
+        //!!!!!!!!! LAMBDA EXPRESSION CASE 1 !!!!!!!!!
+
+        /**
+         * Lambda Expression 1
+         * Used to populate combo boxes used by Form
+         * LAMBDA Justification: This population requires single-instant non-dynamic population required to setup GUI interface
+         * Used to isolate code function of a observable list which increases readability and supports DRY principles
+         * Used to eliminate a static input list, best use case for an anonymous variable
+         */
+        HoursInterface hoursUpdate = () -> {
+            ObservableList<String> timeSlotsList = FXCollections.observableArrayList(
+                    "0",
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9",
+                    "10",
+                    "11",
+                    "12",
+                    "13",
+                    "14",
+                    "15",
+                    "16",
+                    "17",
+                    "18",
+                    "19",
+                    "20",
+                    "21",
+                    "22",
+                    "23"
+            );
+            appStartTimeField.setItems(timeSlotsList);
+            appEndTimeField.setItems(timeSlotsList);
+
+            ObservableList<String> minutesSlotList = FXCollections.observableArrayList(
+                    "0",
                     "15",
                     "30",
                     "45"
-        );
-        appStartTimeMinField.setItems(minutesSlotList);
-        appEndTimeMinField.setItems(minutesSlotList);
+            );
+            appStartTimeMinField.setItems(minutesSlotList);
+            appEndTimeMinField.setItems(minutesSlotList);
+
+        };
+
+        hoursUpdate.hoursListPopulateInterface();
+
 
         appContactField.setItems(DBContacts.getAllContacts());
         appContactField.getSelectionModel().select(DBContacts.getContactByID(appointmentToBeUpdated.getContactID()));

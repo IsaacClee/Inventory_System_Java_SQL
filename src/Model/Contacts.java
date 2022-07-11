@@ -1,10 +1,18 @@
 package Model;
 
+/**
+ * Contract Class
+ */
 public class Contacts {
 
     private int id;
     private String name;
 
+    /**
+     * Contract Constructor
+     * @param id
+     * @param name
+     */
     public Contacts(int id, String name) {
         this.id = id;
         this.name = name;
@@ -39,7 +47,10 @@ public class Contacts {
     }
 
 
-
+    /**
+     * Overrides default function of toString()
+     * @return name
+     */
     @Override
     public String toString(){
         return (name);

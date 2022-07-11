@@ -4,10 +4,7 @@ import DAO.DBAppointments;
 import DAO.DBContacts;
 import DAO.DBCustomers;
 import DAO.DBFirstLevelDivisions;
-import Model.Appointments;
-import Model.Contacts;
-import Model.FirstLevelDivisions;
-import Model.MonthsInterface;
+import Model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -81,7 +78,35 @@ public class Reports implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        monthSelectBox.setItems(MonthsInterface.monthsInterface());
+        //!!!!!!!!! LAMBDA EXPRESSION CASE 2 !!!!!!!!!
+
+        /**
+         * Lambda Expression 2
+         * Used to populate combo boxes used by Form
+         * LAMBDA Justification: This population requires single-instant non-dynamic population required to setup GUI interface
+         * Used to isolate code function of a observable list which increases readability and supports DRY principles
+         * Used to eliminate a static input list, best use case for an anonymous variable
+         */
+        MonthsInterface monthsUpdate = () -> {
+            ObservableList<String> monthsList = FXCollections.observableArrayList(
+                    "January",
+                    "February",
+                    "March",
+                    "April",
+                    "May",
+                    "June",
+                    "July",
+                    "August",
+                    "September",
+                    "October",
+                    "November",
+                    "December"
+            );
+            monthSelectBox.setItems(monthsList);
+
+        };
+
+        monthsUpdate.monthsListPopulateInterface();
 
 
         try {
