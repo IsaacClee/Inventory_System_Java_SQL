@@ -1,7 +1,7 @@
 package Model;
 
 /**
- * Contract Class
+ * Contact Class
  */
 public class Contacts {
 
@@ -9,7 +9,7 @@ public class Contacts {
     private String name;
 
     /**
-     * Contract Constructor
+     * Contact Constructor
      * @param id
      * @param name
      */
