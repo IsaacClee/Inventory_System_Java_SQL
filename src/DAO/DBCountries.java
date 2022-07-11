@@ -9,8 +9,15 @@ import javafx.collections.ObservableList;
 import javax.swing.*;
 import java.sql.*;
 
+/**
+ * Used to get Countries records from Database
+ */
 public class DBCountries {
 
+    /**
+     * Gets all Countries records from Database
+     * @return
+     */
     public static ObservableList<Countries> getAllCountries(){
         ObservableList<Countries>countriesList = FXCollections.observableArrayList();
 
@@ -34,6 +41,11 @@ public class DBCountries {
         return countriesList;
     }
 
+    /**
+     * Get a Country record by CountryID
+     * @param countryID
+     * @return c (country)
+     */
     public static Countries getCountryByID(int countryID){
         Countries c = new Countries(0, "");
 
@@ -54,6 +66,11 @@ public class DBCountries {
         return c;
     }
 
+    /**
+     * Used to get a Country Name by a CountryID
+     * @param countryID
+     * @return divName
+     */
     public static String getCountryName(int countryID){
         ObservableList<Countries> countiesList = DBCountries.getAllCountries();
         String divName = null;
@@ -65,19 +82,5 @@ public class DBCountries {
         return divName;
     }
 
-    public static void checkDateConversion(){
-        System.out.println("CREATE DATE TEST");
-        String sql = "Select Create_Date from Countries";
-        try {
-            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-                Timestamp ts = rs.getTimestamp("Create_Date");
-                System.out.println("CD: " + ts.toLocalDateTime().toString());
-            }
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
 
 }

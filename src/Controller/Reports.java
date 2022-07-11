@@ -4,10 +4,7 @@ import DAO.DBAppointments;
 import DAO.DBContacts;
 import DAO.DBCustomers;
 import DAO.DBFirstLevelDivisions;
-import Model.Appointments;
-import Model.Contacts;
-import Model.FirstLevelDivisions;
-import Model.MonthsInterface;
+import Model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -77,11 +74,43 @@ public class Reports implements Initializable {
     }
 
 
-
+    /**
+     * initialize
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        monthSelectBox.setItems(MonthsInterface.monthsInterface());
+        //!!!!!!!!! LAMBDA EXPRESSION CASE 2 !!!!!!!!!
+
+        /**
+         * Lambda Expression 2
+         * Used to populate combo boxes used by Form
+         * LAMBDA Justification: This population requires single-instant non-dynamic population required to setup GUI interface
+         * Used to isolate code function of a observable list which increases readability and supports DRY principles
+         * Used to eliminate a static input list, best use case for an anonymous variable
+         */
+        MonthsInterface monthsUpdate = () -> {
+            ObservableList<String> monthsList = FXCollections.observableArrayList(
+                    "January",
+                    "February",
+                    "March",
+                    "April",
+                    "May",
+                    "June",
+                    "July",
+                    "August",
+                    "September",
+                    "October",
+                    "November",
+                    "December"
+            );
+            monthSelectBox.setItems(monthsList);
+
+        };
+        // execute lambda expression
+        monthsUpdate.monthsListPopulateInterface();
 
 
         try {
@@ -107,6 +136,10 @@ public class Reports implements Initializable {
     }
 
 
+    /**
+     * Action Event - upon Contact selection - updates schedule for Contact
+     * @param actionEvent
+     */
     @javafx.fxml.FXML
     public void onActionSelectContact(ActionEvent actionEvent) {
         Contacts selectedContact = (Contacts) scheduleContactBox.getSelectionModel().getSelectedItem();
@@ -126,6 +159,10 @@ public class Reports implements Initializable {
 
     }
 
+    /**
+     * Action Event - Displays Name and Count of Customers by Division Selection
+     * @param actionEvent
+     */
     @javafx.fxml.FXML
     public void onActionSelectDivision(ActionEvent actionEvent) {
 
@@ -137,6 +174,11 @@ public class Reports implements Initializable {
 
     }
 
+    /**
+     * Action Event - Selects Month
+     * @param actionEvent
+     * @throws SQLException
+     */
     @javafx.fxml.FXML
     public void onActionSelectMonth(ActionEvent actionEvent) throws SQLException {
         int selectedMonth = getMonthNumber((String) monthSelectBox.getSelectionModel().getSelectedItem());
@@ -146,6 +188,12 @@ public class Reports implements Initializable {
         totalAppointments.setText(String.valueOf(countOfAppointments));
     }
 
+
+    /**
+     * Action Event - Return to Main Form
+     * @param actionEvent
+     * @throws IOException
+     */
     @javafx.fxml.FXML
     public void onActionReturn(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();

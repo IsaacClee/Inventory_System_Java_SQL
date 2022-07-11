@@ -2,11 +2,11 @@ package Model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import java.sql.Date;
-import java.sql.Time;
 import java.sql.Timestamp;
 
+/**
+ * Appointment Class
+ */
 public class Appointments {
     private int id;
     private String title;
@@ -23,6 +23,23 @@ public class Appointments {
     private int userID;
     private int contactID;
 
+    /**
+     * Appointment Constructor
+     * @param id
+     * @param title
+     * @param description
+     * @param location
+     * @param type
+     * @param start
+     * @param end
+     * @param createDate
+     * @param createdBy
+     * @param lastUpdate
+     * @param lastUpdatedBy
+     * @param customerID
+     * @param userID
+     * @param contactID
+     */
     public Appointments (int id, String title, String description, String location, String type, Timestamp start, Timestamp end, Timestamp createDate, String createdBy, Timestamp lastUpdate, String lastUpdatedBy, int customerID, int userID, int contactID){
         this.id = id;
         this.title = title;
@@ -237,12 +254,26 @@ public class Appointments {
     }
 
 
+    /**
+     * Observable List used to filter appointments by other methods
+     */
     public static class filteredAppointments {
 
+        /**
+        Declares Observable List
+         */
         private static ObservableList<Appointments> listOfFilteredAppointments = FXCollections.observableArrayList();
 
+        /**
+         * Add Appointment to listOfFilteredAppointments
+         * @param appointments
+         */
         public static void addAppointmentToFilteredList(Appointments appointments){listOfFilteredAppointments.add(appointments);}
 
+        /**
+         * Getter for listOfFilteredAppointments
+         * @return listOfFilteredAppointments
+         */
         public static ObservableList<Appointments> getListOfFilteredAppointments() {return listOfFilteredAppointments;}
 
     }

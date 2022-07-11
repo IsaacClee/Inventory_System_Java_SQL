@@ -44,6 +44,11 @@ public class UpdateCustomerForm implements Initializable {
     Stage stage;
     Parent scene;
 
+    /**
+     * initialize
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // Acquire Customer selection form Main Form
@@ -77,6 +82,11 @@ public class UpdateCustomerForm implements Initializable {
 
     }
 
+    /**
+     * Action Event - Cancel Update and return to main form
+     * @param actionEvent
+     * @throws IOException
+     */
     @javafx.fxml.FXML
     public void onActionCancel(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -86,6 +96,13 @@ public class UpdateCustomerForm implements Initializable {
         stage.show();
     }
 
+    /**
+     * Action Event - Update Customer Record
+     * Validates and submits update to Database
+     * @param actionEvent
+     * @throws SQLException
+     * @throws IOException
+     */
     @javafx.fxml.FXML
     public void onActionUpdateCustomer(ActionEvent actionEvent) throws SQLException, IOException {
         int id = Integer.parseInt(cusIDField.getText());

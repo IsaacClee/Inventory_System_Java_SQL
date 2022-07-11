@@ -2,8 +2,7 @@ package DAO;
 
 import DAO.JDBC;
 import Model.Contacts;
-import Model.Countries;
-import Model.FirstLevelDivisions;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -11,8 +10,15 @@ import javax.swing.*;
 import java.sql.*;
 
 
+/**
+ * Used to get Contact Records from Database
+ */
 public class DBContacts {
 
+    /**
+     * Used to get all Contact records from Database
+     * @return contactsList
+     */
     public static ObservableList<Contacts> getAllContacts(){
         ObservableList<Contacts>contactsList = FXCollections.observableArrayList();
 
@@ -36,6 +42,11 @@ public class DBContacts {
         return contactsList;
     }
 
+    /**
+     * Get a Contact by contact name
+     * @param contactName
+     * @return c (contact)
+     */
     public static Contacts getContactByName (String contactName){
         Contacts c = new Contacts(0, "");
 
@@ -56,6 +67,11 @@ public class DBContacts {
         return c;
     }
 
+    /**
+     * Get Contact ID by contact name
+     * @param contactName
+     * @return contactID
+     */
     public static int getContactIDByName (String contactName){
         int contactID = 0;
 
@@ -73,6 +89,11 @@ public class DBContacts {
         return contactID;
     }
 
+    /**
+     * Get a Contact class instance by contact ID
+     * @param contactID
+     * @return c (contact)
+     */
     public static Contacts getContactByID(int contactID){
         Contacts c = new Contacts(0, "");
 
@@ -92,7 +113,6 @@ public class DBContacts {
         }
         return c;
     }
-
 
 
 }

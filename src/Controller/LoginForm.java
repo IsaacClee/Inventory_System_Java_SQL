@@ -48,6 +48,11 @@ public class LoginForm implements Initializable {
     Parent scene;
 
 
+    /**
+     * initialize
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loginTimeZone.setText(String.valueOf(ZoneId.systemDefault()));
@@ -63,6 +68,11 @@ public class LoginForm implements Initializable {
         }
     }
 
+    /**
+     * Action Event - used to validate and submit logins
+     * @param actionEvent
+     * @throws IOException
+     */
     @FXML
     public void onActionLogin(ActionEvent actionEvent) throws IOException {
         boolean checkUser = false;

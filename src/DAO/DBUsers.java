@@ -1,9 +1,6 @@
 package DAO;
 
 import DAO.JDBC;
-import Model.Contacts;
-import Model.Countries;
-import Model.FirstLevelDivisions;
 import Model.Users;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,7 +8,14 @@ import javafx.collections.ObservableList;
 import javax.swing.*;
 import java.sql.*;
 
+/**
+ * Used to get USER records from Database
+ */
 public class DBUsers {
+    /**
+     * Gets all USER records from Database
+     * @return contactsList
+     */
     public static ObservableList<Users> getAllUsers(){
         ObservableList<Users>contactsList = FXCollections.observableArrayList();
 

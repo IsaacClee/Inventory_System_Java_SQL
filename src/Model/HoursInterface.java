@@ -3,38 +3,18 @@ package Model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class HoursInterface {
-    public static ObservableList<String> hoursInterface(){
-        ObservableList<String> hoursList =
-                FXCollections.observableArrayList(
-                        "0",
-                        "1",
-                        "2",
-                        "3",
-                        "4",
-                        "5",
-                        "6",
-                        "7",
-                        "8",
-                        "9",
-                        "10",
-                        "11",
-                        "12",
-                        "13",
-                        "14",
-                        "15",
-                        "16",
-                        "17",
-                        "18",
-                        "19",
-                        "20",
-                        "21",
-                        "22",
-                        "23"
-                );
+/**
+ * Interface class with lambda expressions used by MainForm and UpdateAppointmentForm
+ */
+public interface HoursInterface {
+    /**
+     * Lambda Expression
+     * Used to populate combo boxes used by MainForm and UpdateAppointmentForm
+     * LAMBDA Justification: Each form listed above requires single-instant non-dynamic population required to setup GUI interface
+     * Used to isolate code function of a observable list which increases readability and supports DRY principles
+     * Used to eliminate a static input list, best use case for an anonymous variable
+     */
 
-        return hoursList;
-
-    }
+    void hoursListPopulateInterface();
 
 }

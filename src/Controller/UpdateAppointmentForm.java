@@ -64,34 +64,78 @@ public class UpdateAppointmentForm implements Initializable {
     Stage stage;
     Parent scene;
 
+    /**
+     * initialize
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        // Updates Form with Appointment selected in MainForm
         appointmentToBeUpdated = MainForm.getAppointmentToBeUpdated();
-
         appIDField.setText(String.valueOf(appointmentToBeUpdated.getId()));
         appTitleField.setText(String.valueOf(appointmentToBeUpdated.getTitle()));
         appDescriptionField.setText(String.valueOf(appointmentToBeUpdated.getDescription()));
         appLocationField.setText(String.valueOf(appointmentToBeUpdated.getLocation()));
         appTypeField.setText(String.valueOf(appointmentToBeUpdated.getType()));
 
-        appStartTimeField.setItems(HoursInterface.hoursInterface());
-        appEndTimeField.setItems(HoursInterface.hoursInterface());
-        ObservableList<String> minutesSlotList = FXCollections.observableArrayList(
-                "0",
+
+        //!!!!!!!!! LAMBDA EXPRESSION CASE 1 !!!!!!!!!
+
+        /**
+         * Lambda Expression 1
+         * Used to populate combo boxes used by Form
+         * LAMBDA Justification: This population requires single-instant non-dynamic population required to setup GUI interface
+         * Used to isolate code function of a observable list which increases readability and supports DRY principles
+         * Used to eliminate a static input list, best use case for an anonymous variable
+         */
+        HoursInterface hoursUpdate = () -> {
+            ObservableList<String> timeSlotsList = FXCollections.observableArrayList(
+                    "0",
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9",
+                    "10",
+                    "11",
+                    "12",
+                    "13",
+                    "14",
+                    "15",
+                    "16",
+                    "17",
+                    "18",
+                    "19",
+                    "20",
+                    "21",
+                    "22",
+                    "23"
+            );
+            appStartTimeField.setItems(timeSlotsList);
+            appEndTimeField.setItems(timeSlotsList);
+
+            ObservableList<String> minutesSlotList = FXCollections.observableArrayList(
+                    "0",
                     "15",
                     "30",
                     "45"
-        );
-        appStartTimeMinField.setItems(minutesSlotList);
-        appEndTimeMinField.setItems(minutesSlotList);
+            );
+            appStartTimeMinField.setItems(minutesSlotList);
+            appEndTimeMinField.setItems(minutesSlotList);
 
+        };
+        // execute lambda expression
+        hoursUpdate.hoursListPopulateInterface();
+
+        //Setup textFields
         appContactField.setItems(DBContacts.getAllContacts());
         appContactField.getSelectionModel().select(DBContacts.getContactByID(appointmentToBeUpdated.getContactID()));
-
-
-        System.out.println(appointmentToBeUpdated.getStart());
-
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         Instant instantStart = appointmentToBeUpdated.getStart().toInstant();
         appStartField.setValue(LocalDate.ofInstant(instantStart,ZoneId.systemDefault()));
@@ -105,7 +149,11 @@ public class UpdateAppointmentForm implements Initializable {
         appUserIDField.setText(String.valueOf(appointmentToBeUpdated.getUserID()));
     }
 
-
+    /**
+     * Action Event - Used to cancel update and return to Main Form
+     * @param actionEvent
+     * @throws IOException
+     */
     @javafx.fxml.FXML
     public void onActionCancel(ActionEvent actionEvent) throws IOException {
         Stage stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
@@ -115,6 +163,13 @@ public class UpdateAppointmentForm implements Initializable {
         stage.show();
     }
 
+    /**
+     * Action Event - Validates and submits update
+     * Used to Update Appointment to database
+     * @param actionEvent
+     * @throws SQLException
+     * @throws IOException
+     */
     @javafx.fxml.FXML
     public void onActionUpdateAppointment(ActionEvent actionEvent) throws SQLException, IOException {
         int id = Integer.parseInt(appIDField.getText());
@@ -162,6 +217,7 @@ public class UpdateAppointmentForm implements Initializable {
                 otherExistingAppointments.add(a);
             }
         }
+        // checks for scheduling errors
         for(Appointments a : otherExistingAppointments){
             Instant existingAppointmentStartInstant = a.getStart().toInstant();
             Instant existingAppointmentEndInstant = a.getEnd().toInstant();
@@ -185,7 +241,7 @@ public class UpdateAppointmentForm implements Initializable {
         if(overlappingAppointmentFound == true){
             System.out.println("Appointment overlaps with an existing Appointment ");
         } else {
-
+            // finally updates appointment
             int rowsAffected = DBAppointments.update(id, title, description, location, type, start, end, lastUpdate, lastUpdateBy, customerID, contactId, userID);
 
             if (rowsAffected > 0) {

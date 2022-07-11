@@ -4,13 +4,23 @@ import javax.swing.*;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZonedDateTime;
 
+
+/**
+ * Public class used to assigned TimeZone Conversion and increase code readability
+ *
+ */
 public class TimeZoneConversion {
 
-    public static boolean checkESTSchedule(LocalDateTime selectedTime){
-        boolean canSchedule = true;
 
+    /**
+     * Validates LocalDateTime to determined business hours of Appointments
+     * @param selectedTime
+     * @return
+     */
+    public static boolean checkESTSchedule(LocalDateTime selectedTime){
+        // vars
+        boolean canSchedule = true;
         ZoneId userZoneID = ZoneId.systemDefault();
         ZoneId scheduleZoneID = ZoneId.of("America/New_York");
         LocalDateTime scheduleDateTime = selectedTime.atZone(userZoneID).withZoneSameInstant(scheduleZoneID).toLocalDateTime();

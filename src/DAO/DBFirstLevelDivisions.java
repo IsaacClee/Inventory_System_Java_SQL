@@ -9,8 +9,15 @@ import javafx.collections.ObservableList;
 import javax.swing.*;
 import java.sql.*;
 
+/**
+ * First-level Division Class and Database Queries
+ */
 public class DBFirstLevelDivisions {
 
+    /**
+     * Gets all FirstLevelDivisions records from Database
+     * @return divisionsList
+     */
     public static ObservableList<FirstLevelDivisions> getAllDivisions(){
         ObservableList<FirstLevelDivisions>divisionsList = FXCollections.observableArrayList();
 
@@ -35,6 +42,11 @@ public class DBFirstLevelDivisions {
         return divisionsList;
     }
 
+    /**
+     * Gets a single FirstLevelDivision by ID from Database
+     * @param divisionID
+     * @return d
+     */
     public static FirstLevelDivisions getDivisionByID(int divisionID){
         FirstLevelDivisions d = new FirstLevelDivisions(0, null, 0);
 
@@ -57,6 +69,12 @@ public class DBFirstLevelDivisions {
         return d;
     }
 
+
+    /**
+     * Gets Divisions list by CountryID from Database
+     * @param countryID
+     * @return divisionsList
+     */
     public static ObservableList<FirstLevelDivisions> getDivisionsById(int countryID){
         ObservableList<FirstLevelDivisions>divisionsList = FXCollections.observableArrayList();
 
@@ -80,6 +98,11 @@ public class DBFirstLevelDivisions {
         return divisionsList;
     }
 
+    /**
+     * Gets name of a Division by the Division ID
+     * @param divisionID
+     * @return divName
+     */
     public static String getDivisionName(int divisionID){
         ObservableList<FirstLevelDivisions> divisionsList = DBFirstLevelDivisions.getAllDivisions();
         String divName = null;
@@ -91,6 +114,11 @@ public class DBFirstLevelDivisions {
         return divName;
     }
 
+    /**
+     * Gets a Division ID by a Division Name Object
+     * @param divisionName
+     * @return divId
+     */
     public static int getDivisionID(Object divisionName){
         ObservableList<FirstLevelDivisions> divisionsList = DBFirstLevelDivisions.getAllDivisions();
         int divId = 0;
@@ -102,6 +130,11 @@ public class DBFirstLevelDivisions {
         return divId;
     }
 
+    /**
+     * Gets a Division ID by a Division Name String
+     * @param divisionName
+     * @return divId
+     */
     public static int getDivisionID(String divisionName){
         ObservableList<FirstLevelDivisions> divisionsList = DBFirstLevelDivisions.getAllDivisions();
         int divId = 0;
@@ -114,6 +147,12 @@ public class DBFirstLevelDivisions {
         return divId;
     }
 
+
+    /**
+     * Gets a Country ID by a Division ID
+     * @param divisionID
+     * @return countryID
+     */
     public static int getCountryID(int divisionID){
         ObservableList<FirstLevelDivisions> divisionsList = DBFirstLevelDivisions.getAllDivisions();
         int countryID = 0;
@@ -126,22 +165,6 @@ public class DBFirstLevelDivisions {
     }
 
 
-
-
-    public static void checkDateConversion(){
-        System.out.println("CREATE DATE TEST");
-        String sql = "Select Create_Date from Countries";
-        try {
-            PreparedStatement ps = JDBC.getConnection().prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while(rs.next()){
-                Timestamp ts = rs.getTimestamp("Create_Date");
-                System.out.println("CD: " + ts.toLocalDateTime().toString());
-            }
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-    }
 
 }
 

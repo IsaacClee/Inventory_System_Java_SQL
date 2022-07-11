@@ -166,6 +166,11 @@ public class MainForm implements Initializable{
         return appointmentToBeUpdated;
     }
 
+    /**
+     * initialize
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -191,16 +196,59 @@ public class MainForm implements Initializable{
         });
 
         appContactField.setItems(DBContacts.getAllContacts());
-        appStartTimeField.setItems(HoursInterface.hoursInterface());
-        appEndTimeField.setItems(HoursInterface.hoursInterface());
-        ObservableList<String> minutesSlotList = FXCollections.observableArrayList(
-                "0",
-                "15",
-                "30",
-                "45"
-        );
-        appStartTimeMinField.setItems(minutesSlotList);
-        appEndTimeMinField.setItems(minutesSlotList);
+
+
+        //!!!!!!!!! LAMBDA EXPRESSION CASE 1 !!!!!!!!!
+
+        /**
+         * Lambda Expression 1
+         * Used to populate combo boxes used by Form
+         * LAMBDA Justification: This population requires single-instant non-dynamic population required to setup GUI interface
+         * Used to isolate code function of a observable list which increases readability and supports DRY principles
+         * Used to eliminate a static input list, best use case for an anonymous variable
+         */
+        HoursInterface hoursUpdate = () -> {
+            ObservableList<String> timeSlotsList = FXCollections.observableArrayList(
+                    "0",
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5",
+                    "6",
+                    "7",
+                    "8",
+                    "9",
+                    "10",
+                    "11",
+                    "12",
+                    "13",
+                    "14",
+                    "15",
+                    "16",
+                    "17",
+                    "18",
+                    "19",
+                    "20",
+                    "21",
+                    "22",
+                    "23"
+            );
+            appStartTimeField.setItems(timeSlotsList);
+            appEndTimeField.setItems(timeSlotsList);
+
+            ObservableList<String> minutesSlotList = FXCollections.observableArrayList(
+                    "0",
+                    "15",
+                    "30",
+                    "45"
+            );
+            appStartTimeMinField.setItems(minutesSlotList);
+            appEndTimeMinField.setItems(minutesSlotList);
+
+        };
+        // execute lambda expression
+        hoursUpdate.hoursListPopulateInterface();
 
         boolean incomingAppointment15Minutes = false;
         Instant now = Instant.now();
@@ -222,11 +270,21 @@ public class MainForm implements Initializable{
     }
 
 
+    /**
+     * Action Event - used to exit application
+     * @param actionEvent
+     */
     @javafx.fxml.FXML
     public void onActionExitMenu(ActionEvent actionEvent) {
         System.exit(0);
     }
 
+    /**
+     * Action Event - used to add customer to database
+     * Validates and submits Adding a Customer Record
+     * @param actionEvent
+     * @throws SQLException
+     */
     @FXML
     public void onActionAddCustomer(ActionEvent actionEvent) throws SQLException {
 
@@ -257,7 +315,12 @@ public class MainForm implements Initializable{
 
     }
 
-
+    /**
+     * Action Event - used to add a Appointment to the database
+     * Validates and submits new Appointment record based on user inputs
+     * @param actionEvent
+     * @throws SQLException
+     */
     @FXML
     public void onActionAddAppointment(ActionEvent actionEvent) throws SQLException {
 
@@ -345,7 +408,11 @@ public class MainForm implements Initializable{
 
     }
 
-
+    /**
+     * Action Event - Used to Delete a appointment from database
+     * @param actionEvent
+     * @throws SQLException
+     */
     @FXML
     public void onActionDeleteAppointment(ActionEvent actionEvent) throws SQLException {
         Alert deleteAlert = new Alert(Alert.AlertType.CONFIRMATION, "This will remove this appointment from the Database. Do you want to proceed?");
@@ -360,6 +427,11 @@ public class MainForm implements Initializable{
 
     }
 
+    /**
+     * Action Event - used to Delete a customer from database
+     * @param actionEvent
+     * @throws SQLException
+     */
     @FXML
     public void onActionDeleteCustomer(ActionEvent actionEvent) throws SQLException {
         Customers selectedItem = (Customers) CustomerTable.getSelectionModel().getSelectedItem();
@@ -379,6 +451,11 @@ public class MainForm implements Initializable{
         }
     }
 
+    /**
+     * Action Event - used to launch Update Appointment Form
+     * @param actionEvent
+     * @throws IOException
+     */
     @FXML
     public void onActionUpdateAppointment(ActionEvent actionEvent) throws IOException {
         Appointments selectedItem = (Appointments) AppointmentTable.getSelectionModel().getSelectedItem();
@@ -394,6 +471,11 @@ public class MainForm implements Initializable{
         }
     }
 
+    /**
+     * Action Event - used to launch Update Customer Form
+     * @param actionEvent
+     * @throws IOException
+     */
     @FXML
     public void onActionUpdateCustomer(ActionEvent actionEvent) throws IOException  {
         Customers selectedItem = (Customers) CustomerTable.getSelectionModel().getSelectedItem();
@@ -409,6 +491,9 @@ public class MainForm implements Initializable{
         }
     }
 
+    /**
+     * Used to re-populate tables from database
+     */
     public void refreshTables(){
         CustomerTable.getItems().clear();
 
@@ -515,6 +600,11 @@ public class MainForm implements Initializable{
         appContactIDCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
     }
 
+    /**
+     * Used to open Reports GUI
+     * @param actionEvent
+     * @throws IOException
+     */
     public void onActionReports(ActionEvent actionEvent) throws IOException {
         stage = (Stage) ((Button) actionEvent.getSource()).getScene().getWindow();
         scene = FXMLLoader.load(getClass().getResource("/View/Reports.fxml"));

@@ -3,14 +3,21 @@ package Model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Date;
-import java.sql.Timestamp;
 
+/**
+ * First-level Divisions class
+ */
 public class FirstLevelDivisions {
     private int id;
     private String name;
     private int countryID;
 
+    /**
+     * FirstLevelDivisions Public Constructor
+     * @param id
+     * @param name
+     * @param countryID
+     */
     public FirstLevelDivisions(int id, String name, int countryID) {
         this.id = id;
         this.name = name;
@@ -45,7 +52,6 @@ public class FirstLevelDivisions {
         this.name = name;
     }
 
-
     /**
      * @return the countryID
      */
@@ -60,16 +66,34 @@ public class FirstLevelDivisions {
         this.countryID = countryID;
     }
 
+    /**
+     * Observable list functions for filters and testing
+     */
     public static class allFirstLevelDivisions {
 
+        /**
+         * Declares Observable list
+         */
         private static ObservableList<FirstLevelDivisions> listOfDivisions = FXCollections.observableArrayList();
 
+        /**
+         * Adds FirstLevelDivision to listOfDivisions
+         * @param divisions
+         */
         public static void addDivisionToList(FirstLevelDivisions divisions){listOfDivisions.add(divisions);}
 
+        /**
+         * Getter for listOfDivisions
+         * @return listOfDivisions
+         */
         public static ObservableList<FirstLevelDivisions> getListOfDivisions() {return listOfDivisions;}
 
     }
 
+    /**
+     * Overrides default method toString()
+     * @return
+     */
     @Override
     public String toString(){
         return (name);

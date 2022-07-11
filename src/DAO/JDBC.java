@@ -4,8 +4,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+/**
+ * Primary connection to Database
+ * Used by all other DB (Database) functions
+ *
+ */
 public abstract class JDBC {
 
+    /**
+     * Used to construct connection string
+     */
     private static final String protocol = "jdbc";
     private static final String vendor = ":mysql:";
     private static final String location = "//localhost/";
@@ -17,6 +25,10 @@ public abstract class JDBC {
     public static Connection connection; // Connection Interface
 
 
+    /**
+     * Used to initialize a connection to the database
+     * @return connection
+     */
     public static Connection openConnection()
     {
         try {
@@ -33,11 +45,17 @@ public abstract class JDBC {
         return connection;
     }
 
-    // Getter for the Database Connection
+    /**
+     * Getter for the Database Connection
+     * @return connection
+     */
     public static Connection getConnection(){
         return connection;
     }
 
+    /**
+     * Used to close the connection to the Database
+     */
     public static void closeConnection() {
         try {
             connection.close();
