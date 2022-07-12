@@ -1,7 +1,5 @@
 package Model;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 /**
  * Interface class with lambda expressions used by MainForm and UpdateAppointmentForm

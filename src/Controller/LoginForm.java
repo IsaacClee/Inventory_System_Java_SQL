@@ -1,7 +1,10 @@
 package Controller;
 
 import DAO.DBUsers;
+import Model.CheckUserInterface;
+import Model.HoursInterface;
 import Model.Users;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -75,17 +78,38 @@ public class LoginForm implements Initializable {
      */
     @FXML
     public void onActionLogin(ActionEvent actionEvent) throws IOException {
-        boolean checkUser = false;
+
+
+        //!!!!!!!!! LAMBDA EXPRESSION CASE 3 !!!!!!!!!
+
+        /**
+         * Lambda Expression 3
+         * Used to reference database and check a user id and password match
+         * LAMBDA Justification:
+         * 1. Login form requires a single-instant non-dynamic matching of data-base stored user id and password credentials
+         * 2. Used only once and does not require another function call
+         * 3. Must always be called to validate user credentials
+         * 4. Anonymous function (lambda expression) supports security through obscurity best practice
+         */
+
+        CheckUserInterface checkUserLoginAttempt = () -> {
+            boolean checkUser = false;
+            String userID = userIdField.getText();
+            String password = passwordField.getText();
+            ObservableList<Users> usersList = DBUsers.getAllUsers();
+            for(Users u : usersList){
+                if(password.contains(u.getPassword()) && userID.contains(Integer.toString(u.getId()))){
+                    checkUser = true;
+                }
+            }
+            return checkUser;
+        };
+        // execute lambda expression
+
+        boolean checkUser = checkUserLoginAttempt.checkUserLogin();
         String userID = userIdField.getText();
         String password = passwordField.getText();
 
-
-        ObservableList<Users> usersList = DBUsers.getAllUsers();
-        for(Users u : usersList){
-            if(password.contains(u.getPassword()) && userID.contains(Integer.toString(u.getId()))){
-                checkUser = true;
-            }
-        }
         if(checkUser == true){
             FileWriter fw = new FileWriter("login_activity.txt", true);
             PrintWriter pw = new PrintWriter(fw);

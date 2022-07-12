@@ -144,7 +144,10 @@ public class Reports implements Initializable {
     public void onActionSelectContact(ActionEvent actionEvent) {
         Contacts selectedContact = (Contacts) scheduleContactBox.getSelectionModel().getSelectedItem();
 
-        ScheduleTable.getItems().clear();
+        if(ScheduleTable != null){
+            ScheduleTable.getItems().clear();
+        }
+
 
         // Populate Customer Table
         ScheduleTable.setItems(DBAppointments.filteredAppointmentsByID(selectedContact.getId()));

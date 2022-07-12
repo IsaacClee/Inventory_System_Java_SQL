@@ -422,7 +422,7 @@ public class MainForm implements Initializable{
         if(result.isPresent() && result.get() == ButtonType.OK){
             Appointments selectedItem = (Appointments) AppointmentTable.getSelectionModel().getSelectedItem();
             DBAppointments.deleteAppointment(selectedItem.getId());
-            JOptionPane.showMessageDialog(null, "Delete successful - ID: " + selectedItem.getId() + ", Name: " + selectedItem.getTitle());
+            JOptionPane.showMessageDialog(null, "Delete successful - ID: " + selectedItem.getId() + ", Type: " + selectedItem.getType());
             refreshTables();
         }
 

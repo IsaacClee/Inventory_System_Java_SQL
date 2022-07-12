@@ -27,7 +27,7 @@ public class TimeZoneConversion {
         // Check if Locate Date is within EST business hours
         int selectedHour = scheduleDateTime.getHour();
         System.out.println(selectedHour);
-        if(selectedHour < 8 || selectedHour > 20){
+        if(selectedHour < 8 || selectedHour > 22){
             canSchedule = false;
             JOptionPane.showMessageDialog(null,
                     "We cannot schedule this appointment. " +
