@@ -371,7 +371,8 @@ public class MainForm implements Initializable{
     if(!localDateTimeEnd.isAfter(localDateTimeStart)){
         JOptionPane.showMessageDialog(null,
                 "We cannot schedule this appointment. " +
-                        "The appointment start date is before the appointment end date.");
+                        "The appointment start is during or before the appointment end."
+        );
         return;
     }
 

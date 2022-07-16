@@ -182,8 +182,8 @@ public class UpdateAppointmentForm implements Initializable {
         int contactId = DBContacts.getContactIDByName(String.valueOf(appContactField.getValue()));
 
         // Get Start Time
-        int startTime = Integer.parseInt((String) appStartTimeField.getSelectionModel().getSelectedItem());
-        int startTimeMin = Integer.parseInt((String) appStartTimeMinField.getSelectionModel().getSelectedItem());
+        int startTime = Integer.parseInt((String) appStartTimeField.getValue());
+        int startTimeMin = Integer.parseInt((String) appStartTimeMinField.getValue());
         LocalDateTime localDateTimeStart = appStartField.getValue().atTime(startTime,startTimeMin);
         Timestamp start = Timestamp.valueOf(localDateTimeStart);
 
@@ -205,9 +205,19 @@ public class UpdateAppointmentForm implements Initializable {
             return;
         };
 
+        if(!localDateTimeEnd.isAfter(localDateTimeStart)){
+            JOptionPane.showMessageDialog(null,
+                    "We cannot schedule this appointment. " +
+                            "The appointment start is during or before the appointment end."
+            );
+            return;
+        }
+
+
         int customerID = Integer.parseInt(appCusIDField.getText());
         int userID = Integer.parseInt(appUserIDField.getText());
         boolean overlappingAppointmentFound = false;
+
         Instant suggestedAppointmentStartTime = start.toInstant();
         Instant suggestedAppointmentEndTime = end.toInstant();
         ObservableList<Appointments> allAppointments = DBAppointments.getAllAppointments();
