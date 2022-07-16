@@ -128,7 +128,7 @@ public class Reports implements Initializable {
 
     @javafx.fxml.FXML
     public void onActionSelectType(ActionEvent actionEvent) {
-        String selectedType = (String) typeSelectBox.getSelectionModel().getSelectedItem();
+        String selectedType = (String) typeSelectBox.getValue();
         appointmentsCountByType = DBAppointments.filteredAppointmentsByType(selectedType);
         totalByType.setText(String.valueOf(appointmentsCountByType));
         countOfAppointments = appointmentsCountByMonth + appointmentsCountByType;
@@ -169,7 +169,7 @@ public class Reports implements Initializable {
     @javafx.fxml.FXML
     public void onActionSelectDivision(ActionEvent actionEvent) {
 
-        FirstLevelDivisions selectedDivision = (FirstLevelDivisions) firstLevelDivisionSelectBox.getSelectionModel().getSelectedItem();
+        FirstLevelDivisions selectedDivision = (FirstLevelDivisions) firstLevelDivisionSelectBox.getValue();
 
         divisionID.setText(String.valueOf(selectedDivision.getId()));
 
@@ -184,7 +184,7 @@ public class Reports implements Initializable {
      */
     @javafx.fxml.FXML
     public void onActionSelectMonth(ActionEvent actionEvent) throws SQLException {
-        int selectedMonth = getMonthNumber((String) monthSelectBox.getSelectionModel().getSelectedItem());
+        int selectedMonth = getMonthNumber((String) monthSelectBox.getValue());
         appointmentsCountByMonth = DBAppointments.getAppointmentsByMonth(selectedMonth);
         totalByMonth.setText(String.valueOf(appointmentsCountByMonth));
         countOfAppointments = appointmentsCountByMonth + appointmentsCountByType;

@@ -343,8 +343,8 @@ public class MainForm implements Initializable{
     int contactID = DBContacts.getContactByName(String.valueOf(appContactField.getValue())).getId();
 
     // Get Start Time // Start Time Conversions
-    int startTime = Integer.parseInt((String) appStartTimeField.getSelectionModel().getSelectedItem());
-    int startTimeMin = Integer.parseInt((String) appStartTimeMinField.getSelectionModel().getSelectedItem());
+    int startTime = Integer.parseInt((String) appStartTimeField.getValue());
+    int startTimeMin = Integer.parseInt((String) appStartTimeMinField.getValue());
     LocalDateTime localDateTimeStart = appStartField.getValue().atTime(startTime, startTimeMin);
     ZonedDateTime zonedLocalDateTimeStart = localDateTimeStart.atZone(ZoneId.systemDefault());
     Timestamp start = Timestamp.from(zonedLocalDateTimeStart.toInstant());
@@ -368,6 +368,13 @@ public class MainForm implements Initializable{
         return;
     };
 
+    if(!localDateTimeEnd.isAfter(localDateTimeStart)){
+        JOptionPane.showMessageDialog(null,
+                "We cannot schedule this appointment. " +
+                        "The appointment start date is before the appointment end date.");
+        return;
+    }
+
         boolean overlappingAppointmentFound = false;
         Instant suggestedAppointmentStartTime = start.toInstant();
         Instant suggestedAppointmentEndTime = end.toInstant();
@@ -382,12 +389,12 @@ public class MainForm implements Initializable{
             } else if(suggestedAppointmentStartTime.isAfter(existingAppointmentStartInstant) && suggestedAppointmentStartTime.isBefore(existingAppointmentEndInstant)){
                 JOptionPane.showMessageDialog(null,
                         "We cannot schedule this appointment. " +
-                                "The appointment timeslot you selected would start during an existing appointment");
+                                "The appointment timeslot you selected would start during an existing appointment.");
                 overlappingAppointmentFound = true;
             } else if(suggestedAppointmentStartTime.equals(existingAppointmentStartInstant) || suggestedAppointmentEndTime.equals(existingAppointmentEndInstant)){
                 JOptionPane.showMessageDialog(null,
                         "We cannot schedule this appointment. " +
-                                "The appointment timeslot you selected would start or end during an existing appointment ");
+                                "The appointment timeslot you selected would start or end during an existing appointment.");
                 overlappingAppointmentFound = true;
             }
         }

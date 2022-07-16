@@ -26,12 +26,19 @@ public class TimeZoneConversion {
         LocalDateTime scheduleDateTime = selectedTime.atZone(userZoneID).withZoneSameInstant(scheduleZoneID).toLocalDateTime();
         // Check if Locate Date is within EST business hours
         int selectedHour = scheduleDateTime.getHour();
-        System.out.println(selectedHour);
-        if(selectedHour < 8 || selectedHour > 22){
-            canSchedule = false;
-            JOptionPane.showMessageDialog(null,
-                    "We cannot schedule this appointment. " +
-                            "The appointment is outside business hours: 8:00am to 10:00pm EST");
+        int selectedMinutes = scheduleDateTime.getMinute();
+        if(selectedMinutes != 0 && selectedHour == 22) {
+                canSchedule = false;
+                JOptionPane.showMessageDialog(null,
+                        "We cannot schedule this appointment. " +
+                                "The appointment is outside business hours: 8:00am to 10:00pm EST");
+        } else {
+            if (selectedHour < 8 || selectedHour > 22) {
+                canSchedule = false;
+                JOptionPane.showMessageDialog(null,
+                        "We cannot schedule this appointment. " +
+                                "The appointment is outside business hours: 8:00am to 10:00pm EST");
+            }
         }
 
         // Check if Locale Date is a week day
