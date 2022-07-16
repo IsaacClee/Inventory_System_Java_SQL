@@ -317,7 +317,7 @@ public class DBAppointments {
      */
     public static int filteredAppointmentsByType (String type){
         int countOfType = 0;
-        Appointments.filteredAppointments.getListOfFilteredAppointments().clear();
+        Appointments.filteredAppointments2.getListOfFilteredAppointments().clear();
         for(Appointments appointments : DBAppointments.getAllAppointments()) {
             if (appointments.getType().equals(type))
                 countOfType++;

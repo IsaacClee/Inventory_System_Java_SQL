@@ -278,6 +278,27 @@ public class Appointments {
 
     }
 
+    public static class filteredAppointments2 {
+
+        /**
+         Declares Observable List
+         */
+        private static ObservableList<Appointments> listOfFilteredAppointments = FXCollections.observableArrayList();
+
+        /**
+         * Add Appointment to listOfFilteredAppointments
+         * @param appointments
+         */
+        public static void addAppointmentToFilteredList(Appointments appointments){listOfFilteredAppointments.add(appointments);}
+
+        /**
+         * Getter for listOfFilteredAppointments
+         * @return listOfFilteredAppointments
+         */
+        public static ObservableList<Appointments> getListOfFilteredAppointments() {return listOfFilteredAppointments;}
+
+    }
+
 
 
 
