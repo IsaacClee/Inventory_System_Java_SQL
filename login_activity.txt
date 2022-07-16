@@ -19,3 +19,9 @@ User: 1 logged in successfully. Timestamp:2022-07-12 14:16:56.795201 America/New
 User: asdf attempted to login but was unsuccessful. Timestamp:2022-07-12 14:42:31.9431636 America/New_York
 User: 1 logged in successfully. Timestamp:2022-07-12 14:42:37.0440727 America/New_York
 User: 1 logged in successfully. Timestamp:2022-07-12 14:51:35.2301312 America/New_York
+User: 1 logged in successfully. Timestamp:2022-07-12 15:06:22.3715321 America/New_York
+User: 1 logged in successfully. Timestamp:2022-07-16 08:29:28.0246351 America/New_York
+User: 1 logged in successfully. Timestamp:2022-07-16 08:38:37.5789266 America/New_York
+User: 1 logged in successfully. Timestamp:2022-07-16 08:51:13.6896954 America/New_York
+User: 1 logged in successfully. Timestamp:2022-07-16 08:55:36.6989094 America/New_York
+User: 1 logged in successfully. Timestamp:2022-07-16 08:56:17.8196106 America/New_York

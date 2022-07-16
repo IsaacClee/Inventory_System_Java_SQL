@@ -142,7 +142,7 @@ public class Reports implements Initializable {
      */
     @javafx.fxml.FXML
     public void onActionSelectContact(ActionEvent actionEvent) {
-        Contacts selectedContact = (Contacts) scheduleContactBox.getSelectionModel().getSelectedItem();
+        Contacts selectedContact = (Contacts) scheduleContactBox.getValue();
 
         if(ScheduleTable != null){
             ScheduleTable.getItems().clear();
