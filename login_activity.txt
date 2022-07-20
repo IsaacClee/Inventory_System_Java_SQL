@@ -35,3 +35,5 @@ User: 1 logged in successfully. Timestamp:2022-07-16 11:05:04.0126106 America/Ne
 User: 1 logged in successfully. Timestamp:2022-07-16 11:10:05.2855432 America/New_York
 User: 1 logged in successfully. Timestamp:2022-07-16 11:18:05.1782386 America/New_York
 User: 1 logged in successfully. Timestamp:2022-07-16 11:26:06.4257212 America/New_York
+User: test logged in successfully. Timestamp:2022-07-19 20:59:03.8644306 America/New_York
+User: admin logged in successfully. Timestamp:2022-07-19 21:01:38.5344849 America/New_York

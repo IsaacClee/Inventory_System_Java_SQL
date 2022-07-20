@@ -356,8 +356,8 @@ public class MainForm implements Initializable{
     };
 
     // Get End Time // End Time Conversions
-    int endTime = Integer.parseInt((String) appEndTimeField.getSelectionModel().getSelectedItem());
-    int endTimeMin = Integer.parseInt((String) appEndTimeMinField.getSelectionModel().getSelectedItem());
+    int endTime = Integer.parseInt((String) appEndTimeField.getValue());
+    int endTimeMin = Integer.parseInt((String) appEndTimeMinField.getValue());
     LocalDateTime localDateTimeEnd = appEndField.getValue().atTime(endTime, endTimeMin);
     ZonedDateTime zonedLocalDateTimeEnd = localDateTimeEnd.atZone(ZoneId.systemDefault());
     Timestamp end = Timestamp.from(zonedLocalDateTimeEnd.toInstant());

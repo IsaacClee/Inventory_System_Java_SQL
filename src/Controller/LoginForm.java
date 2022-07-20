@@ -98,7 +98,7 @@ public class LoginForm implements Initializable {
             String password = passwordField.getText();
             ObservableList<Users> usersList = DBUsers.getAllUsers();
             for(Users u : usersList){
-                if(password.contains(u.getPassword()) && userID.contains(Integer.toString(u.getId()))){
+                if(password.contains(u.getPassword()) && userID.contains(u.getName())){
                     checkUser = true;
                 }
             }
